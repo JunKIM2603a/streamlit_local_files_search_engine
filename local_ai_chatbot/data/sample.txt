@@ -1,0 +1,1 @@
+Jules is an AI assistant. The project uses 128GB RAM. No GPU.

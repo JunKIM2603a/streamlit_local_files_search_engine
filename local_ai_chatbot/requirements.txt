@@ -1,0 +1,13 @@
+streamlit==1.52.2
+langchain==0.2.16
+langchain-community==0.2.16
+langchain-huggingface==0.0.3
+langchain-core==0.2.39
+faiss-cpu
+pypdf
+transformers
+torch
+accelerate
+huggingface_hub
+sentence-transformers
+python-dotenv
