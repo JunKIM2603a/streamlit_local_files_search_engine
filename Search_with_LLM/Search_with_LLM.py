@@ -60,7 +60,8 @@ from langchain_unstructured import UnstructuredLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 # 임베딩 (Embeddings)
-from langchain_huggingface import HuggingFaceEmbeddings
+# from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 
 # 벡터 스토어 및 검색기 (Hybrid Search)
 from langchain_core.vectorstores import InMemoryVectorStore

@@ -135,7 +135,7 @@ def load_all_documents(directory_path):
 
 # 문서가 포함된 폴더 경로 (상대 경로 혹은 절대 경로)
 doc_dir = "./doc"
-
+docs = []
 # 경로가 실제로 존재하는지 확인 후 로드 시작
 if os.path.exists(doc_dir):
     print(f"작업 디렉토리: {os.path.abspath(doc_dir)}")

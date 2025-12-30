@@ -1,5 +1,5 @@
 import os
-from typing import Any, List, Optional
+from typing import Any, List, Optional, Tuple
 from langchain_community.document_loaders import PyPDFLoader, TextLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
@@ -14,6 +14,7 @@ from langchain_core.callbacks import CallbackManagerForRetrieverRun
 from pydantic import Field
 from sentence_transformers import SentenceTransformer
 from llama_cpp import Llama
+from flashrank import Ranker, RerankRequest
 import streamlit as st
 from dotenv import load_dotenv
 from pathlib import Path
@@ -37,27 +38,79 @@ EMBEDDING_MODEL_NAME = "BAAI/bge-m3"
 EMBEDDING_MODEL_PATH = MODELS_DIR / "bge-m3"
 
 # LLM Models - GGUF format
-LLM_MODEL_NAME = "Qwen/Qwen2.5-Coder-7B-Instruct"
-LLM_MODEL_PATH = MODELS_DIR / "Qwen2.5-Coder-7B-Instruct"
-LLM_MODEL_FILE = "qwen2.5-coder-7b-instruct-q5_k_m.gguf"
+LLM_MODEL_NAME = "Qwen/Qwen2.5-Coder-7B-Instruct-GGUF"
+LLM_MODEL_PATH = MODELS_DIR / "Qwen2.5-Coder-7B-Instruct-GGUF"
+LLM_MODEL_FILE = "qwen2.5-coder-7b-instruct-q4_k_m.gguf"
 
-LLM_QUERY_MODEL_NAME = "Qwen/Qwen2.5-Coder-1.5B-Instruct"
-LLM_QUERY_MODEL_PATH = MODELS_DIR / "Qwen2.5-Coder-1.5B-Instruct"
+LLM_QUERY_MODEL_NAME = "Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF"
+LLM_QUERY_MODEL_PATH = MODELS_DIR / "Qwen2.5-Coder-1.5B-Instruct-GGUF"
 LLM_QUERY_MODEL_FILE = "qwen2.5-coder-1.5b-instruct-q4_k_m.gguf"
 
 
 # =============================================================================
+# Command Metadata Parser
+# =============================================================================
+
+def parse_command_metadata(line: str) -> dict:
+    """
+    명령어에서 메타데이터 추출 (cp, SetPrimary 등)
+    보고서 섹션 3.2 권장사항 구현
+    """
+    metadata = {
+        "command": None,
+        "source": None,
+        "destination": None,
+        "args": None
+    }
+    
+    # cp 명령어 패턴: cp "소스" "목적지"
+    cp_pattern = r'^cp\s+"([^"]+)"\s*,\s*"([^"]+)"'
+    match = re.match(cp_pattern, line.strip())
+    if match:
+        metadata["command"] = "cp"
+        metadata["source"] = match.group(1)
+        metadata["destination"] = match.group(2)
+        metadata["args"] = f"{match.group(1)}, {match.group(2)}"
+        return metadata
+    
+    # SetPrimary 명령어 패턴
+    setprimary_pattern = r'^SetPrimary\s+(\S+)'
+    match = re.match(setprimary_pattern, line.strip())
+    if match:
+        metadata["command"] = "SetPrimary"
+        metadata["args"] = match.group(1)
+        return metadata
+    
+    # netstat 명령어 패턴
+    if line.strip().startswith("netstat"):
+        metadata["command"] = "netstat"
+        return metadata
+    
+    # Show* 명령어 패턴
+    show_pattern = r'^(Show\w+)'
+    match = re.match(show_pattern, line.strip())
+    if match:
+        metadata["command"] = match.group(1)
+        return metadata
+    
+    return metadata
+
+
+# =============================================================================
 # Hybrid Retriever - Custom Implementation (inherits BaseRetriever)
+# 보고서 섹션 4.3 권장사항: BM25 70%, Vector 30%
 # =============================================================================
 class HybridRetriever(BaseRetriever):
-    """Hybrid retriever combining Vector and BM25 (70:30 ratio)
+    """Hybrid retriever combining Vector and BM25 (30:70 ratio - BM25 우선)
     
     Inherits from LangChain's BaseRetriever for full Runnable compatibility.
+    보고서 권장: 키워드 매칭이 중요하므로 BM25 비중을 높게 설정
     """
     
     vector_retriever: Any = Field(description="Vector store retriever")
     bm25_retriever: Any = Field(description="BM25 keyword retriever")
-    vector_weight: float = Field(default=0.7, description="Weight for vector results (0-1)")
+    vector_weight: float = Field(default=0.3, description="Weight for vector results (0-1), BM25 gets 1-vector_weight")
+    k_constant: int = Field(default=60, description="RRF constant for ranking")
     
     class Config:
         arbitrary_types_allowed = True
@@ -72,31 +125,87 @@ class HybridRetriever(BaseRetriever):
         *, 
         run_manager: Optional[CallbackManagerForRetrieverRun] = None
     ) -> List[Document]:
-        """Get documents from both retrievers and combine based on weights"""
+        """
+        Get documents from both retrievers and combine using RRF
+        보고서 섹션 4.3: Reciprocal Rank Fusion 구현
+        """
         # Get results from both retrievers
         vector_docs = self.vector_retriever.invoke(query)
         bm25_docs = self.bm25_retriever.invoke(query)
         
-        # Simple combination - weighted by position
-        # In practice, proper RRF (Reciprocal Rank Fusion) would be better
-        combined = []
-        seen_contents = set()
+        # RRF (Reciprocal Rank Fusion) 구현
+        # Score(d) = Σ (weight / (k + rank(d, r)))
+        rrf_scores = {}
+        doc_map = {}
         
-        # Interleave results based on weights
-        max_len = max(len(vector_docs), len(bm25_docs))
-        for i in range(max_len):
-            # Add vector result if within weight ratio
-            if i < len(vector_docs) and vector_docs[i].page_content not in seen_contents:
-                combined.append(vector_docs[i])
-                seen_contents.add(vector_docs[i].page_content)
-            
-            # Add BM25 result occasionally based on weight
-            if i < len(bm25_docs) and bm25_docs[i].page_content not in seen_contents:
-                if len(combined) < i * (1.0 / self.bm25_weight):
-                    combined.append(bm25_docs[i])
-                    seen_contents.add(bm25_docs[i].page_content)
+        # Vector 검색 결과 RRF 점수 계산
+        for rank, doc in enumerate(vector_docs):
+            content = doc.page_content
+            score = self.vector_weight / (self.k_constant + rank + 1)
+            rrf_scores[content] = rrf_scores.get(content, 0) + score
+            doc_map[content] = doc
         
-        return combined[:5]  # Return top 5
+        # BM25 검색 결과 RRF 점수 계산
+        for rank, doc in enumerate(bm25_docs):
+            content = doc.page_content
+            score = self.bm25_weight / (self.k_constant + rank + 1)
+            rrf_scores[content] = rrf_scores.get(content, 0) + score
+            doc_map[content] = doc
+        
+        # 점수순 정렬
+        sorted_contents = sorted(rrf_scores.keys(), key=lambda x: rrf_scores[x], reverse=True)
+        
+        # 상위 문서 반환
+        return [doc_map[content] for content in sorted_contents[:10]]
+
+
+# =============================================================================
+# FlashRank Reranker - CPU 최적화 (보고서 섹션 5.2)
+# =============================================================================
+
+@st.cache_resource
+def get_reranker():
+    """
+    FlashRank 리랭커 로드 (CPU 최적화)
+    보고서 권장: ms-marco-MiniLM-L-12-v2 모델 사용
+    """
+    print("Loading FlashRank reranker...")
+    ranker = Ranker(model_name="ms-marco-MiniLM-L-12-v2", cache_dir=str(MODELS_DIR))
+    print("✓ FlashRank reranker loaded successfully")
+    return ranker
+
+
+def rerank_documents(query: str, docs: List[Document], top_k: int = 5) -> Tuple[List[Document], List[Document]]:
+    """
+    FlashRank를 사용한 문서 리랭킹
+    보고서 섹션 5.1: 크로스 인코더로 정밀한 재순위화
+    
+    Returns:
+        Tuple: (리랭킹된 문서들, 원본 문서들) - UI에서 비교 표시용
+    """
+    if not docs:
+        return [], []
+    
+    original_docs = docs.copy()
+    
+    try:
+        ranker = get_reranker()
+        
+        # FlashRank 형식으로 변환
+        passages = [{"id": i, "text": doc.page_content} for i, doc in enumerate(docs)]
+        
+        # 리랭킹 수행
+        rerank_request = RerankRequest(query=query, passages=passages)
+        results = ranker.rerank(rerank_request)
+        
+        # 리랭킹된 순서로 문서 반환
+        reranked_docs = [docs[result["id"]] for result in results[:top_k]]
+        
+        return reranked_docs, original_docs[:top_k]
+        
+    except Exception as e:
+        print(f"Reranking failed: {e}, returning original order")
+        return docs[:top_k], original_docs[:top_k]
 
 
 # =============================================================================
@@ -174,83 +283,53 @@ def load_documents(source_path):
 
 # =============================================================================
 # Custom Chunking Strategy for Command/Script Data
+# 보고서 섹션 3.1: 라인 단위 원자적 청킹
 # =============================================================================
 
 def create_command_chunks(documents):
     """
-    Splits command scripts into meaningful chunks:
-    - Individual commands with their arguments
-    - Comments attached to related commands
-    - Preserves file paths and parameters
+    라인 단위 원자적 청킹 + 메타데이터 추출
+    보고서 섹션 3.1, 3.2 권장사항 구현
+    
+    - 각 라인을 독립된 Document로 처리
+    - cp 명령어에서 source/destination 메타데이터 추출
+    - 빈 라인과 의미없는 라인 필터링
     
     Args:
         documents: List of Document objects
     
     Returns:
-        List of Document objects with proper chunking
+        List of Document objects with proper chunking and metadata
     """
     chunks = []
     
     for doc in documents:
         lines = doc.page_content.split('\n')
-        current_chunk = []
         
-        # Command patterns to detect
-        command_patterns = [
-            r'^cp\s+',           # cp command
-            r'^SetPrimary\s*',   # SetPrimary
-            r'^Show',            # Show* commands
-            r'^netstat',         # netstat
-            r'^sock',            # socket commands
-            r'^End',             # End* commands
-        ]
-        
-        for line in lines:
+        for line_num, line in enumerate(lines):
             stripped = line.strip()
             
-            # Skip empty lines - they act as chunk separators
+            # 빈 라인 스킵
             if not stripped:
-                if current_chunk:
-                    chunk_text = '\n'.join(current_chunk)
-                    chunks.append(Document(
-                        page_content=chunk_text,
-                        metadata={**doc.metadata, 'chunk_type': 'command'}
-                    ))
-                    current_chunk = []
                 continue
             
-            # Check if this is a new command
-            is_command = any(re.match(pattern, stripped) for pattern in command_patterns)
+            # 메타데이터 추출
+            cmd_metadata = parse_command_metadata(stripped)
             
-            if is_command:
-                # Save previous chunk if exists
-                if current_chunk:
-                    chunk_text = '\n'.join(current_chunk)
-                    chunks.append(Document(
-                        page_content=chunk_text,
-                        metadata={**doc.metadata, 'chunk_type': 'command'}
-                    ))
-                    current_chunk = []
-                
-                # Start new chunk with this command
-                current_chunk = [line]
-            else:
-                # Comment or continuation - add to current chunk
-                if current_chunk:
-                    current_chunk.append(line)
-                else:
-                    # Standalone comment becomes its own chunk
-                    current_chunk = [line]
-        
-        # Add remaining chunk
-        if current_chunk:
-            chunk_text = '\n'.join(current_chunk)
+            # 기본 메타데이터
+            metadata = {
+                **doc.metadata,
+                'chunk_type': 'command',
+                'line_number': line_num + 1,
+                **cmd_metadata  # command, source, destination, args
+            }
+            
             chunks.append(Document(
-                page_content=chunk_text,
-                metadata={**doc.metadata, 'chunk_type': 'command'}
+                page_content=stripped,
+                metadata=metadata
             ))
     
-    print(f"Created {len(chunks)} command chunks from {len(documents)} documents")
+    print(f"Created {len(chunks)} atomic line chunks from {len(documents)} documents")
     return chunks
 
 
@@ -300,7 +379,7 @@ def create_vector_store(documents):
     if not documents:
         return None, None
 
-    # Custom chunking for command data
+    # 라인 단위 원자적 청킹 (보고서 권장)
     texts = create_command_chunks(documents)
     
     if not texts:
@@ -405,36 +484,39 @@ def get_query_llm():
 
 
 # =============================================================================
-# RAG Chain with 70% Vector + 30% BM25 Hybrid Retrieval
+# RAG Chain with 30% Vector + 70% BM25 Hybrid Retrieval + FlashRank Reranking
+# 보고서 섹션 4, 5 권장사항 구현
 # =============================================================================
 
 def get_rag_chain(vector_store, all_texts):
     """
-    Creates RAG chain with hybrid retrieval (70% Vector + 30% BM25).
+    Creates RAG chain with hybrid retrieval (30% Vector + 70% BM25) + FlashRank Reranking.
+    보고서 권장: BM25에 더 높은 가중치 부여
     
     Args:
         vector_store: FAISS vector store
         all_texts: List of all chunked documents for BM25
     
     Returns:
-        RAG chain with hybrid retrieval
+        RAG chain with hybrid retrieval and reranking
     """
     llm = get_llm()
     
-    # Vector retriever (70%)
+    # Vector retriever (30% 가중치)
     vector_retriever = vector_store.as_retriever(
-        search_kwargs={"k": 5}
+        search_kwargs={"k": 30}  # 후보군 확보
     )
     
-    # BM25 retriever (30%) - for exact keyword matching
+    # BM25 retriever (70% 가중치) - for exact keyword matching
     bm25_retriever = BM25Retriever.from_documents(all_texts)
-    bm25_retriever.k = 5
+    bm25_retriever.k = 30  # 후보군 확보
     
-    # Hybrid retriever with 70:30 ratio
+    # Hybrid retriever with 30:70 ratio (Vector:BM25)
+    # 보고서 권장: BM25 0.7, Vector 0.3
     hybrid_retriever = HybridRetriever(
         vector_retriever=vector_retriever,
         bm25_retriever=bm25_retriever,
-        vector_weight=0.7
+        vector_weight=0.3  # BM25가 0.7
     )
     
     # Domain-specific prompt
@@ -476,27 +558,32 @@ def get_rag_chain(vector_store, all_texts):
 
 
 # =============================================================================
-# Query Rewriting
+# Query Rewriting - 보고서 섹션 6.1 도메인 특화 쿼리 재작성
 # =============================================================================
 
 def rewrite_query(original_query):
     """
     Rewrites the user query using the Query LLM to improve retrieval.
     Extracts technical keywords for better search.
+    
+    보고서 섹션 6.1 권장사항:
+    - 동의어 확장: "복사" → cp, "네트워크" → netstat
+    - 식별자 보존: V09 등 정확히 유지
+    - 약어 풀이: sdi → SDI.txt, sdi.out 등
     """
     try:
         llm = get_query_llm()
         
-        # Prompt for technical keyword extraction
+        # 보고서 권장 프롬프트 적용
         prompt = (
-            "너는 임베디드 시스템 및 VxWorks 운영 전문가야. \n"
-            "사용자의 질문을 분석하여 기술 스크립트 검색에 최적화된 검색어(Keywords)를 추출해줘.\n"
+            "당신은 쉘 명령어 전문가입니다. 사용자의 질문을 검색 엔진에 최적화된 쿼리로 변환하세요.\n"
             "[규칙]\n"
-            "질문에서 핵심이 되는 모듈명(MSR, HTR, SDI, SDIT, ISP)을 반드시 포함한다.\n"
-            "파일 확장자(.bit, .out)나 명령어(cp, SetPrimary, netstat)가 유추되면 포함한다.\n"
-            "버전 번호(V09, V10, V05 등)가 언급되면 해당 문자를 정확히 추출한다.\n"
-            "불필요한 조사나 서술어는 제외하고 콤마(,)로 구분된 단어만 출력한다.\n"
-            "[입력 예시] \"MSR 필터 기능이 들어간 v09 비트스트림 복사하는 법 알려줘\" \n"
+            "1. 사용자가 언급한 파일명이나 숫자(V09, V10 등)는 정확히 유지하세요.\n"
+            "2. '복사', '설정' 같은 자연어는 'cp', 'SetPrimary' 같은 실제 명령어로 변환하여 추가하세요.\n"
+            "3. 모듈명(MSR, HTR, SDI, SDIT, ISP)을 반드시 포함하세요.\n"
+            "4. 파일 확장자(.bit, .out, .txt)가 유추되면 포함하세요.\n"
+            "5. 불필요한 조사나 서술어는 제외하고 콤마(,)로 구분된 키워드만 출력하세요.\n"
+            "[입력 예시] \"MSR 필터 기능이 들어간 v09 비트스트림 복사하는 법 알려줘\"\n"
             "[출력 예시] cp, MSR, V09, ping_filter, .bit\n"
             f"질문: {original_query}\n"
             "키워드:"
