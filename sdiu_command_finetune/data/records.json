@@ -1,0 +1,3319 @@
+[
+  {
+    "command": "ShowSendCnt",
+    "description": "송신성공 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      1
+    ],
+    "raw_lines": [
+      "ShowSendCnt\t\t\t\t\t\t// \t송신성공 확인"
+    ],
+    "line_number": 1,
+    "searchable_text": "ShowSendCnt 송신성공 확인"
+  },
+  {
+    "command": "ShowSendCnt_Log 1",
+    "description": "주기적으로 송신성공 확인 ON (송신성공 카운터 표시)",
+    "details": [
+      "노드와 연결 끊기면, 숫자는 0",
+      "노드와 연결 끊기면, 숫자는 더이상 증가 안함",
+      "노드와 연결 중이면, 숫자는 증가, 128씩",
+      "노드와 연결 중, 데이터 송수신 실패하면"
+    ],
+    "sections": [],
+    "line_numbers": [
+      2
+    ],
+    "raw_lines": [
+      "ShowSendCnt_Log 1\t\t\t\t//\t주기적으로 송신성공 확인 ON  (송신성공 카운터 표시)",
+      "\t\t\t\t\t\t\t\t//  노드와 연결 끊기면, 숫자는 0",
+      "\t\t\t\t\t\t\t\t//  노드와 연결 끊기면, 숫자는 더이상 증가 안함",
+      "\t\t\t\t\t\t\t\t//  노드와 연결 중이면, 숫자는 증가, 128씩",
+      "\t\t\t\t\t\t\t\t//  노드와 연결 중, 데이터 송수신 실패하면"
+    ],
+    "line_number": 2,
+    "searchable_text": "ShowSendCnt_Log 1 주기적으로 송신성공 확인 ON (송신성공 카운터 표시) 노드와 연결 끊기면, 숫자는 0 노드와 연결 끊기면, 숫자는 더이상 증가 안함 노드와 연결 중이면, 숫자는 증가, 128씩 노드와 연결 중, 데이터 송수신 실패하면"
+  },
+  {
+    "command": "ShowSendCnt_Log 0",
+    "description": "주기적으로 송신성공 확인 OFF",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      7
+    ],
+    "raw_lines": [
+      "ShowSendCnt_Log 0\t\t\t\t//\t주기적으로 송신성공 확인 OFF"
+    ],
+    "line_number": 7,
+    "searchable_text": "ShowSendCnt_Log 0 주기적으로 송신성공 확인 OFF"
+  },
+  {
+    "command": "ShowCheckSendCnt_Log 1",
+    "description": "주기적으로 송신성공 확인 ON (송신성공 카운터 증가가 되면 1 아니면 0)",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      9
+    ],
+    "raw_lines": [
+      "ShowCheckSendCnt_Log 1\t\t\t//\t주기적으로 송신성공 확인 ON  (송신성공 카운터 증가가 되면 1 아니면 0)"
+    ],
+    "line_number": 9,
+    "searchable_text": "ShowCheckSendCnt_Log 1 주기적으로 송신성공 확인 ON (송신성공 카운터 증가가 되면 1 아니면 0)"
+  },
+  {
+    "command": "ShowCheckSendCnt_Log 0",
+    "description": "주기적으로 송신성공 확인 OFF",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      10
+    ],
+    "raw_lines": [
+      "ShowCheckSendCnt_Log 0\t\t\t//\t주기적으로 송신성공 확인 OFF"
+    ],
+    "line_number": 10,
+    "searchable_text": "ShowCheckSendCnt_Log 0 주기적으로 송신성공 확인 OFF"
+  },
+  {
+    "command": "ShowSendFailCnt",
+    "description": "송신실패 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      12
+    ],
+    "raw_lines": [
+      "ShowSendFailCnt\t\t\t\t\t//  송신실패 확인"
+    ],
+    "line_number": 12,
+    "searchable_text": "ShowSendFailCnt 송신실패 확인"
+  },
+  {
+    "command": "ShowSendFailCnt_Log 1",
+    "description": "주기적으로 송신실패 확인 ON",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      13
+    ],
+    "raw_lines": [
+      "ShowSendFailCnt_Log 1\t\t\t//\t주기적으로 송신실패 확인 ON"
+    ],
+    "line_number": 13,
+    "searchable_text": "ShowSendFailCnt_Log 1 주기적으로 송신실패 확인 ON"
+  },
+  {
+    "command": "ShowSendFailCnt_Log 0",
+    "description": "주기적으로 송신실패 확인 OFF",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      14
+    ],
+    "raw_lines": [
+      "ShowSendFailCnt_Log 0\t\t\t//\t주기적으로 송신실패 확인 OFF"
+    ],
+    "line_number": 14,
+    "searchable_text": "ShowSendFailCnt_Log 0 주기적으로 송신실패 확인 OFF"
+  },
+  {
+    "command": "ShowSendFailErrno_Log 1",
+    "description": "주기적으로 송신실패 errno 확인 ON",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      16
+    ],
+    "raw_lines": [
+      "ShowSendFailErrno_Log 1\t\t\t//\t주기적으로 송신실패 errno 확인 ON"
+    ],
+    "line_number": 16,
+    "searchable_text": "ShowSendFailErrno_Log 1 주기적으로 송신실패 errno 확인 ON"
+  },
+  {
+    "command": "ShowSendFailErrno_Log 0",
+    "description": "주기적으로 송신실패 errno 확인 OFF",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      17
+    ],
+    "raw_lines": [
+      "ShowSendFailErrno_Log 0\t\t\t//\t주기적으로 송신실패 errno 확인 OFF"
+    ],
+    "line_number": 17,
+    "searchable_text": "ShowSendFailErrno_Log 0 주기적으로 송신실패 errno 확인 OFF"
+  },
+  {
+    "command": "ResetSendFailErrno",
+    "description": "송신실패 Errno 리셋",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      18
+    ],
+    "raw_lines": [
+      "ResetSendFailErrno      \t\t//  송신실패 Errno 리셋"
+    ],
+    "line_number": 18,
+    "searchable_text": "ResetSendFailErrno 송신실패 Errno 리셋"
+  },
+  {
+    "command": "ShowHmsPingFlag_Log 1",
+    "description": "ping 플래그 변경 시 로깅 ON , HMR연동반 LFPA플래그 전시함 (빔형성으로 송신단)",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      20
+    ],
+    "raw_lines": [
+      "ShowHmsPingFlag_Log 1 \t\t\t// ping 플래그 변경 시 로깅 ON , HMR연동반 LFPA플래그 전시함   (빔형성으로 송신단)"
+    ],
+    "line_number": 20,
+    "searchable_text": "ShowHmsPingFlag_Log 1 ping 플래그 변경 시 로깅 ON , HMR연동반 LFPA플래그 전시함 (빔형성으로 송신단)"
+  },
+  {
+    "command": "ShowHmsPingFlag_Log 0",
+    "description": "ping 플래그 변경 시 로깅 OFF",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      21
+    ],
+    "raw_lines": [
+      "ShowHmsPingFlag_Log 0\t\t\t// ping 플래그 변경 시 로깅 OFF"
+    ],
+    "line_number": 21,
+    "searchable_text": "ShowHmsPingFlag_Log 0 ping 플래그 변경 시 로깅 OFF"
+  },
+  {
+    "command": "ShowLfpaPingFlag_Log 1",
+    "description": "ping 플래그 변경 시 로깅 ON, MSR/LTR연동반 HMS플래그 전시함 (빔형성으로 송신단)",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      22
+    ],
+    "raw_lines": [
+      "ShowLfpaPingFlag_Log 1\t\t\t// ping 플래그 변경 시 로깅 ON, MSR/LTR연동반 HMS플래그 전시함\t(빔형성으로 송신단)"
+    ],
+    "line_number": 22,
+    "searchable_text": "ShowLfpaPingFlag_Log 1 ping 플래그 변경 시 로깅 ON, MSR/LTR연동반 HMS플래그 전시함 (빔형성으로 송신단)"
+  },
+  {
+    "command": "ShowLfpaPingFlag_Log 0",
+    "description": "ping 플래그 변경 시 로깅 OFF",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      23
+    ],
+    "raw_lines": [
+      "ShowLfpaPingFlag_Log 0\t\t\t// ping 플래그 변경 시 로깅 OFF"
+    ],
+    "line_number": 23,
+    "searchable_text": "ShowLfpaPingFlag_Log 0 ping 플래그 변경 시 로깅 OFF"
+  },
+  {
+    "command": "ShowHTRBoardPingFlag_Log 1",
+    "description": "HTR연동반에서 받는 플래그정보 로깅 (FPGA 수신단)",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      25
+    ],
+    "raw_lines": [
+      "ShowHTRBoardPingFlag_Log 1\t\t// HTR연동반에서 받는 플래그정보 로깅 (FPGA 수신단)"
+    ],
+    "line_number": 25,
+    "searchable_text": "ShowHTRBoardPingFlag_Log 1 HTR연동반에서 받는 플래그정보 로깅 (FPGA 수신단)"
+  },
+  {
+    "command": "ShowHTRBoardPingFlag_Log 0",
+    "description": "HTR연동반에서 받는 플래그정보 로깅 (FPGA 수신단) OFF",
+    "details": [
+      "'ShowHTRBoardPingFlag_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      26
+    ],
+    "raw_lines": [
+      "ShowHTRBoardPingFlag_Log 0"
+    ],
+    "line_number": 26,
+    "searchable_text": "ShowHTRBoardPingFlag_Log 0 HTR연동반에서 받는 플래그정보 로깅 (FPGA 수신단) OFF 'ShowHTRBoardPingFlag_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowLTRBoardPingFlag_Log 1",
+    "description": "MSR/LTR연동반에서 받는 플래그정보 로깅 (FPGA 수신단)",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      28
+    ],
+    "raw_lines": [
+      "ShowLTRBoardPingFlag_Log 1\t\t// MSR/LTR연동반에서 받는 플래그정보 로깅 (FPGA 수신단)"
+    ],
+    "line_number": 28,
+    "searchable_text": "ShowLTRBoardPingFlag_Log 1 MSR/LTR연동반에서 받는 플래그정보 로깅 (FPGA 수신단)"
+  },
+  {
+    "command": "ShowLTRBoardPingFlag_Log 0",
+    "description": "MSR/LTR연동반에서 받는 플래그정보 로깅 (FPGA 수신단) OFF",
+    "details": [
+      "'ShowLTRBoardPingFlag_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      29
+    ],
+    "raw_lines": [
+      "ShowLTRBoardPingFlag_Log 0"
+    ],
+    "line_number": 29,
+    "searchable_text": "ShowLTRBoardPingFlag_Log 0 MSR/LTR연동반에서 받는 플래그정보 로깅 (FPGA 수신단) OFF 'ShowLTRBoardPingFlag_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowHTRBoardPingNumber_Log 1",
+    "description": "HTR연동반에서 받는 PingNumber 1초 주기 로깅 (FPGA 수신단)",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      31
+    ],
+    "raw_lines": [
+      "ShowHTRBoardPingNumber_Log 1\t// HTR연동반에서 받는 PingNumber 1초 주기 로깅 (FPGA 수신단)"
+    ],
+    "line_number": 31,
+    "searchable_text": "ShowHTRBoardPingNumber_Log 1 HTR연동반에서 받는 PingNumber 1초 주기 로깅 (FPGA 수신단)"
+  },
+  {
+    "command": "ShowHTRBoardPingNumber_Log 0",
+    "description": "HTR연동반에서 받는 PingNumber 1초 주기 로깅 (FPGA 수신단) OFF",
+    "details": [
+      "'ShowHTRBoardPingNumber_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      32
+    ],
+    "raw_lines": [
+      "ShowHTRBoardPingNumber_Log 0"
+    ],
+    "line_number": 32,
+    "searchable_text": "ShowHTRBoardPingNumber_Log 0 HTR연동반에서 받는 PingNumber 1초 주기 로깅 (FPGA 수신단) OFF 'ShowHTRBoardPingNumber_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowLTRBoardPingNumber_Log 1",
+    "description": "MSR/LTR연동반에서 받는 PingNumber 1초 주기 로깅 (FPGA 수신단)",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      34
+    ],
+    "raw_lines": [
+      "ShowLTRBoardPingNumber_Log 1\t// MSR/LTR연동반에서 받는 PingNumber 1초 주기 로깅 (FPGA 수신단)"
+    ],
+    "line_number": 34,
+    "searchable_text": "ShowLTRBoardPingNumber_Log 1 MSR/LTR연동반에서 받는 PingNumber 1초 주기 로깅 (FPGA 수신단)"
+  },
+  {
+    "command": "ShowLTRBoardPingNumber_Log 0",
+    "description": "MSR/LTR연동반에서 받는 PingNumber 1초 주기 로깅 (FPGA 수신단) OFF",
+    "details": [
+      "'ShowLTRBoardPingNumber_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      35
+    ],
+    "raw_lines": [
+      "ShowLTRBoardPingNumber_Log 0"
+    ],
+    "line_number": 35,
+    "searchable_text": "ShowLTRBoardPingNumber_Log 0 MSR/LTR연동반에서 받는 PingNumber 1초 주기 로깅 (FPGA 수신단) OFF 'ShowLTRBoardPingNumber_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowTxPingNumber_Log 1",
+    "description": "SBC to BF 로 송신하는 PingNumber 1초 주기 로깅 (빔형성으로 송신단)",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      37
+    ],
+    "raw_lines": [
+      "ShowTxPingNumber_Log 1\t\t\t// SBC to BF 로 송신하는 PingNumber 1초 주기 로깅 (빔형성으로 송신단)"
+    ],
+    "line_number": 37,
+    "searchable_text": "ShowTxPingNumber_Log 1 SBC to BF 로 송신하는 PingNumber 1초 주기 로깅 (빔형성으로 송신단)"
+  },
+  {
+    "command": "ShowTxPingNumber_Log 0",
+    "description": "SBC to BF 로 송신하는 PingNumber 1초 주기 로깅 (빔형성으로 송신단) OFF",
+    "details": [
+      "'ShowTxPingNumber_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      38
+    ],
+    "raw_lines": [
+      "ShowTxPingNumber_Log 0"
+    ],
+    "line_number": 38,
+    "searchable_text": "ShowTxPingNumber_Log 0 SBC to BF 로 송신하는 PingNumber 1초 주기 로깅 (빔형성으로 송신단) OFF 'ShowTxPingNumber_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowLinkCnt",
+    "description": "소켓 연결 횟수 확인 // 소켓이 연결되었다 끊어졌다 횟수 확인하고 싶으면 사용",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      40
+    ],
+    "raw_lines": [
+      "ShowLinkCnt\t\t\t\t\t\t//\t소켓 연결 횟수 확인\t\t\t// 소켓이 연결되었다 끊어졌다 횟수 확인하고 싶으면 사용"
+    ],
+    "line_number": 40,
+    "searchable_text": "ShowLinkCnt 소켓 연결 횟수 확인 // 소켓이 연결되었다 끊어졌다 횟수 확인하고 싶으면 사용"
+  },
+  {
+    "command": "ShowisClientConnected",
+    "description": "SDI 서버에 연결 된 노드 확인 // LinkCnt(0x2c) - 재접속된 횟수",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      41
+    ],
+    "raw_lines": [
+      "ShowisClientConnected\t\t\t//\tSDI 서버에 연결 된 노드 확인  // LinkCnt(0x2c) - 재접속된 횟수"
+    ],
+    "line_number": 41,
+    "searchable_text": "ShowisClientConnected SDI 서버에 연결 된 노드 확인 // LinkCnt(0x2c) - 재접속된 횟수"
+  },
+  {
+    "command": "ShowSysTime_Log 1",
+    "description": "시스템 시간 주기 확인 / 주기적으로 시스템 시간 확인 ON",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      43,
+      77,
+      187
+    ],
+    "raw_lines": [
+      "ShowSysTime_Log 1\t\t\t\t// 시스템 시간 주기 확인",
+      "ShowSysTime_Log 1\t\t\t\t//\t주기적으로 시스템 시간 확인 ON",
+      "ShowSysTime_Log 1\t\t\t\t// 시간"
+    ],
+    "line_number": 43,
+    "searchable_text": "ShowSysTime_Log 1 시스템 시간 주기 확인 / 주기적으로 시스템 시간 확인 ON"
+  },
+  {
+    "command": "ShowSysTime_Log 0",
+    "description": "주기적으로 시스템 시간 확인 OFF",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      44,
+      78,
+      188
+    ],
+    "raw_lines": [
+      "ShowSysTime_Log 0",
+      "ShowSysTime_Log 0\t\t\t\t//\t주기적으로 시스템 시간 확인 OFF",
+      "ShowSysTime_Log 0"
+    ],
+    "line_number": 44,
+    "searchable_text": "ShowSysTime_Log 0 주기적으로 시스템 시간 확인 OFF"
+  },
+  {
+    "command": "netstat",
+    "description": "네트워크 상태 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      46
+    ],
+    "raw_lines": [
+      "netstat\t\t\t\t\t\t\t//  네트워크 상태 확인"
+    ],
+    "line_number": 46,
+    "searchable_text": "netstat 네트워크 상태 확인"
+  },
+  {
+    "command": "netstat \"-r\"",
+    "description": "라우팅 테이블 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      47
+    ],
+    "raw_lines": [
+      "netstat \"-r\"\t\t\t\t\t//  라우팅 테이블 확인"
+    ],
+    "line_number": 47,
+    "searchable_text": "netstat \"-r\" 라우팅 테이블 확인"
+  },
+  {
+    "command": "sockShow",
+    "description": "소켓 상태 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      48
+    ],
+    "raw_lines": [
+      "sockShow\t\t\t\t\t\t//  소켓 상태 확인"
+    ],
+    "line_number": 48,
+    "searchable_text": "sockShow 소켓 상태 확인"
+  },
+  {
+    "command": "ShowTimeTag",
+    "description": "FPGA timetag 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      50
+    ],
+    "raw_lines": [
+      "ShowTimeTag\t\t\t\t\t\t//\tFPGA timetag\t확인"
+    ],
+    "line_number": 50,
+    "searchable_text": "ShowTimeTag FPGA timetag 확인"
+  },
+  {
+    "command": "ShowTimeTag_Log 1",
+    "description": "주기적으로 Timetag 확인 ON",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      51
+    ],
+    "raw_lines": [
+      "ShowTimeTag_Log 1\t\t\t\t//\t주기적으로 Timetag 확인 ON"
+    ],
+    "line_number": 51,
+    "searchable_text": "ShowTimeTag_Log 1 주기적으로 Timetag 확인 ON"
+  },
+  {
+    "command": "ShowTimeTag_Log 0",
+    "description": "주기적으로 Timetag 확인 OFF",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      52
+    ],
+    "raw_lines": [
+      "ShowTimeTag_Log 0\t\t\t\t//\t주기적으로 Timetag 확인 OFF"
+    ],
+    "line_number": 52,
+    "searchable_text": "ShowTimeTag_Log 0 주기적으로 Timetag 확인 OFF"
+  },
+  {
+    "command": "ShowHtrTestResult_Log 1",
+    "description": "HTR sync, checksum, timetag 에러 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      54
+    ],
+    "raw_lines": [
+      "ShowHtrTestResult_Log 1\t\t\t// HTR sync, checksum, timetag 에러 확인"
+    ],
+    "line_number": 54,
+    "searchable_text": "ShowHtrTestResult_Log 1 HTR sync, checksum, timetag 에러 확인"
+  },
+  {
+    "command": "ShowHtrTestResult_Log 0",
+    "description": "HTR sync, checksum, timetag 에러 확인 OFF",
+    "details": [
+      "'ShowHtrTestResult_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      55
+    ],
+    "raw_lines": [
+      "ShowHtrTestResult_Log 0"
+    ],
+    "line_number": 55,
+    "searchable_text": "ShowHtrTestResult_Log 0 HTR sync, checksum, timetag 에러 확인 OFF 'ShowHtrTestResult_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowMsrTestResult_Log 1",
+    "description": "MSR sync, checksum, timetag 에러 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      56
+    ],
+    "raw_lines": [
+      "ShowMsrTestResult_Log 1\t\t\t// MSR sync, checksum, timetag 에러 확인"
+    ],
+    "line_number": 56,
+    "searchable_text": "ShowMsrTestResult_Log 1 MSR sync, checksum, timetag 에러 확인"
+  },
+  {
+    "command": "ShowMsrTestResult_Log 0",
+    "description": "MSR sync, checksum, timetag 에러 확인 OFF",
+    "details": [
+      "'ShowMsrTestResult_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      57
+    ],
+    "raw_lines": [
+      "ShowMsrTestResult_Log 0"
+    ],
+    "line_number": 57,
+    "searchable_text": "ShowMsrTestResult_Log 0 MSR sync, checksum, timetag 에러 확인 OFF 'ShowMsrTestResult_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowLtrTestResult_Log 1",
+    "description": "LTR sync, checksum, timetag 에러 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      58
+    ],
+    "raw_lines": [
+      "ShowLtrTestResult_Log 1\t\t\t// LTR sync, checksum, timetag 에러 확인"
+    ],
+    "line_number": 58,
+    "searchable_text": "ShowLtrTestResult_Log 1 LTR sync, checksum, timetag 에러 확인"
+  },
+  {
+    "command": "ShowLtrTestResult_Log 0",
+    "description": "LTR sync, checksum, timetag 에러 확인 OFF",
+    "details": [
+      "'ShowLtrTestResult_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      59
+    ],
+    "raw_lines": [
+      "ShowLtrTestResult_Log 0"
+    ],
+    "line_number": 59,
+    "searchable_text": "ShowLtrTestResult_Log 0 LTR sync, checksum, timetag 에러 확인 OFF 'ShowLtrTestResult_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowRxHeartbeat",
+    "description": "RxHeartbeat 카운터, 연결시(0~2)",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      61
+    ],
+    "raw_lines": [
+      "ShowRxHeartbeat\t\t\t\t\t//\tRxHeartbeat 카운터, 연결시(0~2)"
+    ],
+    "line_number": 61,
+    "searchable_text": "ShowRxHeartbeat RxHeartbeat 카운터, 연결시(0~2)"
+  },
+  {
+    "command": "ShowTestResult",
+    "description": "SDI 점검바이트 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      63
+    ],
+    "raw_lines": [
+      "ShowTestResult\t\t\t\t\t//\tSDI          점검바이트 확인"
+    ],
+    "line_number": 63,
+    "searchable_text": "ShowTestResult SDI 점검바이트 확인"
+  },
+  {
+    "command": "ShowHtrResult",
+    "description": "HTR연동반 점검바이트 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      64
+    ],
+    "raw_lines": [
+      "ShowHtrResult\t\t\t\t\t//\tHTR연동반     점검바이트 확인"
+    ],
+    "line_number": 64,
+    "searchable_text": "ShowHtrResult HTR연동반 점검바이트 확인"
+  },
+  {
+    "command": "ShowMsrResult",
+    "description": "MSR/LTR연동반 점검바이트 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      65
+    ],
+    "raw_lines": [
+      "ShowMsrResult\t\t\t\t\t//\tMSR/LTR연동반 점검바이트 확인"
+    ],
+    "line_number": 65,
+    "searchable_text": "ShowMsrResult MSR/LTR연동반 점검바이트 확인"
+  },
+  {
+    "command": "ShowMaster",
+    "description": "SyncMaster, LinkMaster 확인",
+    "details": [],
+    "sections": [
+      "랙단위 시험용"
+    ],
+    "line_numbers": [
+      67,
+      144,
+      297
+    ],
+    "raw_lines": [
+      "ShowMaster\t\t\t\t\t\t//\tSyncMaster, LinkMaster 확인",
+      "ShowMaster",
+      "ShowMaster"
+    ],
+    "line_number": 67,
+    "searchable_text": "ShowMaster SyncMaster, LinkMaster 확인 랙단위 시험용"
+  },
+  {
+    "command": "ShowRxIspm 1",
+    "description": "ISPM 명령 수신 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      69
+    ],
+    "raw_lines": [
+      "ShowRxIspm 1\t\t\t\t\t//  ISPM 명령 수신   \t확인"
+    ],
+    "line_number": 69,
+    "searchable_text": "ShowRxIspm 1 ISPM 명령 수신 확인"
+  },
+  {
+    "command": "ShowRxIspm 0",
+    "description": "ISPM 명령 수신 확인 OFF",
+    "details": [
+      "'ShowRxIspm 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      70
+    ],
+    "raw_lines": [
+      "ShowRxIspm 0"
+    ],
+    "line_number": 70,
+    "searchable_text": "ShowRxIspm 0 ISPM 명령 수신 확인 OFF 'ShowRxIspm 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowTxCtrl",
+    "description": "ISPM 송신제어 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      71
+    ],
+    "raw_lines": [
+      "ShowTxCtrl\t\t\t\t\t\t//\tISPM 송신제어   \t확인"
+    ],
+    "line_number": 71,
+    "searchable_text": "ShowTxCtrl ISPM 송신제어 확인"
+  },
+  {
+    "command": "ShowEifShipInfo 1",
+    "description": "주기적으로 항해정보 확인 ON 50 * 5 개 들어오면 로깅(5초)",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      73
+    ],
+    "raw_lines": [
+      "ShowEifShipInfo 1\t\t\t\t//\t주기적으로 항해정보 확인 ON    50 * 5 개 들어오면 로깅(5초)"
+    ],
+    "line_number": 73,
+    "searchable_text": "ShowEifShipInfo 1 주기적으로 항해정보 확인 ON 50 * 5 개 들어오면 로깅(5초)"
+  },
+  {
+    "command": "ShowEifShipInfo 0",
+    "description": "주기적으로 항해정보 확인 OFF",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      74
+    ],
+    "raw_lines": [
+      "ShowEifShipInfo 0\t\t\t\t//\t주기적으로 항해정보 확인 OFF"
+    ],
+    "line_number": 74,
+    "searchable_text": "ShowEifShipInfo 0 주기적으로 항해정보 확인 OFF"
+  },
+  {
+    "command": "ShowSysTime",
+    "description": "시스템 시간 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      76
+    ],
+    "raw_lines": [
+      "ShowSysTime\t\t\t\t\t\t//\t시스템 시간 확인"
+    ],
+    "line_number": 76,
+    "searchable_text": "ShowSysTime 시스템 시간 확인"
+  },
+  {
+    "command": "ShowErr",
+    "description": "Task 에러 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      80
+    ],
+    "raw_lines": [
+      "ShowErr\t\t\t\t\t\t\t//  Task 에러 확인"
+    ],
+    "line_number": 80,
+    "searchable_text": "ShowErr Task 에러 확인"
+  },
+  {
+    "command": "ResetErr",
+    "description": "Task 에러 초기화",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      81
+    ],
+    "raw_lines": [
+      "ResetErr\t\t\t\t\t\t//  Task 에러 초기화"
+    ],
+    "line_number": 81,
+    "searchable_text": "ResetErr Task 에러 초기화"
+  },
+  {
+    "command": "adrSpaceShow",
+    "description": "메모리 공간 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      82
+    ],
+    "raw_lines": [
+      "adrSpaceShow\t\t\t\t\t//\t메모리 공간 확인"
+    ],
+    "line_number": 82,
+    "searchable_text": "adrSpaceShow 메모리 공간 확인"
+  },
+  {
+    "command": "ShowStructSize",
+    "description": "구조체크기 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      83
+    ],
+    "raw_lines": [
+      "ShowStructSize\t\t\t\t\t// \t구조체크기 확인"
+    ],
+    "line_number": 83,
+    "searchable_text": "ShowStructSize 구조체크기 확인"
+  },
+  {
+    "command": "SaveTxPeriod",
+    "description": "주기 저장",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      85
+    ],
+    "raw_lines": [
+      "SaveTxPeriod\t\t\t\t\t//   주기 저장"
+    ],
+    "line_number": 85,
+    "searchable_text": "SaveTxPeriod 주기 저장"
+  },
+  {
+    "command": "ShowTxDataTime_Log 1",
+    "description": "주기적으로(60초마다) 음향데이터 송신주기 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      87
+    ],
+    "raw_lines": [
+      "ShowTxDataTime_Log 1\t\t\t//\t주기적으로(60초마다) 음향데이터 송신주기 확인"
+    ],
+    "line_number": 87,
+    "searchable_text": "ShowTxDataTime_Log 1 주기적으로(60초마다) 음향데이터 송신주기 확인"
+  },
+  {
+    "command": "ShowTxDataTime_Log 0",
+    "description": "주기적으로(60초마다) 음향데이터 송신주기 확인 OFF",
+    "details": [
+      "'ShowTxDataTime_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      88
+    ],
+    "raw_lines": [
+      "ShowTxDataTime_Log 0"
+    ],
+    "line_number": 88,
+    "searchable_text": "ShowTxDataTime_Log 0 주기적으로(60초마다) 음향데이터 송신주기 확인 OFF 'ShowTxDataTime_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowTxHeartbeatTime_Log 1",
+    "description": "주기적으로(1초마다) Heartbeat 송신주기 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      90
+    ],
+    "raw_lines": [
+      "ShowTxHeartbeatTime_Log 1\t\t//\t주기적으로(1초마다) Heartbeat 송신주기 확인"
+    ],
+    "line_number": 90,
+    "searchable_text": "ShowTxHeartbeatTime_Log 1 주기적으로(1초마다) Heartbeat 송신주기 확인"
+  },
+  {
+    "command": "ShowTxHeartbeatTime_Log 0",
+    "description": "주기적으로(1초마다) Heartbeat 송신주기 확인 OFF",
+    "details": [
+      "'ShowTxHeartbeatTime_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      91
+    ],
+    "raw_lines": [
+      "ShowTxHeartbeatTime_Log 0"
+    ],
+    "line_number": 91,
+    "searchable_text": "ShowTxHeartbeatTime_Log 0 주기적으로(1초마다) Heartbeat 송신주기 확인 OFF 'ShowTxHeartbeatTime_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowSendTxStatus_Log 1",
+    "description": "ISPM 송신제어(1초마다)에 대한 송신제어결과 확인 / 송신상태정보(주기) 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      94,
+      101
+    ],
+    "raw_lines": [
+      "ShowSendTxStatus_Log 1\t\t//\tISPM 송신제어(1초마다)에 대한 송신제어결과 확인",
+      "ShowSendTxStatus_Log 1\t\t//\t송신상태정보(주기) 확인"
+    ],
+    "line_number": 94,
+    "searchable_text": "ShowSendTxStatus_Log 1 ISPM 송신제어(1초마다)에 대한 송신제어결과 확인 / 송신상태정보(주기) 확인"
+  },
+  {
+    "command": "ShowSendTxStatus_Log 0",
+    "description": "ISPM 송신제어(1초마다)에 대한 송신제어결과 확인 / 송신상태정보(주기) 확인 OFF",
+    "details": [
+      "'ShowSendTxStatus_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      95,
+      102
+    ],
+    "raw_lines": [
+      "ShowSendTxStatus_Log 0\t",
+      "ShowSendTxStatus_Log 0"
+    ],
+    "line_number": 95,
+    "searchable_text": "ShowSendTxStatus_Log 0 ISPM 송신제어(1초마다)에 대한 송신제어결과 확인 / 송신상태정보(주기) 확인 OFF 'ShowSendTxStatus_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowSendHmsTxStatus_Log 1",
+    "description": "Hms송신상태정보(비주기) 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      98
+    ],
+    "raw_lines": [
+      "ShowSendHmsTxStatus_Log 1\t\t//\tHms송신상태정보(비주기) 확인"
+    ],
+    "line_number": 98,
+    "searchable_text": "ShowSendHmsTxStatus_Log 1 Hms송신상태정보(비주기) 확인"
+  },
+  {
+    "command": "ShowSendHmsTxStatus_Log 0",
+    "description": "Hms송신상태정보(비주기) 확인 OFF",
+    "details": [
+      "'ShowSendHmsTxStatus_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      99
+    ],
+    "raw_lines": [
+      "ShowSendHmsTxStatus_Log 0\t"
+    ],
+    "line_number": 99,
+    "searchable_text": "ShowSendHmsTxStatus_Log 0 Hms송신상태정보(비주기) 확인 OFF 'ShowSendHmsTxStatus_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowSendMftaTxStatus_Log 1",
+    "description": "Mfta송신상태정보(비주기) 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      104
+    ],
+    "raw_lines": [
+      "ShowSendMftaTxStatus_Log 1\t\t//\tMfta송신상태정보(비주기) 확인"
+    ],
+    "line_number": 104,
+    "searchable_text": "ShowSendMftaTxStatus_Log 1 Mfta송신상태정보(비주기) 확인"
+  },
+  {
+    "command": "ShowSendMftaTxStatus_Log 0",
+    "description": "Mfta송신상태정보(비주기) 확인 OFF",
+    "details": [
+      "'ShowSendMftaTxStatus_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      105
+    ],
+    "raw_lines": [
+      "ShowSendMftaTxStatus_Log 0"
+    ],
+    "line_number": 105,
+    "searchable_text": "ShowSendMftaTxStatus_Log 0 Mfta송신상태정보(비주기) 확인 OFF 'ShowSendMftaTxStatus_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowSonarStatus 1",
+    "description": "소나체계상태정보 주기적으로 On",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      107
+    ],
+    "raw_lines": [
+      "ShowSonarStatus 1\t\t\t// 소나체계상태정보 주기적으로 On"
+    ],
+    "line_number": 107,
+    "searchable_text": "ShowSonarStatus 1 소나체계상태정보 주기적으로 On"
+  },
+  {
+    "command": "ShowSonarStatus 0",
+    "description": "소나체계상태정보 주기적으로 Off",
+    "details": [
+      "'ShowSonarStatus 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      108
+    ],
+    "raw_lines": [
+      "ShowSonarStatus 0"
+    ],
+    "line_number": 108,
+    "searchable_text": "ShowSonarStatus 0 소나체계상태정보 주기적으로 Off 'ShowSonarStatus 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowRxHBErr_Log 1",
+    "description": "SDI(Server) 수신 Heartbeat 로깅",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      110
+    ],
+    "raw_lines": [
+      "ShowRxHBErr_Log\t1\t\t\t// SDI(Server) 수신 Heartbeat 로깅"
+    ],
+    "line_number": 110,
+    "searchable_text": "ShowRxHBErr_Log 1 SDI(Server) 수신 Heartbeat 로깅"
+  },
+  {
+    "command": "ShowRxHBErr_Log 0",
+    "description": "SDI(Server) 수신 Heartbeat 로깅 OFF",
+    "details": [
+      "'ShowRxHBErr_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      111
+    ],
+    "raw_lines": [
+      "ShowRxHBErr_Log\t0"
+    ],
+    "line_number": 111,
+    "searchable_text": "ShowRxHBErr_Log 0 SDI(Server) 수신 Heartbeat 로깅 OFF 'ShowRxHBErr_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowCpuUsage_Log 1",
+    "description": "CPU 사용량 확인, 5초 주기",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      113
+    ],
+    "raw_lines": [
+      "ShowCpuUsage_Log 1\t\t\t// CPU 사용량 확인, 5초 주기"
+    ],
+    "line_number": 113,
+    "searchable_text": "ShowCpuUsage_Log 1 CPU 사용량 확인, 5초 주기"
+  },
+  {
+    "command": "ShowCpuUsage_Log 0",
+    "description": "CPU 사용량 확인, 5초 주기 OFF",
+    "details": [
+      "'ShowCpuUsage_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      114
+    ],
+    "raw_lines": [
+      "ShowCpuUsage_Log 0"
+    ],
+    "line_number": 114,
+    "searchable_text": "ShowCpuUsage_Log 0 CPU 사용량 확인, 5초 주기 OFF 'ShowCpuUsage_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ResetMsgQErr",
+    "description": "MsgQ error 초기화",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      116
+    ],
+    "raw_lines": [
+      "ResetMsgQErr\t\t\t\t// MsgQ error 초기화"
+    ],
+    "line_number": 116,
+    "searchable_text": "ResetMsgQErr MsgQ error 초기화"
+  },
+  {
+    "command": "ShowMsgQErr",
+    "description": "MsgQ error 확인(초기화 이후 사용)",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      117
+    ],
+    "raw_lines": [
+      "ShowMsgQErr\t\t\t\t\t// MsgQ error 확인(초기화 이후 사용)"
+    ],
+    "line_number": 117,
+    "searchable_text": "ShowMsgQErr MsgQ error 확인(초기화 이후 사용)"
+  },
+  {
+    "command": "ShowTaskMonitor_Log 1",
+    "description": "Task 상태 모니터링",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      119
+    ],
+    "raw_lines": [
+      "ShowTaskMonitor_Log 1\t\t// Task 상태 모니터링"
+    ],
+    "line_number": 119,
+    "searchable_text": "ShowTaskMonitor_Log 1 Task 상태 모니터링"
+  },
+  {
+    "command": "ShowTaskMonitor_Log 0",
+    "description": "Task 상태 모니터링 OFF",
+    "details": [
+      "'ShowTaskMonitor_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      120
+    ],
+    "raw_lines": [
+      "ShowTaskMonitor_Log 0"
+    ],
+    "line_number": 120,
+    "searchable_text": "ShowTaskMonitor_Log 0 Task 상태 모니터링 OFF 'ShowTaskMonitor_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowSonarStatus_Log 1",
+    "description": "ISPM->SDI 수신 메시지(소나상태정보) 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      122
+    ],
+    "raw_lines": [
+      "ShowSonarStatus_Log 1\t\t// ISPM->SDI 수신 메시지(소나상태정보) 확인"
+    ],
+    "line_number": 122,
+    "searchable_text": "ShowSonarStatus_Log 1 ISPM->SDI 수신 메시지(소나상태정보) 확인"
+  },
+  {
+    "command": "ShowSonarStatus_Log 0",
+    "description": "ISPM->SDI 수신 메시지(소나상태정보) 확인 OFF",
+    "details": [
+      "'ShowSonarStatus_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      123
+    ],
+    "raw_lines": [
+      "ShowSonarStatus_Log 0"
+    ],
+    "line_number": 123,
+    "searchable_text": "ShowSonarStatus_Log 0 ISPM->SDI 수신 메시지(소나상태정보) 확인 OFF 'ShowSonarStatus_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowGainCtrl_Log 1",
+    "description": "ISPM->SDI 수신 메시지(이득제어) 주기적으로 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      125
+    ],
+    "raw_lines": [
+      "ShowGainCtrl_Log 1\t\t\t// ISPM->SDI 수신 메시지(이득제어) 주기적으로 확인"
+    ],
+    "line_number": 125,
+    "searchable_text": "ShowGainCtrl_Log 1 ISPM->SDI 수신 메시지(이득제어) 주기적으로 확인"
+  },
+  {
+    "command": "ShowGainCtrl_Log 0",
+    "description": "ISPM->SDI 수신 메시지(이득제어) 주기적으로 확인 OFF",
+    "details": [
+      "'ShowGainCtrl_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      126
+    ],
+    "raw_lines": [
+      "ShowGainCtrl_Log 0"
+    ],
+    "line_number": 126,
+    "searchable_text": "ShowGainCtrl_Log 0 ISPM->SDI 수신 메시지(이득제어) 주기적으로 확인 OFF 'ShowGainCtrl_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowHTRBoardGain_Log 1",
+    "description": "HMS 이득 설정/값 확인, FPGA read 0 = 자동, 1 = 수동",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      128
+    ],
+    "raw_lines": [
+      "ShowHTRBoardGain_Log 1\t\t// HMS 이득 설정/값 확인, FPGA read\t\t0 = 자동, 1 = 수동"
+    ],
+    "line_number": 128,
+    "searchable_text": "ShowHTRBoardGain_Log 1 HMS 이득 설정/값 확인, FPGA read 0 = 자동, 1 = 수동"
+  },
+  {
+    "command": "ShowHTRBoardGain_Log 0",
+    "description": "HMS 이득 설정/값 확인, FPGA read 0 = 자동, 1 = 수동 OFF",
+    "details": [
+      "'ShowHTRBoardGain_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      129
+    ],
+    "raw_lines": [
+      "ShowHTRBoardGain_Log 0"
+    ],
+    "line_number": 129,
+    "searchable_text": "ShowHTRBoardGain_Log 0 HMS 이득 설정/값 확인, FPGA read 0 = 자동, 1 = 수동 OFF 'ShowHTRBoardGain_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowLTRBoardGain_Log 1",
+    "description": "TA/SA이득 설정/값 확인, FPGA read 0 = 자동, 1 = 수동",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      131
+    ],
+    "raw_lines": [
+      "ShowLTRBoardGain_Log 1\t\t// TA/SA이득 설정/값 확인, FPGA read\t\t0 = 자동, 1 = 수동"
+    ],
+    "line_number": 131,
+    "searchable_text": "ShowLTRBoardGain_Log 1 TA/SA이득 설정/값 확인, FPGA read 0 = 자동, 1 = 수동"
+  },
+  {
+    "command": "ShowLTRBoardGain_Log 0",
+    "description": "TA/SA이득 설정/값 확인, FPGA read 0 = 자동, 1 = 수동 OFF",
+    "details": [
+      "'ShowLTRBoardGain_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      132
+    ],
+    "raw_lines": [
+      "ShowLTRBoardGain_Log 0"
+    ],
+    "line_number": 132,
+    "searchable_text": "ShowLTRBoardGain_Log 0 TA/SA이득 설정/값 확인, FPGA read 0 = 자동, 1 = 수동 OFF 'ShowLTRBoardGain_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowSdiID",
+    "description": "",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      134
+    ],
+    "raw_lines": [
+      "ShowSdiID"
+    ],
+    "line_number": 134,
+    "searchable_text": "ShowSdiID"
+  },
+  {
+    "command": "ShowOutputVoltage33_Log 1",
+    "description": "3.3V output voltage 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      136
+    ],
+    "raw_lines": [
+      "ShowOutputVoltage33_Log 1\t// 3.3V output voltage 확인"
+    ],
+    "line_number": 136,
+    "searchable_text": "ShowOutputVoltage33_Log 1 3.3V output voltage 확인"
+  },
+  {
+    "command": "ShowOutputVoltage33_Log 0",
+    "description": "3.3V output voltage 확인 OFF",
+    "details": [
+      "'ShowOutputVoltage33_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      137
+    ],
+    "raw_lines": [
+      "ShowOutputVoltage33_Log 0"
+    ],
+    "line_number": 137,
+    "searchable_text": "ShowOutputVoltage33_Log 0 3.3V output voltage 확인 OFF 'ShowOutputVoltage33_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowReceiveSyncMsg_Log 1",
+    "description": "다른 SDI장비 2개로부터 수신받은 Sync 메세지 Result(0모름, 1정상, 2비정상), setmaster(0슬레이브, 1마스터, 2모름, 3슬레이브(LFPA M3))",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      139
+    ],
+    "raw_lines": [
+      "ShowReceiveSyncMsg_Log 1\t// 다른 SDI장비 2개로부터 수신받은 Sync 메세지      Result(0모름, 1정상, 2비정상), setmaster(0슬레이브, 1마스터, 2모름, 3슬레이브(LFPA M3))"
+    ],
+    "line_number": 139,
+    "searchable_text": "ShowReceiveSyncMsg_Log 1 다른 SDI장비 2개로부터 수신받은 Sync 메세지 Result(0모름, 1정상, 2비정상), setmaster(0슬레이브, 1마스터, 2모름, 3슬레이브(LFPA M3))"
+  },
+  {
+    "command": "ShowReceiveSyncMsg_Log 0",
+    "description": "다른 SDI장비 2개로부터 수신받은 Sync 메세지 Result(0모름, 1정상, 2비정상), setmaster(0슬레이브, 1마스터, 2모름, 3슬레이브(LFPA M3)) OFF",
+    "details": [
+      "'ShowReceiveSyncMsg_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      140
+    ],
+    "raw_lines": [
+      "ShowReceiveSyncMsg_Log 0"
+    ],
+    "line_number": 140,
+    "searchable_text": "ShowReceiveSyncMsg_Log 0 다른 SDI장비 2개로부터 수신받은 Sync 메세지 Result(0모름, 1정상, 2비정상), setmaster(0슬레이브, 1마스터, 2모름, 3슬레이브(LFPA M3)) OFF 'ShowReceiveSyncMsg_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "SkipCheckingSync",
+    "description": "Master/Slave 세팅의 초기대기시간 뛰어넘기",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      142
+    ],
+    "raw_lines": [
+      "SkipCheckingSync\t\t\t// Master/Slave 세팅의 초기대기시간 뛰어넘기"
+    ],
+    "line_number": 142,
+    "searchable_text": "SkipCheckingSync Master/Slave 세팅의 초기대기시간 뛰어넘기"
+  },
+  {
+    "command": "ShowSyncMsg",
+    "description": "다른 SDI장비 2개로 송신하는 Sync 메세지",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      143
+    ],
+    "raw_lines": [
+      "ShowSyncMsg\t\t\t\t\t// 다른 SDI장비 2개로 송신하는 Sync 메세지"
+    ],
+    "line_number": 143,
+    "searchable_text": "ShowSyncMsg 다른 SDI장비 2개로 송신하는 Sync 메세지"
+  },
+  {
+    "command": "ShowIspmHB_Log 1",
+    "description": "",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      148
+    ],
+    "raw_lines": [
+      "ShowIspmHB_Log 1"
+    ],
+    "line_number": 148,
+    "searchable_text": "ShowIspmHB_Log 1"
+  },
+  {
+    "command": "ShowIspmHB_Log 0",
+    "description": "",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      149
+    ],
+    "raw_lines": [
+      "ShowIspmHB_Log 0"
+    ],
+    "line_number": 149,
+    "searchable_text": "ShowIspmHB_Log 0"
+  },
+  {
+    "command": "ShowEifHB_Log 1",
+    "description": "",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      151
+    ],
+    "raw_lines": [
+      "ShowEifHB_Log 1"
+    ],
+    "line_number": 151,
+    "searchable_text": "ShowEifHB_Log 1"
+  },
+  {
+    "command": "ShowEifHB_Log 0",
+    "description": "",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      152
+    ],
+    "raw_lines": [
+      "ShowEifHB_Log 0"
+    ],
+    "line_number": 152,
+    "searchable_text": "ShowEifHB_Log 0"
+  },
+  {
+    "command": "ShowHmsGainInfo_Log 1",
+    "description": "",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      154
+    ],
+    "raw_lines": [
+      "ShowHmsGainInfo_Log 1"
+    ],
+    "line_number": 154,
+    "searchable_text": "ShowHmsGainInfo_Log 1"
+  },
+  {
+    "command": "ShowHmsGainInfo_Log 0",
+    "description": "",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      155
+    ],
+    "raw_lines": [
+      "ShowHmsGainInfo_Log 0"
+    ],
+    "line_number": 155,
+    "searchable_text": "ShowHmsGainInfo_Log 0"
+  },
+  {
+    "command": "ShowLfpaGainInfo_Log 1",
+    "description": "",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      157
+    ],
+    "raw_lines": [
+      "ShowLfpaGainInfo_Log 1"
+    ],
+    "line_number": 157,
+    "searchable_text": "ShowLfpaGainInfo_Log 1"
+  },
+  {
+    "command": "ShowLfpaGainInfo_Log 0",
+    "description": "",
+    "details": [
+      "/////////////////////////////SDIT명령어////////////////////////"
+    ],
+    "sections": [],
+    "line_numbers": [
+      158
+    ],
+    "raw_lines": [
+      "ShowLfpaGainInfo_Log 0",
+      "///////////////////////////////SDIT명령어////////////////////////"
+    ],
+    "line_number": 158,
+    "searchable_text": "ShowLfpaGainInfo_Log 0 /////////////////////////////SDIT명령어////////////////////////"
+  },
+  {
+    "command": "ShowTxSenarioEditor_Log 1",
+    "description": "1초주기 로깅, SDIT(SBC)->AGE(Senario Editor)",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      163
+    ],
+    "raw_lines": [
+      "ShowTxSenarioEditor_Log 1\t\t// 1초주기 로깅, SDIT(SBC)->AGE(Senario Editor)\t"
+    ],
+    "line_number": 163,
+    "searchable_text": "ShowTxSenarioEditor_Log 1 1초주기 로깅, SDIT(SBC)->AGE(Senario Editor)"
+  },
+  {
+    "command": "ShowTxSenarioEditor_Log 0",
+    "description": "1초주기 로깅, SDIT(SBC)->AGE(Senario Editor) OFF",
+    "details": [
+      "'ShowTxSenarioEditor_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      164
+    ],
+    "raw_lines": [
+      "ShowTxSenarioEditor_Log 0\t\t"
+    ],
+    "line_number": 164,
+    "searchable_text": "ShowTxSenarioEditor_Log 0 1초주기 로깅, SDIT(SBC)->AGE(Senario Editor) OFF 'ShowTxSenarioEditor_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowRxHmsAsg_Log 1",
+    "description": "1초주기 로깅, AGE(Hms)->SDIT(SBC)",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      166
+    ],
+    "raw_lines": [
+      "ShowRxHmsAsg_Log 1\t\t\t\t// 1초주기 로깅, AGE(Hms)->SDIT(SBC)"
+    ],
+    "line_number": 166,
+    "searchable_text": "ShowRxHmsAsg_Log 1 1초주기 로깅, AGE(Hms)->SDIT(SBC)"
+  },
+  {
+    "command": "ShowRxHmsAsg_Log 0",
+    "description": "1초주기 로깅, AGE(Hms)->SDIT(SBC) OFF",
+    "details": [
+      "'ShowRxHmsAsg_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      167
+    ],
+    "raw_lines": [
+      "ShowRxHmsAsg_Log 0"
+    ],
+    "line_number": 167,
+    "searchable_text": "ShowRxHmsAsg_Log 0 1초주기 로깅, AGE(Hms)->SDIT(SBC) OFF 'ShowRxHmsAsg_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowRxMftaAsg_Log 1",
+    "description": "1초주기 로깅, AGE(Mfta)->SDIT(SBC)",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      169
+    ],
+    "raw_lines": [
+      "ShowRxMftaAsg_Log 1\t\t\t\t// 1초주기 로깅, AGE(Mfta)->SDIT(SBC)\t"
+    ],
+    "line_number": 169,
+    "searchable_text": "ShowRxMftaAsg_Log 1 1초주기 로깅, AGE(Mfta)->SDIT(SBC)"
+  },
+  {
+    "command": "ShowRxMftaAsg_Log 0",
+    "description": "1초주기 로깅, AGE(Mfta)->SDIT(SBC) OFF",
+    "details": [
+      "'ShowRxMftaAsg_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      170
+    ],
+    "raw_lines": [
+      "ShowRxMftaAsg_Log 0"
+    ],
+    "line_number": 170,
+    "searchable_text": "ShowRxMftaAsg_Log 0 1초주기 로깅, AGE(Mfta)->SDIT(SBC) OFF 'ShowRxMftaAsg_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowWriteFpga_Log 1",
+    "description": "1초주기 로깅, SDIT(SBC)->SDIT(FPGA) 7.8125ms 주기로 writing",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      172
+    ],
+    "raw_lines": [
+      "ShowWriteFpga_Log 1\t\t\t\t//\t1초주기 로깅, SDIT(SBC)->SDIT(FPGA) 7.8125ms 주기로 writing"
+    ],
+    "line_number": 172,
+    "searchable_text": "ShowWriteFpga_Log 1 1초주기 로깅, SDIT(SBC)->SDIT(FPGA) 7.8125ms 주기로 writing"
+  },
+  {
+    "command": "ShowWriteFpga_Log 0",
+    "description": "1초주기 로깅, SDIT(SBC)->SDIT(FPGA) 7.8125ms 주기로 writing OFF",
+    "details": [
+      "'ShowWriteFpga_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      173
+    ],
+    "raw_lines": [
+      "ShowWriteFpga_Log 0"
+    ],
+    "line_number": 173,
+    "searchable_text": "ShowWriteFpga_Log 0 1초주기 로깅, SDIT(SBC)->SDIT(FPGA) 7.8125ms 주기로 writing OFF 'ShowWriteFpga_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowRxPingSenDataCheck_Log 1",
+    "description": "AGE->SDIT(SBC) 핑플래그, 센서데이터 0 아닐때 패킷카운트 로깅",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      175
+    ],
+    "raw_lines": [
+      "ShowRxPingSenDataCheck_Log 1\t// AGE->SDIT(SBC) 핑플래그, 센서데이터 0 아닐때 패킷카운트 로깅"
+    ],
+    "line_number": 175,
+    "searchable_text": "ShowRxPingSenDataCheck_Log 1 AGE->SDIT(SBC) 핑플래그, 센서데이터 0 아닐때 패킷카운트 로깅"
+  },
+  {
+    "command": "ShowRxPingSenDataCheck_Log 0",
+    "description": "AGE->SDIT(SBC) 핑플래그, 센서데이터 0 아닐때 패킷카운트 로깅 OFF",
+    "details": [
+      "'ShowRxPingSenDataCheck_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      176
+    ],
+    "raw_lines": [
+      "ShowRxPingSenDataCheck_Log 0"
+    ],
+    "line_number": 176,
+    "searchable_text": "ShowRxPingSenDataCheck_Log 0 AGE->SDIT(SBC) 핑플래그, 센서데이터 0 아닐때 패킷카운트 로깅 OFF 'ShowRxPingSenDataCheck_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowTxPingSenDataCheck_Log 1",
+    "description": "SDIT(SBC)->SDIT(FPGA) 핑플래그, 센서데이터 0 아닐때 패킷카운트 로깅",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      178
+    ],
+    "raw_lines": [
+      "ShowTxPingSenDataCheck_Log 1\t// SDIT(SBC)->SDIT(FPGA) 핑플래그, 센서데이터 0 아닐때 패킷카운트 로깅"
+    ],
+    "line_number": 178,
+    "searchable_text": "ShowTxPingSenDataCheck_Log 1 SDIT(SBC)->SDIT(FPGA) 핑플래그, 센서데이터 0 아닐때 패킷카운트 로깅"
+  },
+  {
+    "command": "ShowTxPingSenDataCheck_Log 0",
+    "description": "SDIT(SBC)->SDIT(FPGA) 핑플래그, 센서데이터 0 아닐때 패킷카운트 로깅 OFF",
+    "details": [
+      "'ShowTxPingSenDataCheck_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      179
+    ],
+    "raw_lines": [
+      "ShowTxPingSenDataCheck_Log 0"
+    ],
+    "line_number": 179,
+    "searchable_text": "ShowTxPingSenDataCheck_Log 0 SDIT(SBC)->SDIT(FPGA) 핑플래그, 센서데이터 0 아닐때 패킷카운트 로깅 OFF 'ShowTxPingSenDataCheck_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowHmsRxPingMonitor_Log 1",
+    "description": "Hms 핑플래그 반전될때 로깅",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      181
+    ],
+    "raw_lines": [
+      "ShowHmsRxPingMonitor_Log 1\t\t// Hms 핑플래그 반전될때 로깅"
+    ],
+    "line_number": 181,
+    "searchable_text": "ShowHmsRxPingMonitor_Log 1 Hms 핑플래그 반전될때 로깅"
+  },
+  {
+    "command": "ShowHmsRxPingMonitor_Log 0",
+    "description": "Hms 핑플래그 반전될때 로깅 OFF",
+    "details": [
+      "'ShowHmsRxPingMonitor_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      182
+    ],
+    "raw_lines": [
+      "ShowHmsRxPingMonitor_Log 0"
+    ],
+    "line_number": 182,
+    "searchable_text": "ShowHmsRxPingMonitor_Log 0 Hms 핑플래그 반전될때 로깅 OFF 'ShowHmsRxPingMonitor_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowMftaRxPingMonitor_Log 1",
+    "description": "LFPA 핑플래그 반전될때 로깅",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      184
+    ],
+    "raw_lines": [
+      "ShowMftaRxPingMonitor_Log 1\t\t// LFPA 핑플래그 반전될때 로깅"
+    ],
+    "line_number": 184,
+    "searchable_text": "ShowMftaRxPingMonitor_Log 1 LFPA 핑플래그 반전될때 로깅"
+  },
+  {
+    "command": "ShowMftaRxPingMonitor_Log 0",
+    "description": "LFPA 핑플래그 반전될때 로깅 OFF",
+    "details": [
+      "'ShowMftaRxPingMonitor_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      185
+    ],
+    "raw_lines": [
+      "ShowMftaRxPingMonitor_Log 0"
+    ],
+    "line_number": 185,
+    "searchable_text": "ShowMftaRxPingMonitor_Log 0 LFPA 핑플래그 반전될때 로깅 OFF 'ShowMftaRxPingMonitor_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowMsgQCheck_Log 1",
+    "description": "5초 저장 큐에 있는 데이터 량 확인 1초 주기 (128*5)",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      190
+    ],
+    "raw_lines": [
+      "ShowMsgQCheck_Log 1\t\t\t\t// 5초 저장 큐에 있는 데이터 량 확인 1초 주기 (128*5)"
+    ],
+    "line_number": 190,
+    "searchable_text": "ShowMsgQCheck_Log 1 5초 저장 큐에 있는 데이터 량 확인 1초 주기 (128*5)"
+  },
+  {
+    "command": "ShowMsgQCheck_Log 0",
+    "description": "5초 저장 큐에 있는 데이터 량 확인 1초 주기 (128*5) OFF",
+    "details": [
+      "(SDIT SBC가 AGE연동 데이터를 안 읽는 경우)",
+      "-> 1. 데이터가 5초 분량이 없을때",
+      "-> 2. AGE 연동메시지 오류시(checksum, sync 등)",
+      "-> 3. 데이터가 10초 분량을 최대 모으도록 할당되어 있는데 꽉차서 더이상 넣을 수 없을때(발생시 상시 로깅)",
+      "'ShowMsgQCheck_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      191
+    ],
+    "raw_lines": [
+      "ShowMsgQCheck_Log 0",
+      "(SDIT SBC가 AGE연동 데이터를 안 읽는 경우)",
+      " -> 1. 데이터가 5초 분량이 없을때",
+      " -> 2. AGE 연동메시지 오류시(checksum, sync 등)",
+      " -> 3. 데이터가 10초 분량을 최대 모으도록 할당되어 있는데 꽉차서 더이상 넣을 수 없을때(발생시 상시 로깅)"
+    ],
+    "line_number": 191,
+    "searchable_text": "ShowMsgQCheck_Log 0 5초 저장 큐에 있는 데이터 량 확인 1초 주기 (128*5) OFF (SDIT SBC가 AGE연동 데이터를 안 읽는 경우) -> 1. 데이터가 5초 분량이 없을때 -> 2. AGE 연동메시지 오류시(checksum, sync 등) -> 3. 데이터가 10초 분량을 최대 모으도록 할당되어 있는데 꽉차서 더이상 넣을 수 없을때(발생시 상시 로깅) 'ShowMsgQCheck_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowPacketCnt_Log 1",
+    "description": "AGE(HMS, MFTA) 수신 메시지에 대해 1초마다 각각의 패킷 카운트 모니터링, 그시점에 패킷 맞춘거에 대한 패킷카운트",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      198
+    ],
+    "raw_lines": [
+      "ShowPacketCnt_Log 1\t\t\t\t// AGE(HMS, MFTA) 수신 메시지에 대해 1초마다 각각의 패킷 카운트 모니터링, 그시점에 패킷 맞춘거에 대한 패킷카운트"
+    ],
+    "line_number": 198,
+    "searchable_text": "ShowPacketCnt_Log 1 AGE(HMS, MFTA) 수신 메시지에 대해 1초마다 각각의 패킷 카운트 모니터링, 그시점에 패킷 맞춘거에 대한 패킷카운트"
+  },
+  {
+    "command": "ShowPacketCnt_Log 0",
+    "description": "AGE(HMS, MFTA) 수신 메시지에 대해 1초마다 각각의 패킷 카운트 모니터링, 그시점에 패킷 맞춘거에 대한 패킷카운트 OFF",
+    "details": [
+      "ex> 0xffff800074e8a680 (tSystemLog): --------------------------- Asg Rx Packet Cnt(Hms 421256, Mfta 421257), Paired Packet Cnt(Hms 420618, Mfta 420618)",
+      "'ShowPacketCnt_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      199
+    ],
+    "raw_lines": [
+      "ShowPacketCnt_Log 0",
+      "ex> 0xffff800074e8a680 (tSystemLog): --------------------------- Asg Rx Packet Cnt(Hms 421256, Mfta 421257), Paired Packet Cnt(Hms 420618, Mfta 420618)"
+    ],
+    "line_number": 199,
+    "searchable_text": "ShowPacketCnt_Log 0 AGE(HMS, MFTA) 수신 메시지에 대해 1초마다 각각의 패킷 카운트 모니터링, 그시점에 패킷 맞춘거에 대한 패킷카운트 OFF ex> 0xffff800074e8a680 (tSystemLog): --------------------------- Asg Rx Packet Cnt(Hms 421256, Mfta 421257), Paired Packet Cnt(Hms 420618, Mfta 420618) 'ShowPacketCnt_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowOverMsgQ_Log 1",
+    "description": "msgQ 10초 공간 꽉 찼차면 에러로그 나옴",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      203
+    ],
+    "raw_lines": [
+      "ShowOverMsgQ_Log 1\t\t\t\t// msgQ 10초 공간 꽉 찼차면 에러로그 나옴"
+    ],
+    "line_number": 203,
+    "searchable_text": "ShowOverMsgQ_Log 1 msgQ 10초 공간 꽉 찼차면 에러로그 나옴"
+  },
+  {
+    "command": "ShowOverMsgQ_Log 0",
+    "description": "msgQ 10초 공간 꽉 찼차면 에러로그 나옴 OFF",
+    "details": [
+      "ex> 0xffff8000cb800a30 (tMftaAsg): [CSditTask::RunMftaAsg] ------------------------ Over 10 second msgQ space(1280)",
+      "'ShowOverMsgQ_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      204
+    ],
+    "raw_lines": [
+      "ShowOverMsgQ_Log 0",
+      "ex> 0xffff8000cb800a30 (tMftaAsg): [CSditTask::RunMftaAsg] ------------------------ Over 10 second msgQ space(1280)"
+    ],
+    "line_number": 204,
+    "searchable_text": "ShowOverMsgQ_Log 0 msgQ 10초 공간 꽉 찼차면 에러로그 나옴 OFF ex> 0xffff8000cb800a30 (tMftaAsg): [CSditTask::RunMftaAsg] ------------------------ Over 10 second msgQ space(1280) 'ShowOverMsgQ_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowPacketMonitor_Log 1",
+    "description": "Hms/Mfta 양쪽 수신받고, 5초 초기데이터가 아니고, msgQ에서 유효데이터로 판단했을 때, AGE로부터 수신 패킷이 기존 차이값(패킷맞춤값)과 달라졌을때 로깅",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      207
+    ],
+    "raw_lines": [
+      "ShowPacketMonitor_Log 1\t\t// Hms/Mfta 양쪽 수신받고, 5초 초기데이터가 아니고, msgQ에서 유효데이터로 판단했을 때, AGE로부터 수신 패킷이 기존 차이값(패킷맞춤값)과 달라졌을때 로깅"
+    ],
+    "line_number": 207,
+    "searchable_text": "ShowPacketMonitor_Log 1 Hms/Mfta 양쪽 수신받고, 5초 초기데이터가 아니고, msgQ에서 유효데이터로 판단했을 때, AGE로부터 수신 패킷이 기존 차이값(패킷맞춤값)과 달라졌을때 로깅"
+  },
+  {
+    "command": "ShowPacketMonitor_Log 0",
+    "description": "Hms/Mfta 양쪽 수신받고, 5초 초기데이터가 아니고, msgQ에서 유효데이터로 판단했을 때, AGE로부터 수신 패킷이 기존 차이값(패킷맞춤값)과 달라졌을때 로깅 OFF",
+    "details": [
+      "ex> ***************** ERROR : AGE Rx Packet Cnt(Hms 468473, Mfta 468475) Difference(2) =/= Pairing Difference(1) *****************",
+      "'ShowPacketMonitor_Log 1' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      208
+    ],
+    "raw_lines": [
+      "ShowPacketMonitor_Log 0",
+      "ex> ***************** ERROR : AGE Rx Packet Cnt(Hms 468473, Mfta 468475) Difference(2) =/= Pairing Difference(1) *****************"
+    ],
+    "line_number": 208,
+    "searchable_text": "ShowPacketMonitor_Log 0 Hms/Mfta 양쪽 수신받고, 5초 초기데이터가 아니고, msgQ에서 유효데이터로 판단했을 때, AGE로부터 수신 패킷이 기존 차이값(패킷맞춤값)과 달라졌을때 로깅 OFF ex> ***************** ERROR : AGE Rx Packet Cnt(Hms 468473, Mfta 468475) Difference(2) =/= Pairing Difference(1) ***************** 'ShowPacketMonitor_Log 1' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "SaveHmsPacket",
+    "description": "Hms Packet 저장",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      211
+    ],
+    "raw_lines": [
+      "SaveHmsPacket\t\t\t\t\t\t// Hms Packet  저장"
+    ],
+    "line_number": 211,
+    "searchable_text": "SaveHmsPacket Hms Packet 저장"
+  },
+  {
+    "command": "SaveMftaPacket",
+    "description": "Mfta Packet 저장",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      212
+    ],
+    "raw_lines": [
+      "SaveMftaPacket\t\t\t\t\t\t// Mfta Packet 저장"
+    ],
+    "line_number": 212,
+    "searchable_text": "SaveMftaPacket Mfta Packet 저장"
+  },
+  {
+    "command": "ls \"/ata0:2\", 1",
+    "description": "파일 저장중인거 크기 증가 확인",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      213
+    ],
+    "raw_lines": [
+      "ls \"/ata0:2\", 1\t\t\t\t// 파일 저장중인거 크기 증가 확인"
+    ],
+    "line_number": 213,
+    "searchable_text": "ls \"/ata0:2\", 1 파일 저장중인거 크기 증가 확인"
+  },
+  {
+    "command": "cp \"/ata0:2/HmsAsg.bin\",\"HmsAsg2.bin\"",
+    "description": "Hms 저장파일 꺼내오기",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      215
+    ],
+    "raw_lines": [
+      "cp \"/ata0:2/HmsAsg.bin\",\"HmsAsg2.bin\"\t// Hms 저장파일 꺼내오기 "
+    ],
+    "line_number": 215,
+    "searchable_text": "cp \"/ata0:2/HmsAsg.bin\",\"HmsAsg2.bin\" Hms 저장파일 꺼내오기"
+  },
+  {
+    "command": "cp \"/ata0:2/MftaAsg.bin\",\"MftaAsg2.bin\"",
+    "description": "Mfta 저장파일 꺼내오기",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      216
+    ],
+    "raw_lines": [
+      "cp \"/ata0:2/MftaAsg.bin\",\"MftaAsg2.bin\"\t// Mfta 저장파일 꺼내오기 "
+    ],
+    "line_number": 216,
+    "searchable_text": "cp \"/ata0:2/MftaAsg.bin\",\"MftaAsg2.bin\" Mfta 저장파일 꺼내오기"
+  },
+  {
+    "command": "ShowTaRollValid_Log 1",
+    "description": "",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      218
+    ],
+    "raw_lines": [
+      "ShowTaRollValid_Log 1"
+    ],
+    "line_number": 218,
+    "searchable_text": "ShowTaRollValid_Log 1"
+  },
+  {
+    "command": "ShowTaRollValid_Log 0",
+    "description": "",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      219
+    ],
+    "raw_lines": [
+      "ShowTaRollValid_Log 0"
+    ],
+    "line_number": 219,
+    "searchable_text": "ShowTaRollValid_Log 0"
+  },
+  {
+    "command": "ShowTaRoll_Log 1",
+    "description": "",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      221
+    ],
+    "raw_lines": [
+      "ShowTaRoll_Log 1"
+    ],
+    "line_number": 221,
+    "searchable_text": "ShowTaRoll_Log 1"
+  },
+  {
+    "command": "ShowTaRoll_Log 0",
+    "description": "",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      222
+    ],
+    "raw_lines": [
+      "ShowTaRoll_Log 0"
+    ],
+    "line_number": 222,
+    "searchable_text": "ShowTaRoll_Log 0"
+  },
+  {
+    "command": "ShowSaBearing_Log 1",
+    "description": "",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      224
+    ],
+    "raw_lines": [
+      "ShowSaBearing_Log 1"
+    ],
+    "line_number": 224,
+    "searchable_text": "ShowSaBearing_Log 1"
+  },
+  {
+    "command": "ShowSaBearing_Log 0",
+    "description": "",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      225
+    ],
+    "raw_lines": [
+      "ShowSaBearing_Log 0"
+    ],
+    "line_number": 225,
+    "searchable_text": "ShowSaBearing_Log 0"
+  },
+  {
+    "command": "ShowSaDepth_Log 1",
+    "description": "",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      227
+    ],
+    "raw_lines": [
+      "ShowSaDepth_Log 1"
+    ],
+    "line_number": 227,
+    "searchable_text": "ShowSaDepth_Log 1"
+  },
+  {
+    "command": "ShowSaDepth_Log 0",
+    "description": "",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      228
+    ],
+    "raw_lines": [
+      "ShowSaDepth_Log 0"
+    ],
+    "line_number": 228,
+    "searchable_text": "ShowSaDepth_Log 0"
+  },
+  {
+    "command": "ShowSaTemperature_Log 1",
+    "description": "",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      230
+    ],
+    "raw_lines": [
+      "ShowSaTemperature_Log 1"
+    ],
+    "line_number": 230,
+    "searchable_text": "ShowSaTemperature_Log 1"
+  },
+  {
+    "command": "ShowSaTemperature_Log 0",
+    "description": "",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      231
+    ],
+    "raw_lines": [
+      "ShowSaTemperature_Log 0"
+    ],
+    "line_number": 231,
+    "searchable_text": "ShowSaTemperature_Log 0"
+  },
+  {
+    "command": "ShowSaAccelerator_Log 1",
+    "description": "",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      233
+    ],
+    "raw_lines": [
+      "ShowSaAccelerator_Log 1"
+    ],
+    "line_number": 233,
+    "searchable_text": "ShowSaAccelerator_Log 1"
+  },
+  {
+    "command": "ShowSaAccelerator_Log 0",
+    "description": "",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      234
+    ],
+    "raw_lines": [
+      "ShowSaAccelerator_Log 0"
+    ],
+    "line_number": 234,
+    "searchable_text": "ShowSaAccelerator_Log 0"
+  },
+  {
+    "command": "ShowPickedHmsWave_Log 1, sensor, sample",
+    "description": "채널 내 센서데이터 전압값 Sensor : HMS:0~575 TA:576~1007 SA:1008~1247, Sample : 0~127",
+    "details": [],
+    "sections": [],
+    "line_numbers": [
+      236
+    ],
+    "raw_lines": [
+      "ShowPickedHmsWave_Log 1, sensor, sample \t// 채널 내 센서데이터 전압값 Sensor : HMS:0~575 TA:576~1007 SA:1008~1247, Sample : 0~127"
+    ],
+    "line_number": 236,
+    "searchable_text": "ShowPickedHmsWave_Log 1, sensor, sample 채널 내 센서데이터 전압값 Sensor : HMS:0~575 TA:576~1007 SA:1008~1247, Sample : 0~127"
+  },
+  {
+    "command": "ShowPickedHmsWave_Log 0",
+    "description": "채널 내 센서데이터 전압값 Sensor : HMS:0~575 TA:576~1007 SA:1008~1247, Sample : 0~127 OFF",
+    "details": [
+      "'ShowPickedHmsWave_Log 1, sensor, sample' 설명에서 OFF 항목으로 보강"
+    ],
+    "sections": [],
+    "line_numbers": [
+      237
+    ],
+    "raw_lines": [
+      "ShowPickedHmsWave_Log 0"
+    ],
+    "line_number": 237,
+    "searchable_text": "ShowPickedHmsWave_Log 0 채널 내 센서데이터 전압값 Sensor : HMS:0~575 TA:576~1007 SA:1008~1247, Sample : 0~127 OFF 'ShowPickedHmsWave_Log 1, sensor, sample' 설명에서 OFF 항목으로 보강"
+  },
+  {
+    "command": "ShowPickedHmsWave_Log 1, 1047, 0",
+    "description": "",
+    "details": [
+      "ex) ShowPickedHmsWave_Log 1, 40, 0\t\t\t// HMS 41번 채널 1번째 샘플",
+      "ex) ShowPickedHmsWave_Log 1, 615, 4\t\t\t// TA 41번 채널 5번째 샘플",
+      "ex) ShowPickedHmsWave_Log 1, 1047, 127\t\t\t// SA 41번 채널 128번째 샘플",
+      "MFTA 채널 내 센서데이터 전압값 확인 채널 구성은 F:\\CHO\\20201203 엑셀 참조",
+      "//////////////////////////////////////////////////////////////"
+    ],
+    "sections": [],
+    "line_numbers": [
+      238
+    ],
+    "raw_lines": [
+      "ShowPickedHmsWave_Log 1, 1047, 0",
+      "ex) ShowPickedHmsWave_Log 1, 40, 0\t\t\t// HMS 41번 채널 1번째 샘플",
+      "ex) ShowPickedHmsWave_Log 1, 615, 4\t\t\t// TA 41번 채널 5번째 샘플",
+      "ex) ShowPickedHmsWave_Log 1, 1047, 127\t\t\t// SA 41번 채널 128번째 샘플",
+      "// MFTA 채널 내 센서데이터 전압값 확인   채널 구성은 F:\\CHO\\20201203 엑셀 참조",
+      "////////////////////////////////////////////////////////////////"
+    ],
+    "line_number": 238,
+    "searchable_text": "ShowPickedHmsWave_Log 1, 1047, 0 ex) ShowPickedHmsWave_Log 1, 40, 0\t\t\t// HMS 41번 채널 1번째 샘플 ex) ShowPickedHmsWave_Log 1, 615, 4\t\t\t// TA 41번 채널 5번째 샘플 ex) ShowPickedHmsWave_Log 1, 1047, 127\t\t\t// SA 41번 채널 128번째 샘플 MFTA 채널 내 센서데이터 전압값 확인 채널 구성은 F:\\CHO\\20201203 엑셀 참조 //////////////////////////////////////////////////////////////"
+  },
+  {
+    "command": "spyClkStart(0)",
+    "description": "CPU 데이터 수집",
+    "details": [],
+    "sections": [
+      "Spy",
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      247,
+      566
+    ],
+    "raw_lines": [
+      "spyClkStart(0)\t\t\t\t\t// CPU 데이터 수집",
+      "spyClkStart(0)"
+    ],
+    "line_number": 247,
+    "searchable_text": "spyClkStart(0) CPU 데이터 수집 Spy Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "spy",
+    "description": "cpu 측정",
+    "details": [],
+    "sections": [
+      "Spy"
+    ],
+    "line_numbers": [
+      248
+    ],
+    "raw_lines": [
+      "spy\t\t\t\t\t\t\t\t// cpu 측정"
+    ],
+    "line_number": 248,
+    "searchable_text": "spy cpu 측정 Spy"
+  },
+  {
+    "command": "spyStop",
+    "description": "cpu 측정 정지",
+    "details": [],
+    "sections": [
+      "Spy",
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      249,
+      533
+    ],
+    "raw_lines": [
+      "spyStop\t\t\t\t\t\t\t// cpu 측정 정지",
+      "spyStop"
+    ],
+    "line_number": 249,
+    "searchable_text": "spyStop cpu 측정 정지 Spy Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "StartSpyClk",
+    "description": "CPU 데이터 수집",
+    "details": [],
+    "sections": [
+      "Spy",
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      251,
+      560
+    ],
+    "raw_lines": [
+      "StartSpyClk\t\t\t\t\t\t// CPU 데이터 수집",
+      "StartSpyClk"
+    ],
+    "line_number": 251,
+    "searchable_text": "StartSpyClk CPU 데이터 수집 Spy Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "GetCpuUsageRAM",
+    "description": "cpu 측정 및 cpu 사용량 계산",
+    "details": [],
+    "sections": [
+      "Spy",
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      252,
+      556,
+      561
+    ],
+    "raw_lines": [
+      "GetCpuUsageRAM\t\t\t\t\t// cpu 측정 및 cpu 사용량 계산",
+      "GetCpuUsageRAM",
+      "GetCpuUsageRAM"
+    ],
+    "line_number": 252,
+    "searchable_text": "GetCpuUsageRAM cpu 측정 및 cpu 사용량 계산 Spy Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "StartSpyStop",
+    "description": "cpu 측정 정지",
+    "details": [],
+    "sections": [
+      "Spy"
+    ],
+    "line_numbers": [
+      253
+    ],
+    "raw_lines": [
+      "StartSpyStop\t\t\t\t\t// cpu 측정 정지"
+    ],
+    "line_number": 253,
+    "searchable_text": "StartSpyStop cpu 측정 정지 Spy"
+  },
+  {
+    "command": "ShowDemoTestResult 1,1",
+    "description": "정상 모의",
+    "details": [],
+    "sections": [
+      "Sync Master/Slave 설정",
+      "랙단위 시험용",
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      256,
+      298,
+      541
+    ],
+    "raw_lines": [
+      "ShowDemoTestResult 1,1\t\t\t//\t정상 모의",
+      "ShowDemoTestResult 1,1\t\t\t//\t정상 모의",
+      "ShowDemoTestResult 1,1\t"
+    ],
+    "line_number": 256,
+    "searchable_text": "ShowDemoTestResult 1,1 정상 모의 Sync Master/Slave 설정 랙단위 시험용 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "ShowDemoTestResult 1,0",
+    "description": "고장 모의",
+    "details": [],
+    "sections": [
+      "Sync Master/Slave 설정"
+    ],
+    "line_numbers": [
+      257
+    ],
+    "raw_lines": [
+      "ShowDemoTestResult 1,0\t\t\t//\t고장 모의"
+    ],
+    "line_number": 257,
+    "searchable_text": "ShowDemoTestResult 1,0 고장 모의 Sync Master/Slave 설정"
+  },
+  {
+    "command": "ShowDemoTestResult 0,1",
+    "description": "모의 안함",
+    "details": [],
+    "sections": [
+      "Sync Master/Slave 설정"
+    ],
+    "line_numbers": [
+      258
+    ],
+    "raw_lines": [
+      "ShowDemoTestResult 0,1\t\t\t//\t모의 안함"
+    ],
+    "line_number": 258,
+    "searchable_text": "ShowDemoTestResult 0,1 모의 안함 Sync Master/Slave 설정"
+  },
+  {
+    "command": "CreateHtrSim(1,4096,1,0,0,0)",
+    "description": "HTR 모의신호 세팅",
+    "details": [],
+    "sections": [
+      "SDI 모의신호 생성"
+    ],
+    "line_numbers": [
+      262
+    ],
+    "raw_lines": [
+      "CreateHtrSim(1,4096,1,0,0,0)\t//\tHTR   모의신호 세팅"
+    ],
+    "line_number": 262,
+    "searchable_text": "CreateHtrSim(1,4096,1,0,0,0) HTR 모의신호 세팅 SDI 모의신호 생성"
+  },
+  {
+    "command": "CreateTaSim(4096,1,0,0,0)",
+    "description": "Ta 모의신호 세팅",
+    "details": [],
+    "sections": [
+      "SDI 모의신호 생성"
+    ],
+    "line_numbers": [
+      263
+    ],
+    "raw_lines": [
+      "CreateTaSim(4096,1,0,0,0) \t\t//\tTa    모의신호 세팅"
+    ],
+    "line_number": 263,
+    "searchable_text": "CreateTaSim(4096,1,0,0,0) Ta 모의신호 세팅 SDI 모의신호 생성"
+  },
+  {
+    "command": "CreateSaSim(4096,1,0,0,0)",
+    "description": "Sa 모의신호 세팅",
+    "details": [],
+    "sections": [
+      "SDI 모의신호 생성"
+    ],
+    "line_numbers": [
+      264
+    ],
+    "raw_lines": [
+      "CreateSaSim(4096,1,0,0,0) \t\t//\tSa    모의신호 세팅"
+    ],
+    "line_number": 264,
+    "searchable_text": "CreateSaSim(4096,1,0,0,0) Sa 모의신호 세팅 SDI 모의신호 생성"
+  },
+  {
+    "command": "CreateMsrFrame 1",
+    "description": "Ta,Sa 모의신호 세팅",
+    "details": [],
+    "sections": [
+      "SDI 모의신호 생성"
+    ],
+    "line_numbers": [
+      265
+    ],
+    "raw_lines": [
+      "CreateMsrFrame 1\t\t\t\t//\tTa,Sa 모의신호 세팅"
+    ],
+    "line_number": 265,
+    "searchable_text": "CreateMsrFrame 1 Ta,Sa 모의신호 세팅 SDI 모의신호 생성"
+  },
+  {
+    "command": "StartCreateSim",
+    "description": "모의신호 생성",
+    "details": [],
+    "sections": [
+      "SDI 모의신호 생성"
+    ],
+    "line_numbers": [
+      266
+    ],
+    "raw_lines": [
+      "StartCreateSim\t\t\t\t\t//\t모의신호 생성"
+    ],
+    "line_number": 266,
+    "searchable_text": "StartCreateSim 모의신호 생성 SDI 모의신호 생성"
+  },
+  {
+    "command": "cp \"sdi.out\",\"/ata0:2/sdi.out\"",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [
+      "E:\\vx_wksp620\\SDI\\vsbVpx3C1Smp_IVYBRIDGEllvm_LP64_KERNEL_SMP\\SDI\\Debug",
+      "E:\\vx_wksp620\\SDIT\\vsbVpx3C1Smp_IVYBRIDGEllvm_LP64_KERNEL_SMP\\SDIT\\Debug"
+    ],
+    "sections": [
+      "wksp 복사",
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      284,
+      543
+    ],
+    "raw_lines": [
+      "cp \"sdi.out\",\"/ata0:2/sdi.out\"",
+      "E:\\vx_wksp620\\SDI\\vsbVpx3C1Smp_IVYBRIDGEllvm_LP64_KERNEL_SMP\\SDI\\Debug",
+      "cp \"sdi.out\",\"/ata0:2/sdi.out\"",
+      "E:\\vx_wksp620\\SDIT\\vsbVpx3C1Smp_IVYBRIDGEllvm_LP64_KERNEL_SMP\\SDIT\\Debug"
+    ],
+    "line_number": 284,
+    "searchable_text": "cp \"sdi.out\",\"/ata0:2/sdi.out\" Ram Disk 디버깅 - 작성 중 E:\\vx_wksp620\\SDI\\vsbVpx3C1Smp_IVYBRIDGEllvm_LP64_KERNEL_SMP\\SDI\\Debug E:\\vx_wksp620\\SDIT\\vsbVpx3C1Smp_IVYBRIDGEllvm_LP64_KERNEL_SMP\\SDIT\\Debug wksp 복사 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "cp \"sdit.out\",\"/ata0:2/sdit.out\"",
+    "description": "wksp 복사",
+    "details": [
+      "E:\\vx_wksp620\\SDIT\\vsbVpx3C1Smp_IVYBRIDGEllvm_LP64_KERNEL_SMP\\SDIT\\Debug"
+    ],
+    "sections": [
+      "wksp 복사"
+    ],
+    "line_numbers": [
+      287
+    ],
+    "raw_lines": [
+      "cp \"sdit.out\",\"/ata0:2/sdit.out\"",
+      "E:\\vx_wksp620\\SDIT\\vsbVpx3C1Smp_IVYBRIDGEllvm_LP64_KERNEL_SMP\\SDIT\\Debug"
+    ],
+    "line_number": 287,
+    "searchable_text": "cp \"sdit.out\",\"/ata0:2/sdit.out\" wksp 복사 E:\\vx_wksp620\\SDIT\\vsbVpx3C1Smp_IVYBRIDGEllvm_LP64_KERNEL_SMP\\SDIT\\Debug wksp 복사"
+  },
+  {
+    "command": "cp \"vxWorks\",\"/ata0:1/vxWorks\"",
+    "description": "wksp 복사",
+    "details": [
+      "E:\\vx_wksp620\\knlVpx3C1Smp\\default"
+    ],
+    "sections": [
+      "wksp 복사"
+    ],
+    "line_numbers": [
+      290
+    ],
+    "raw_lines": [
+      "cp \"vxWorks\",\"/ata0:1/vxWorks\"",
+      "E:\\vx_wksp620\\knlVpx3C1Smp\\default"
+    ],
+    "line_number": 290,
+    "searchable_text": "cp \"vxWorks\",\"/ata0:1/vxWorks\" wksp 복사 E:\\vx_wksp620\\knlVpx3C1Smp\\default wksp 복사"
+  },
+  {
+    "command": "cp \"vxWorks\",\"/ata0:1/vxWorksSdit\"",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [
+      "E:\\vx_wksp620\\knlVpx3C1Sdit\\default"
+    ],
+    "sections": [
+      "wksp 복사",
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      293,
+      551
+    ],
+    "raw_lines": [
+      "cp \"vxWorks\",\"/ata0:1/vxWorksSdit\"",
+      "E:\\vx_wksp620\\knlVpx3C1Sdit\\default",
+      "cp \"vxWorks\",\"/ata0:1/vxWorksSdit\""
+    ],
+    "line_number": 293,
+    "searchable_text": "cp \"vxWorks\",\"/ata0:1/vxWorksSdit\" Ram Disk 디버깅 - 작성 중 E:\\vx_wksp620\\knlVpx3C1Sdit\\default wksp 복사 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "ShowSNTPtime2 \"192.168.30.121\"",
+    "description": "NTP 시간 가져오기",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      301
+    ],
+    "raw_lines": [
+      "ShowSNTPtime2 \"192.168.30.121\"\t\t//\tNTP 시간 가져오기"
+    ],
+    "line_number": 301,
+    "searchable_text": "ShowSNTPtime2 \"192.168.30.121\" NTP 시간 가져오기 EIF 모의 시험용"
+  },
+  {
+    "command": "ShowSNTPtime",
+    "description": "NTP 시간 가져오기 (\"192.168.30.121\") 에서 가져옴",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      302
+    ],
+    "raw_lines": [
+      "ShowSNTPtime\t\t\t\t\t\t//\tNTP 시간 가져오기 (\"192.168.30.121\") 에서 가져옴"
+    ],
+    "line_number": 302,
+    "searchable_text": "ShowSNTPtime NTP 시간 가져오기 (\"192.168.30.121\") 에서 가져옴 EIF 모의 시험용"
+  },
+  {
+    "command": "routec \"delete 192.168.31.0/24 \"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      304,
+      311
+    ],
+    "raw_lines": [
+      "routec \"delete 192.168.31.0/24 \"",
+      "routec \"delete 192.168.31.0/24 \""
+    ],
+    "line_number": 304,
+    "searchable_text": "routec \"delete 192.168.31.0/24 \" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "routec \"delete 192.168.30.0/24 \"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      305
+    ],
+    "raw_lines": [
+      "routec \"delete 192.168.30.0/24 \""
+    ],
+    "line_number": 305,
+    "searchable_text": "routec \"delete 192.168.30.0/24 \" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "routec \"delete 192.168.31.0/24 192.168.42.1\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      307
+    ],
+    "raw_lines": [
+      "routec \"delete 192.168.31.0/24                 192.168.42.1\""
+    ],
+    "line_number": 307,
+    "searchable_text": "routec \"delete 192.168.31.0/24 192.168.42.1\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "routec \"add -dev gei0 192.168.31.0/24\"",
+    "description": "SDIT 랙단위 검증",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      312
+    ],
+    "raw_lines": [
+      "routec \"add -dev gei0 192.168.31.0/24\"\t\t// SDIT 랙단위 검증"
+    ],
+    "line_number": 312,
+    "searchable_text": "routec \"add -dev gei0 192.168.31.0/24\" SDIT 랙단위 검증 EIF 모의 시험용"
+  },
+  {
+    "command": "ShowDemoTestResult 1, 1",
+    "description": "SDIU 정상모의",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      313
+    ],
+    "raw_lines": [
+      "ShowDemoTestResult 1, 1\t\t\t\t\t\t// SDIU 정상모의"
+    ],
+    "line_number": 313,
+    "searchable_text": "ShowDemoTestResult 1, 1 SDIU 정상모의 EIF 모의 시험용"
+  },
+  {
+    "command": "routec \"delete 192.168.30.0/24 192.168.42.1\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      316
+    ],
+    "raw_lines": [
+      "routec \"delete 192.168.30.0/24                 192.168.42.1\""
+    ],
+    "line_number": 316,
+    "searchable_text": "routec \"delete 192.168.30.0/24 192.168.42.1\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "routec \"add -dev tei1 192.168.30.0/24\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      317
+    ],
+    "raw_lines": [
+      "routec \"add -dev tei1 192.168.30.0/24\""
+    ],
+    "line_number": 317,
+    "searchable_text": "routec \"add -dev tei1 192.168.30.0/24\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ifconfig \"gei0 192.168.10.235 netmask 255.255.0.0 up\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      319
+    ],
+    "raw_lines": [
+      "ifconfig \"gei0 192.168.10.235 netmask 255.255.0.0 up\""
+    ],
+    "line_number": 319,
+    "searchable_text": "ifconfig \"gei0 192.168.10.235 netmask 255.255.0.0 up\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ifconfig \"gei0 192.10.10.235 netmask 255.255.0.0 up\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      320
+    ],
+    "raw_lines": [
+      "ifconfig \"gei0 192.10.10.235 netmask 255.255.0.0 up\""
+    ],
+    "line_number": 320,
+    "searchable_text": "ifconfig \"gei0 192.10.10.235 netmask 255.255.0.0 up\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ifconfig \"gei0 down\"f",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      321
+    ],
+    "raw_lines": [
+      "ifconfig \"gei0 down\"f"
+    ],
+    "line_number": 321,
+    "searchable_text": "ifconfig \"gei0 down\"f EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ping \"192.168.40.1\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      323
+    ],
+    "raw_lines": [
+      "ping \"192.168.40.1\""
+    ],
+    "line_number": 323,
+    "searchable_text": "ping \"192.168.40.1\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ping \"192.168.42.197\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      324,
+      342
+    ],
+    "raw_lines": [
+      "ping \"192.168.42.197\"",
+      "ping \"192.168.42.197\""
+    ],
+    "line_number": 324,
+    "searchable_text": "ping \"192.168.42.197\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ping \"192.168.41.187\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      325,
+      340
+    ],
+    "raw_lines": [
+      "ping \"192.168.41.187\"",
+      "ping \"192.168.41.187\""
+    ],
+    "line_number": 325,
+    "searchable_text": "ping \"192.168.41.187\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ping \"192.168.42.1\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      326
+    ],
+    "raw_lines": [
+      "ping \"192.168.42.1\""
+    ],
+    "line_number": 326,
+    "searchable_text": "ping \"192.168.42.1\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ping \"192.168.41.1\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      327,
+      332
+    ],
+    "raw_lines": [
+      "ping \"192.168.41.1\"",
+      "ping \"192.168.41.1\""
+    ],
+    "line_number": 327,
+    "searchable_text": "ping \"192.168.41.1\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ping \"192.168.30.122\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      328
+    ],
+    "raw_lines": [
+      "ping \"192.168.30.122\""
+    ],
+    "line_number": 328,
+    "searchable_text": "ping \"192.168.30.122\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ping \"192.168.31.121\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      329
+    ],
+    "raw_lines": [
+      "ping \"192.168.31.121\""
+    ],
+    "line_number": 329,
+    "searchable_text": "ping \"192.168.31.121\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ping \"192.168.30.254\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      330
+    ],
+    "raw_lines": [
+      "ping \"192.168.30.254\""
+    ],
+    "line_number": 330,
+    "searchable_text": "ping \"192.168.30.254\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ping \"192.168.30.1\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      331
+    ],
+    "raw_lines": [
+      "ping \"192.168.30.1\""
+    ],
+    "line_number": 331,
+    "searchable_text": "ping \"192.168.30.1\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ping \"192.168.140.254\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      333
+    ],
+    "raw_lines": [
+      "ping \"192.168.140.254\""
+    ],
+    "line_number": 333,
+    "searchable_text": "ping \"192.168.140.254\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ping \"192.168.50.92\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      334
+    ],
+    "raw_lines": [
+      "ping \"192.168.50.92\""
+    ],
+    "line_number": 334,
+    "searchable_text": "ping \"192.168.50.92\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ping \"192.168.31.122\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      335
+    ],
+    "raw_lines": [
+      "ping \"192.168.31.122\""
+    ],
+    "line_number": 335,
+    "searchable_text": "ping \"192.168.31.122\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ping \"192.168.40.177\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      336
+    ],
+    "raw_lines": [
+      "ping \"192.168.40.177\""
+    ],
+    "line_number": 336,
+    "searchable_text": "ping \"192.168.40.177\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ping \"192.168.40.170\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      337
+    ],
+    "raw_lines": [
+      "ping \"192.168.40.170\""
+    ],
+    "line_number": 337,
+    "searchable_text": "ping \"192.168.40.170\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ping \"192.168.40.173\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      338
+    ],
+    "raw_lines": [
+      "ping \"192.168.40.173\""
+    ],
+    "line_number": 338,
+    "searchable_text": "ping \"192.168.40.173\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ping \"192.168.41.180\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      341
+    ],
+    "raw_lines": [
+      "ping \"192.168.41.180\""
+    ],
+    "line_number": 341,
+    "searchable_text": "ping \"192.168.41.180\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ping \"192.168.140.212\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      344
+    ],
+    "raw_lines": [
+      "ping \"192.168.140.212\""
+    ],
+    "line_number": 344,
+    "searchable_text": "ping \"192.168.140.212\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "ping \"192.168.140.214\"",
+    "description": "EIF 모의 시험용",
+    "details": [],
+    "sections": [
+      "EIF 모의 시험용"
+    ],
+    "line_numbers": [
+      345
+    ],
+    "raw_lines": [
+      "ping \"192.168.140.214\""
+    ],
+    "line_number": 345,
+    "searchable_text": "ping \"192.168.140.214\" EIF 모의 시험용 EIF 모의 시험용"
+  },
+  {
+    "command": "connectWithTimeout( ) - attempt socket connection within a specified duration",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [
+      "nSaveFd = 0x1",
+      "nSaveFd = open(\"/ram0/SPYdata.txt\", 0x202, 0777)",
+      "nOldFd  = 0x1",
+      "nOldFd  = ioTaskStdGet(0, 1)"
+    ],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      525
+    ],
+    "raw_lines": [
+      "connectWithTimeout( ) - attempt socket connection within a specified duration ",
+      "nSaveFd = 0x1",
+      "nSaveFd = open(\"/ram0/SPYdata.txt\", 0x202, 0777)",
+      "nOldFd  = 0x1",
+      "nOldFd  = ioTaskStdGet(0, 1)"
+    ],
+    "line_number": 525,
+    "searchable_text": "connectWithTimeout( ) - attempt socket connection within a specified duration Ram Disk 디버깅 - 작성 중 nSaveFd = 0x1 nSaveFd = open(\"/ram0/SPYdata.txt\", 0x202, 0777) nOldFd  = 0x1 nOldFd  = ioTaskStdGet(0, 1) Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "spyReport",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      531,
+      567
+    ],
+    "raw_lines": [
+      "spyReport",
+      "spyReport"
+    ],
+    "line_number": 531,
+    "searchable_text": "spyReport Ram Disk 디버깅 - 작성 중 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "ioTaskStdSet(0, 1, nOldFd)",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      532
+    ],
+    "raw_lines": [
+      "ioTaskStdSet(0, 1, nOldFd)"
+    ],
+    "line_number": 532,
+    "searchable_text": "ioTaskStdSet(0, 1, nOldFd) Ram Disk 디버깅 - 작성 중 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "close(nSaveFd)",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      534
+    ],
+    "raw_lines": [
+      "close(nSaveFd)"
+    ],
+    "line_number": 534,
+    "searchable_text": "close(nSaveFd) Ram Disk 디버깅 - 작성 중 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "ls \"/ram0\"",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      536
+    ],
+    "raw_lines": [
+      "ls \"/ram0\""
+    ],
+    "line_number": 536,
+    "searchable_text": "ls \"/ram0\" Ram Disk 디버깅 - 작성 중 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "cp \"/ram0/SPYdata.txt\",\"SPYdata.txt\"",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      537
+    ],
+    "raw_lines": [
+      "cp \"/ram0/SPYdata.txt\",\"SPYdata.txt\""
+    ],
+    "line_number": 537,
+    "searchable_text": "cp \"/ram0/SPYdata.txt\",\"SPYdata.txt\" Ram Disk 디버깅 - 작성 중 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "rm \"/ram0/SPYdata.txt\"",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      538
+    ],
+    "raw_lines": [
+      "rm \"/ram0/SPYdata.txt\""
+    ],
+    "line_number": 538,
+    "searchable_text": "rm \"/ram0/SPYdata.txt\" Ram Disk 디버깅 - 작성 중 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "GetCpuUsage_Ram",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      555
+    ],
+    "raw_lines": [
+      "GetCpuUsage_Ram"
+    ],
+    "line_number": 555,
+    "searchable_text": "GetCpuUsage_Ram Ram Disk 디버깅 - 작성 중 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "GetCpuUsageRAM2",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      557
+    ],
+    "raw_lines": [
+      "GetCpuUsageRAM2"
+    ],
+    "line_number": 557,
+    "searchable_text": "GetCpuUsageRAM2 Ram Disk 디버깅 - 작성 중 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "GetLastNLine(9)",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      563
+    ],
+    "raw_lines": [
+      "GetLastNLine(9)"
+    ],
+    "line_number": 563,
+    "searchable_text": "GetLastNLine(9) Ram Disk 디버깅 - 작성 중 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "GetLastNLine_Ram(9)",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      564
+    ],
+    "raw_lines": [
+      "GetLastNLine_Ram(9)"
+    ],
+    "line_number": 564,
+    "searchable_text": "GetLastNLine_Ram(9) Ram Disk 디버깅 - 작성 중 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "spyClkStop()",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      568
+    ],
+    "raw_lines": [
+      "spyClkStop()"
+    ],
+    "line_number": 568,
+    "searchable_text": "spyClkStop() Ram Disk 디버깅 - 작성 중 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "ls \"/ata0:2\"",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      570,
+      581
+    ],
+    "raw_lines": [
+      "ls \"/ata0:2\"",
+      "ls \"/ata0:2\""
+    ],
+    "line_number": 570,
+    "searchable_text": "ls \"/ata0:2\" Ram Disk 디버깅 - 작성 중 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "cp \"/ata0:2/SPYdata.txt\",\"SPYdata.txt\"",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      571,
+      582
+    ],
+    "raw_lines": [
+      "cp \"/ata0:2/SPYdata.txt\",\"SPYdata.txt\"",
+      "cp \"/ata0:2/SPYdata.txt\",\"SPYdata.txt\""
+    ],
+    "line_number": 571,
+    "searchable_text": "cp \"/ata0:2/SPYdata.txt\",\"SPYdata.txt\" Ram Disk 디버깅 - 작성 중 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "rm \"/ata0:2/SPYdata.txt\"",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [
+      "[CEthernetTask::GetCpuUsageRAM] ---------------------- Empty file : errno(3997697)"
+    ],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      572,
+      583
+    ],
+    "raw_lines": [
+      "rm \"/ata0:2/SPYdata.txt\"",
+      "rm \"/ata0:2/SPYdata.txt\"",
+      " [CEthernetTask::GetCpuUsageRAM] ---------------------- Empty file : errno(3997697)"
+    ],
+    "line_number": 572,
+    "searchable_text": "rm \"/ata0:2/SPYdata.txt\" Ram Disk 디버깅 - 작성 중 [CEthernetTask::GetCpuUsageRAM] ---------------------- Empty file : errno(3997697) Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "GetCpuUsageRAM_debug",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      574
+    ],
+    "raw_lines": [
+      "GetCpuUsageRAM_debug"
+    ],
+    "line_number": 574,
+    "searchable_text": "GetCpuUsageRAM_debug Ram Disk 디버깅 - 작성 중 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "GetCpuUsageRAM_fd",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      575
+    ],
+    "raw_lines": [
+      "GetCpuUsageRAM_fd"
+    ],
+    "line_number": 575,
+    "searchable_text": "GetCpuUsageRAM_fd Ram Disk 디버깅 - 작성 중 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "GetCpuUsageRAM_fp",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      576
+    ],
+    "raw_lines": [
+      "GetCpuUsageRAM_fp"
+    ],
+    "line_number": 576,
+    "searchable_text": "GetCpuUsageRAM_fp Ram Disk 디버깅 - 작성 중 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "GetCpuUsage",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      578
+    ],
+    "raw_lines": [
+      "GetCpuUsage"
+    ],
+    "line_number": 578,
+    "searchable_text": "GetCpuUsage Ram Disk 디버깅 - 작성 중 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "GetCpuUsage_ata",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      580
+    ],
+    "raw_lines": [
+      "GetCpuUsage_ata"
+    ],
+    "line_number": 580,
+    "searchable_text": "GetCpuUsage_ata Ram Disk 디버깅 - 작성 중 Ram Disk 디버깅 - 작성 중"
+  },
+  {
+    "command": "SetMftaLogicBit (0x1C, 0x1)",
+    "description": "Ram Disk 디버깅 - 작성 중",
+    "details": [],
+    "sections": [
+      "Ram Disk 디버깅 - 작성 중"
+    ],
+    "line_numbers": [
+      592
+    ],
+    "raw_lines": [
+      "SetMftaLogicBit (0x1C, 0x1)"
+    ],
+    "line_number": 592,
+    "searchable_text": "SetMftaLogicBit (0x1C, 0x1) Ram Disk 디버깅 - 작성 중 Ram Disk 디버깅 - 작성 중"
+  }
+]
