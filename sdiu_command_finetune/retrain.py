@@ -10,13 +10,13 @@ from .build_dataset import (
     validate_examples,
     write_jsonl,
 )
+from .defaults import DEFAULT_OUTPUT_DIR
 from .model_store import ensure_base_model, resolve_base_model
-from .parser import DEFAULT_SOURCE_PATH, load_command_records
-from .train_lora import DEFAULT_OUTPUT_DIR, run_training
+from .parser import DEFAULT_COMMANDS_PATH, load_command_records
 
 
-def rebuild_dataset(source: Path, dataset_path: Path, records_path: Path, top_k: int) -> tuple[int, int]:
-    records = load_command_records(source)
+def rebuild_dataset(commands: Path, dataset_path: Path, records_path: Path, top_k: int) -> tuple[int, int]:
+    records = load_command_records(commands)
     examples = build_examples(records, top_k=top_k)
     validate_examples(examples, records)
     write_jsonl(dataset_path, examples)
@@ -30,7 +30,7 @@ def rebuild_dataset(source: Path, dataset_path: Path, records_path: Path, top_k:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Rebuild SDIU dataset and run LoRA training.")
-    parser.add_argument("--source", type=Path, default=DEFAULT_SOURCE_PATH)
+    parser.add_argument("--commands", "--source", dest="commands", type=Path, default=DEFAULT_COMMANDS_PATH)
     parser.add_argument("--dataset", type=Path, default=DEFAULT_DATASET_PATH)
     parser.add_argument("--records-output", type=Path, default=DEFAULT_RECORDS_PATH)
     parser.add_argument("--top-k", type=int, default=5)
@@ -45,9 +45,9 @@ def main() -> None:
     parser.add_argument("--local-files-only", action="store_true")
     args = parser.parse_args()
 
-    print(f"Rebuilding dataset from {args.source}", flush=True)
+    print(f"Rebuilding dataset from {args.commands}", flush=True)
     record_count, example_count = rebuild_dataset(
-        source=args.source,
+        commands=args.commands,
         dataset_path=args.dataset,
         records_path=args.records_output,
         top_k=args.top_k,
@@ -64,6 +64,8 @@ def main() -> None:
         base_model = str(ensure_base_model(local_files_only=args.local_files_only))
         print(f"base_model={base_model}", flush=True)
 
+    from .train_lora import run_training
+
     run_training(
         dataset_path=args.dataset,
         base_model=base_model,
@@ -78,4 +80,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

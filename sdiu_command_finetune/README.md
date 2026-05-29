@@ -1,21 +1,35 @@
 # SDIU 명령어 전용 LLM 파인튜닝 학습 노트
 
-이 프로젝트는 `rag/SDIU명령어_20201217.txt` 파일에 들어 있는 SDIU 명령어를 전용으로 외우는 작은 LLM 검색 앱을 만드는 예제입니다.
+이 프로젝트는 `sdiu_command_finetune/data/commands.json`에 등록된 SDIU 명령어를 전용으로 외우는 작은 LLM 검색 앱을 만드는 예제입니다.
 
-목표는 범용 챗봇을 만드는 것이 아닙니다. 사용자가 `송신성공 확인`, `라우팅 테이블 확인`, `노드 연결 끊기면 숫자 0`처럼 한글 설명을 입력했을 때, 파일 안에 실제로 존재하는 명령어 후보를 Top-K 형태로 돌려주는 것입니다.
+목표는 범용 챗봇을 만드는 것이 아닙니다. 사용자가 `송신성공 확인`, `라우팅 테이블 확인`, `노드 연결 끊기면 숫자 0`, `10101`처럼 한글 설명이나 포트 번호를 입력했을 때, JSON 안에 실제로 존재하는 명령어 또는 참고정보 후보를 Top-K 형태로 돌려주는 것입니다.
 
 이 README는 사용법 문서이면서, 동시에 SFT, LoRA, PEFT, 검증 기반 추론 흐름을 이 프로젝트 안에서 어떻게 적용했는지 배우기 위한 글입니다.
 
 ## 프로젝트 목표
 
-원본 파일에는 다음처럼 명령어와 설명이 섞여 있습니다.
+운영 원본은 다음처럼 구조화된 JSON입니다.
 
-```text
-ShowSendCnt                  // 송신성공 확인
-ShowSendCnt_Log 1            // 주기적으로 송신성공 확인 ON  (송신성공 카운터 표시)
-                              // 노드와 연결 끊기면, 숫자는 0
-ShowSendCnt_Log 0            // 주기적으로 송신성공 확인 OFF
-netstat "-r"                 // 라우팅 테이블 확인
+```json
+{
+  "version": 1,
+  "records": [
+    {
+      "command": "ShowSendCnt",
+      "kind": "command",
+      "description": "송신성공 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "@info tcp_port_hms_bf1",
+      "kind": "info",
+      "description": "TCP port HMS BF#1 10101",
+      "details": [],
+      "sections": []
+    }
+  ]
+}
 ```
 
 우리가 만들고 싶은 시스템은 이런 질문에 답해야 합니다.
@@ -39,8 +53,7 @@ netstat "-r"                 // 라우팅 테이블 확인
 전체 파이프라인은 다음 순서로 동작합니다.
 
 ```text
-SDIU명령어_20201217.txt
-  -> parser.py
+commands.json
   -> CommandRecord 목록
   -> build_dataset.py
   -> SFT JSONL 데이터셋
@@ -55,11 +68,11 @@ SDIU명령어_20201217.txt
 현재 구현 기준 생성 결과는 다음과 같습니다.
 
 ```text
-records=213
-examples=932
+records=237
+examples=1311
 ```
 
-즉, 원본 txt에서 213개의 명령어 레코드를 만들고, 이것을 학습용 질문-답변 샘플 932개로 확장합니다.
+즉, `commands.json`에서 237개의 명령어/참고정보 레코드를 읽고, 이것을 학습용 질문-답변 샘플 1311개로 확장합니다.
 
 ## 왜 파인튜닝인가?
 
@@ -149,9 +162,9 @@ q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj
 
 ```python
 SYSTEM_PROMPT = (
-    "너는 SDIU명령어_20201217.txt 파일만 외운 명령어 검색 모델이다. "
-    "사용자의 한글 설명 또는 명령어 입력을 보고 파일 안의 명령어 후보를 최대 5개 반환한다. "
-    "파일에 없는 명령어를 만들지 않는다. 설명은 파일의 // 뒤 설명과 보충 설명만 사용한다. "
+    "너는 commands.json에 등록된 SDIU 명령어만 사용하는 명령어 검색 모델이다. "
+    "사용자의 한글 설명 또는 명령어 입력을 보고 JSON 안의 명령어와 @info 참고정보 후보를 최대 5개 반환한다. "
+    "JSON에 없는 명령어나 참고정보를 만들지 않는다. 설명은 JSON의 description과 details만 사용한다. "
     "반드시 JSON만 출력한다."
 )
 ```
@@ -173,9 +186,9 @@ Fallback search는 모델이 없거나, 모델 출력이 부족하거나, 모델
 
 즉, 파인튜닝 모델이 주인공이지만, 마지막 결과는 항상 파일 기반 검증과 보충을 거칩니다.
 
-## 파서가 하는 일
+## 명령어 원본
 
-`parser.py`는 원본 txt를 학습 가능한 구조로 바꿉니다.
+`commands.json`은 앱과 학습이 직접 읽는 운영 원본입니다. 사람이 수정하는 필드는 `command`, `kind`, `description`, `details`, `sections`입니다. `raw_lines`, `line_numbers`, `searchable_text` 같은 생성물 필드는 원본 JSON에 저장하지 않습니다.
 
 최종 레코드 타입은 `CommandRecord`입니다.
 
@@ -183,29 +196,15 @@ Fallback search는 모델이 없거나, 모델 출력이 부족하거나, 모델
 CommandRecord(
     command="ShowSendCnt_Log 1",
     description="주기적으로 송신성공 확인 ON (송신성공 카운터 표시)",
+    kind="command",
     details=[
         "노드와 연결 끊기면, 숫자는 0",
         "노드와 연결 끊기면, 숫자는 더이상 증가 안함",
     ],
-    line_numbers=[2],
 )
 ```
 
-파서는 다음 규칙을 사용합니다.
-
-- `명령어 // 설명` 형태는 하나의 명령어 레코드로 만든다.
-- 앞부분 없이 `// 설명`만 있는 줄은 직전 명령어의 보충 설명으로 붙인다.
-- 설명이 없는 `_Log 0` 명령어는 같은 계열의 `_Log 1` 설명을 참고해 OFF 설명으로 보강한다.
-- 섹션 제목, 출력 예시, PCI dump처럼 명령어가 아닌 줄은 학습 대상에서 제외하거나 보충 정보로만 사용한다.
-
-예를 들어:
-
-```text
-ShowHTRBoardPingFlag_Log 1      // HTR연동반에서 받는 플래그정보 로깅 (FPGA 수신단)
-ShowHTRBoardPingFlag_Log 0
-```
-
-두 번째 줄에는 설명이 없지만, 파서는 앞의 `_Log 1` 설명을 참고해 `_Log 0` 항목도 검색 가능하게 만듭니다.
+`kind`는 실제 실행 명령어인 `command`와 검색용 참고정보인 `info`만 사용합니다.
 
 ## SFT 데이터셋 생성
 
@@ -215,11 +214,12 @@ ShowHTRBoardPingFlag_Log 0
 python -m sdiu_command_finetune.build_dataset
 ```
 
-생성 파일:
+입력 원본과 생성 파일:
 
 ```text
-sdiu_command_finetune/data/sdiu_sft.jsonl
-sdiu_command_finetune/data/records.json
+sdiu_command_finetune/data/commands.json   입력 원본
+sdiu_command_finetune/data/sdiu_sft.jsonl  생성 학습 데이터
+sdiu_command_finetune/data/records.json    생성 records cache
 ```
 
 `build_dataset.py`는 하나의 명령어 레코드에서 여러 질문을 만듭니다.
@@ -253,7 +253,7 @@ ShowSendCnt 설명
 }
 ```
 
-여기서 중요한 점은 정답 JSON도 코드로 생성한다는 것입니다. 사람이 932개 샘플을 직접 쓰지 않습니다. 원본 파일을 파싱하고, 파일 기반 검색기로 정답 후보를 만든 뒤, 그 결과를 모델 학습 데이터로 사용합니다.
+여기서 중요한 점은 정답 JSON도 코드로 생성한다는 것입니다. 사람이 1311개 샘플을 직접 쓰지 않습니다. 원본 파일을 파싱하고, 파일 기반 검색기로 정답 후보를 만든 뒤, 그 결과를 모델 학습 데이터로 사용합니다.
 
 ## LoRA 학습
 
@@ -285,12 +285,12 @@ output: sdiu_command_finetune/models/qwen2.5-1.5b-sdiu-lora/
 
 모델은 다음 순서로 사용됩니다.
 
-1. 원본 txt를 다시 파싱해 실제 명령어 목록을 만든다.
+1. `commands.json`을 읽어 실제 명령어와 `@info` 참고정보 목록을 만든다.
 2. LoRA adapter를 찾는다.
 3. 모델이 JSON을 생성한다.
 4. JSON에서 `results`를 추출한다.
-5. 각 `command`가 실제 명령어 목록에 있는지 확인한다.
-6. 없는 명령어는 버린다.
+5. 각 `command`가 실제 목록에 있는지 확인한다.
+6. 없는 명령어나 참고정보는 버린다.
 7. 후보가 부족하면 fallback search 결과로 채운다.
 
 이 구조가 중요한 이유는 LLM이 hallucination을 할 수 있기 때문입니다.
@@ -307,41 +307,59 @@ streamlit run sdiu_command_finetune/app.py
 
 화면에서는 다음을 설정할 수 있습니다.
 
-- SDIU txt 경로
+- Commands JSON 경로
 - LoRA adapter 경로
 - base model 이름
-- fine-tuned model 로드 여부
+- LLM refinement 사용 여부
+- LLM 최대 생성 토큰 수
 - Top K 개수
 - JSON 원문 표시 여부
 
-LoRA adapter가 없거나 모델 로드에 실패하면 앱은 fallback mode로 동작합니다. 즉, 학습 전에도 검색 UI를 시험해볼 수 있습니다.
+기본값은 빠른 fallback mode입니다. 이 모드에서는 Qwen 모델을 GPU에 올리지 않고, 파싱된 파일과 검색 점수만으로 즉시 결과를 보여줍니다.
+
+`Use LLM refinement (slower)`를 켜면 그때 Qwen2.5 1.5B와 LoRA adapter를 로드합니다. 첫 사용 시에는 모델 로드 시간이 걸리지만, 이후에는 Streamlit cache에 올라간 모델을 재사용합니다.
+
+LoRA adapter가 없거나 모델 로드에 실패하면 앱은 fallback mode로 계속 동작합니다. 즉, 학습 전에도 검색 UI를 시험해볼 수 있습니다.
 
 ### 앱에서 재학습하기
 
-Streamlit 사이드바의 `Training` 영역에는 재학습을 위한 버튼이 있습니다.
+Streamlit 사이드바의 `Training` 영역은 세 단계로 나뉩니다.
 
 - `Preserve base model locally`: 이미 다운로드된 Qwen 베이스 모델을 프로젝트 내부에 보존합니다.
-- `Start retraining`: 현재 선택된 SDIU txt 파일을 다시 파싱하고, SFT JSONL을 다시 만든 뒤, LoRA 학습을 백그라운드 프로세스로 시작합니다.
-- `Reload model`: 학습이 끝난 뒤 새 adapter를 다시 로드합니다.
+- `Step 1. Build dataset`: 현재 선택된 `commands.json`을 읽고 SFT JSONL을 만듭니다.
+- `Step 2. Train LoRA adapter`: 최신 SFT dataset으로 LoRA 학습을 백그라운드 프로세스로 시작합니다.
+- `Step 3. Reload model`: 학습이 끝난 뒤 새 adapter를 다시 로드합니다.
 - `Training log`: 백그라운드 학습 로그를 확인합니다.
 
-SDIU txt 파일을 수정했다면 다음 순서로 사용하면 됩니다.
+`commands.json` 파일을 수정했다면 다음 순서로 사용하면 됩니다.
 
 ```text
-1. Streamlit 앱에서 SDIU txt 경로를 확인한다.
-2. Start retraining 버튼을 누른다.
-3. Training log에서 학습 진행을 확인한다.
-4. 학습이 끝나면 Reload model을 누른다.
-5. 검색창에서 새 명령어 설명을 테스트한다.
+1. Streamlit 앱에서 Commands JSON 경로를 확인한다.
+2. Build SFT dataset 버튼을 누른다.
+3. Dataset is ready and up to date 상태를 확인한다.
+4. Start LoRA training 버튼을 누른다.
+5. Training log에서 학습 진행을 확인한다.
+6. 학습이 끝나면 Reload model을 누른다.
+7. 검색창에서 새 명령어 설명을 테스트한다.
 ```
 
-앱에서 재학습을 시작하면 내부적으로 다음 명령과 같은 흐름이 실행됩니다.
+앱에서 데이터셋을 만드는 단계는 다음 명령과 같은 흐름입니다.
 
 ```powershell
-python -m sdiu_command_finetune.retrain --source rag/SDIU명령어_20201217.txt
+python -m sdiu_command_finetune.build_dataset --commands sdiu_command_finetune/data/commands.json
 ```
 
-`retrain.py`는 데이터셋 생성과 LoRA 학습을 한 번에 수행합니다.
+앱에서 LoRA 학습을 시작하는 단계는 다음 명령과 같은 흐름입니다.
+
+```powershell
+python -m sdiu_command_finetune.train_lora --dataset sdiu_command_finetune/data/sdiu_sft.jsonl
+```
+
+`retrain.py`는 데이터셋 생성과 LoRA 학습을 한 번에 수행하는 CLI용 통합 명령으로 남겨둡니다. 앱에서는 사용자가 순서를 이해할 수 있도록 두 버튼을 분리했습니다.
+
+```powershell
+python -m sdiu_command_finetune.retrain
+```
 
 ## 실행 방법
 
@@ -377,8 +395,8 @@ python -m sdiu_command_finetune.build_dataset
 정상 출력 예시:
 
 ```text
-records=213
-examples=932
+records=237
+examples=1311
 dataset=...\sdiu_command_finetune\data\sdiu_sft.jsonl
 records_output=...\sdiu_command_finetune\data\records.json
 ```
@@ -422,6 +440,39 @@ python -m sdiu_command_finetune.infer "라우팅 테이블 확인" --fallback-on
 ```powershell
 streamlit run sdiu_command_finetune/app.py
 ```
+
+### 7. PyInstaller 실행파일 만들기
+
+기본 실행파일은 Streamlit 검색 UI를 여는 런처입니다. 빌드 안정성과 실행파일 크기를 위해 `sdiu_command_finder.spec`는 `torch`, `transformers`, `peft` 같은 대형 학습/LLM 패키지를 제외합니다.
+
+따라서 PyInstaller 실행파일에서는 빠른 fallback 검색과 dataset 생성 중심으로 사용하고, LoRA 학습은 위의 Python 개발환경 명령으로 실행하는 것을 권장합니다. LLM refinement까지 실행파일 안에 포함해야 한다면 `sdiu_command_finder.spec`의 `excluded_modules`에서 ML 패키지를 제거한 뒤 빌드하세요. 이 경우 결과물이 매우 커질 수 있습니다.
+
+빌드:
+
+```powershell
+pip install -r sdiu_command_finetune/requirements.txt
+.\build_exe.ps1
+```
+
+깨끗하게 다시 빌드:
+
+```powershell
+.\build_exe.ps1 -Clean
+```
+
+실행:
+
+```powershell
+.\dist\sdiu-command-finder.exe
+```
+
+실행하면 기본 브라우저가 자동으로 열립니다. 브라우저가 자동으로 열리지 않으면 콘솔에 표시되는 `Local URL`을 직접 여세요. 다른 포트를 쓰고 싶다면 Streamlit 옵션을 그대로 넘길 수 있습니다.
+
+```powershell
+.\dist\sdiu-command-finder.exe --server.port 8502
+```
+
+실행파일에는 기본 `sdiu_command_finetune/data/commands.json`과 샘플 dataset 파일이 함께 포함됩니다. exe 옆에 `sdiu_command_finetune/data/commands.json`을 따로 두면 그 파일을 우선 사용합니다. 실행 중 새로 생성되는 dataset, 학습 로그, 모델 폴더는 exe가 있는 위치의 `sdiu_command_finetune/` 아래에 저장됩니다.
 
 ## 결과 확인 예시
 
@@ -477,28 +528,48 @@ python -m sdiu_command_finetune.infer "라우팅 테이블 확인" --top-k 5
 netstat "-r"
 ```
 
+### TCP port 10101
+
+```powershell
+python -m sdiu_command_finetune.infer "10101" --fallback-only --top-k 5
+```
+
+기대 후보:
+
+```text
+@info tcp_port_hms_bf1
+```
+
+이 후보는 실제 실행 명령어가 아니라 검색용 참고정보입니다. Streamlit 결과 카드에서는 `참고정보`로 표시됩니다.
+
 ## 파일별 역할
 
 ```text
 sdiu_command_finetune/
-  parser.py          원본 txt를 CommandRecord 목록으로 파싱
+  parser.py          commands.json 로드와 schema 검증
   retrieval.py       fallback search와 검색 점수 계산
   prompts.py         모델에 줄 system/user prompt 정의
   build_dataset.py   SFT JSONL 데이터셋 생성
   train_lora.py      Qwen2.5 1.5B LoRA 학습
   infer.py           모델 로드, JSON 추출, 명령어 검증, fallback 보충
   app.py             Streamlit UI
+  launcher.py        PyInstaller 실행파일에서 Streamlit 앱을 여는 진입점
+  paths.py           개발환경과 PyInstaller 번들 환경의 경로 처리
+  defaults.py        기본 베이스 모델과 LoRA adapter 경로
   requirements.txt   실행과 학습에 필요한 Python 패키지
   data/
+    commands.json    운영 원본 명령어/참고정보
     sdiu_sft.jsonl   학습 샘플
-    records.json     파싱된 명령어 레코드
+    records.json     생성된 명령어/참고정보 cache
+build_exe.ps1                  Windows용 PyInstaller 빌드 스크립트
+sdiu_command_finder.spec       PyInstaller 빌드 설정
 ```
 
 ## 문제 해결
 
 ### 한글이 깨져 보이는 경우
 
-원본 txt와 README는 UTF-8 기준으로 다룹니다. PowerShell 콘솔 출력에서 한글이 깨져 보일 수 있지만, 파일 자체가 깨졌는지와 콘솔 인코딩 문제인지는 구분해야 합니다.
+`commands.json`과 README는 UTF-8 기준으로 다룹니다. PowerShell 콘솔 출력에서 한글이 깨져 보일 수 있지만, 파일 자체가 깨졌는지와 콘솔 인코딩 문제인지는 구분해야 합니다.
 
 Python 실행 시에는 다음처럼 UTF-8 모드를 붙이면 확인이 편합니다.
 
@@ -533,6 +604,8 @@ sdiu_command_finetune/models/qwen2.5-1.5b-sdiu-lora/checkpoint-1180
 LoRA adapter가 없거나 모델 로드에 실패하면 앱은 fallback mode로 동작합니다.
 
 이 모드는 LLM 없이도 동작합니다. 파일 기반 검색 점수만 사용하므로, 학습 전 파서와 데이터셋 품질을 확인하는 용도로 좋습니다.
+
+현재 앱은 이 fallback mode를 기본 검색 방식으로 사용합니다. 명령어 후보를 빠르게 확인하고 싶을 때는 이 모드가 가장 좋습니다. LLM이 만든 JSON 후보까지 보고 싶을 때만 `Use LLM refinement (slower)`를 켜면 됩니다.
 
 ## 이 프로젝트로 배울 수 있는 것
 

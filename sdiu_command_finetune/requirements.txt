@@ -9,4 +9,4 @@ streamlit>=1.40.0
 safetensors
 sentencepiece
 protobuf
-
+pyinstaller>=6.0

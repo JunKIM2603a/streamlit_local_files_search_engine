@@ -4,3 +4,5 @@ __pycache__/
 sdiu_command_finetune/models/
 sdiu_command_finetune/data/training.log
 sdiu_command_finetune/data/training_job.json
+build/
+dist/

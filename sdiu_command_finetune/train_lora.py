@@ -4,13 +4,10 @@ import argparse
 import json
 from pathlib import Path
 
+from .defaults import BASE_MODEL, DEFAULT_OUTPUT_DIR
 from .build_dataset import DEFAULT_DATASET_PATH
 from .model_store import BASE_MODEL_ID, ensure_base_model, resolve_base_model
 from .prompts import SYSTEM_PROMPT
-
-
-BASE_MODEL = resolve_base_model()
-DEFAULT_OUTPUT_DIR = Path(__file__).resolve().parent / "models" / "qwen2.5-1.5b-sdiu-lora"
 
 
 def _load_training_stack():
@@ -70,7 +67,7 @@ def run_training(
     dtype = torch.bfloat16 if torch.cuda.is_available() else torch.float32
     model = AutoModelForCausalLM.from_pretrained(
         base_model,
-        torch_dtype=dtype,
+        dtype=dtype,
         device_map="auto" if torch.cuda.is_available() else None,
         trust_remote_code=True,
     )

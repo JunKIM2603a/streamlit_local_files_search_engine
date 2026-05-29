@@ -5,12 +5,13 @@ import json
 from pathlib import Path
 from typing import Iterable
 
-from .parser import DEFAULT_SOURCE_PATH, CommandRecord, load_command_records
+from .parser import DEFAULT_COMMANDS_PATH, CommandRecord, load_command_records
+from .paths import package_data_dir
 from .prompts import build_user_prompt, render_plain_prompt
 from .retrieval import build_idf, fallback_search, result_to_payload
 
 
-DEFAULT_OUTPUT_DIR = Path(__file__).resolve().parent / "data"
+DEFAULT_OUTPUT_DIR = package_data_dir()
 DEFAULT_DATASET_PATH = DEFAULT_OUTPUT_DIR / "sdiu_sft.jsonl"
 DEFAULT_RECORDS_PATH = DEFAULT_OUTPUT_DIR / "records.json"
 
@@ -112,13 +113,13 @@ def write_jsonl(path: Path, rows: Iterable[dict]) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build SDIU command SFT dataset.")
-    parser.add_argument("--source", type=Path, default=DEFAULT_SOURCE_PATH)
+    parser.add_argument("--commands", "--source", dest="commands", type=Path, default=DEFAULT_COMMANDS_PATH)
     parser.add_argument("--output", type=Path, default=DEFAULT_DATASET_PATH)
     parser.add_argument("--records-output", type=Path, default=DEFAULT_RECORDS_PATH)
     parser.add_argument("--top-k", type=int, default=5)
     args = parser.parse_args()
 
-    records = load_command_records(args.source)
+    records = load_command_records(args.commands)
     examples = build_examples(records, top_k=args.top_k)
     validate_examples(examples, records)
 

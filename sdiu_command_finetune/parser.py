@@ -1,19 +1,25 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
+import json
 from pathlib import Path
-import re
-from typing import Iterable, List, Optional
+from typing import Any, Iterable, List, Optional
+
+from .paths import PACKAGE_NAME, resource_path, runtime_root
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_SOURCE_PATH = PROJECT_ROOT / "rag" / "SDIU명령어_20201217.txt"
+PROJECT_ROOT = runtime_root()
+DEFAULT_COMMANDS_PATH = resource_path(PACKAGE_NAME, "data", "commands.json")
+DEFAULT_SOURCE_PATH = DEFAULT_COMMANDS_PATH
+COMMANDS_SCHEMA_VERSION = 1
+ALLOWED_RECORD_KINDS = {"command", "info"}
 
 
 @dataclass
 class CommandRecord:
     command: str
     description: str = ""
+    kind: str = "command"
     details: List[str] = field(default_factory=list)
     sections: List[str] = field(default_factory=list)
     line_numbers: List[int] = field(default_factory=list)
@@ -25,7 +31,7 @@ class CommandRecord:
 
     @property
     def searchable_text(self) -> str:
-        parts = [self.command, self.description, *self.details, *self.sections]
+        parts = [self.command, self.kind, self.description, *self.details, *self.sections]
         return " ".join(part for part in parts if part).strip()
 
     def to_dict(self) -> dict:
@@ -34,274 +40,82 @@ class CommandRecord:
         data["searchable_text"] = self.searchable_text
         return data
 
-
-_COMMAND_PREFIXES = (
-    "Show",
-    "Reset",
-    "Save",
-    "Start",
-    "Get",
-    "Set",
-    "Create",
-    "Skip",
-)
-
-_COMMAND_NAMES = {
-    "netstat",
-    "sockShow",
-    "adrSpaceShow",
-    "cp",
-    "ls",
-    "rm",
-    "routec",
-    "ifconfig",
-    "ping",
-    "spy",
-    "spyStop",
-    "spyReport",
-    "spyClkStart",
-    "spyClkStop",
-    "vxbPciCtrlShow",
-    "vxbPciTopoShow",
-    "vxbPciHeaderShow",
-    "connectWithTimeout",
-    "ioTaskStdSet",
-    "ioTaskStdGet",
-    "close",
-}
-
-_OUTPUT_PREFIXES = (
-    "===",
-    "->",
-    "&&",
-    "ex>",
-    "ex)",
-    "value =",
-    "status=",
-    "command=",
-    "bar0",
-    "bar1",
-    "bar2",
-    "bar3",
-    "bar4",
-    "bar5",
-    "base/",
-    "preMem",
-    "I/O=",
-    "Pci controller",
-    "vendor ID",
-    "device ID",
-    "revision ID",
-    "class code",
-    "sub class code",
-    "programming interface",
-    "cache line",
-    "latency time",
-    "header type",
-    "BIST",
-    "base address",
-    "cardBus",
-    "sub system",
-    "expansion ROM",
-    "interrupt line",
-    "interrupt pin",
-    "min Grant",
-    "max Latency",
-    "Capabilities",
-    "Address:",
-    "Device:",
-    "Acceptable",
-    "Errors",
-    "Max Read",
-    "Link:",
-    "Latency:",
-    "ASPM",
-    "Speed",
-    "Serial Number",
-    "Per-vector",
-)
+    def to_source_dict(self) -> dict:
+        return {
+            "command": self.command,
+            "kind": self.kind,
+            "description": self.description,
+            "details": list(self.details),
+            "sections": list(self.sections),
+        }
 
 
 def normalize_space(text: str) -> str:
-    return re.sub(r"\s+", " ", text).strip()
+    return " ".join(text.split()).strip()
 
 
-def clean_comment(text: str) -> str:
-    return normalize_space(text.replace("\ufeff", ""))
+def _validate_record(record: CommandRecord, index: int, seen_commands: set[str], source_label: str) -> None:
+    if not record.command:
+        raise ValueError(f"{source_label}: records[{index}].command is required.")
+    if record.command in seen_commands:
+        raise ValueError(f"{source_label}: duplicate command: {record.command}")
+    if record.kind not in ALLOWED_RECORD_KINDS:
+        allowed = ", ".join(sorted(ALLOWED_RECORD_KINDS))
+        raise ValueError(f"{source_label}: records[{index}].kind must be one of: {allowed}")
+    if not record.description:
+        raise ValueError(f"{source_label}: records[{index}].description is required for {record.command}.")
+    seen_commands.add(record.command)
 
 
-def _first_token(command: str) -> str:
-    return re.split(r"[\s(,]", command.strip(), maxsplit=1)[0]
+def validate_command_records(records: Iterable[CommandRecord], source_label: str = "commands") -> list[CommandRecord]:
+    record_list = list(records)
+    seen_commands: set[str] = set()
+    for index, record in enumerate(record_list):
+        _validate_record(record, index, seen_commands, source_label)
+        for field_name in ("details", "sections", "line_numbers", "raw_lines"):
+            value = getattr(record, field_name)
+            expected_type = int if field_name == "line_numbers" else str
+            if not isinstance(value, list) or any(not isinstance(item, expected_type) for item in value):
+                raise ValueError(f"{source_label}: records[{index}].{field_name} must be a list.")
+    return record_list
 
 
-def is_section_line(text: str) -> bool:
-    stripped = text.strip()
-    return stripped.startswith("===") or (
-        stripped.startswith("/") and "명령어" in stripped and not stripped.startswith("//")
+def _string_list(value: Any, field_name: str, index: int, source_label: str) -> list[str]:
+    if value is None:
+        return []
+    if not isinstance(value, list) or any(not isinstance(item, str) for item in value):
+        raise ValueError(f"{source_label}: records[{index}].{field_name} must be a list of strings.")
+    return value
+
+
+def _record_from_json(item: Any, index: int, source_label: str) -> CommandRecord:
+    if not isinstance(item, dict):
+        raise ValueError(f"{source_label}: records[{index}] must be an object.")
+    return CommandRecord(
+        command=normalize_space(str(item.get("command", ""))),
+        kind=normalize_space(str(item.get("kind", "command"))),
+        description=normalize_space(str(item.get("description", ""))),
+        details=_string_list(item.get("details", []), "details", index, source_label),
+        sections=_string_list(item.get("sections", []), "sections", index, source_label),
     )
 
 
-def section_name(text: str) -> str:
-    cleaned = re.sub(r"^[=/\s]+|[=/\s]+$", "", text)
-    return normalize_space(cleaned)
+def load_command_records(path: str | Path = DEFAULT_COMMANDS_PATH) -> list[CommandRecord]:
+    commands_path = Path(path)
+    source_label = str(commands_path)
+    try:
+        payload = json.loads(commands_path.read_text(encoding="utf-8-sig"))
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"{source_label}: invalid JSON: {exc}") from exc
 
+    if not isinstance(payload, dict):
+        raise ValueError(f"{source_label}: root must be a JSON object.")
+    version = payload.get("version")
+    if version != COMMANDS_SCHEMA_VERSION:
+        raise ValueError(f"{source_label}: unsupported version {version!r}; expected {COMMANDS_SCHEMA_VERSION}.")
+    records_payload = payload.get("records")
+    if not isinstance(records_payload, list):
+        raise ValueError(f"{source_label}: records must be a list.")
 
-def is_command_like(text: str) -> bool:
-    stripped = normalize_space(text)
-    if not stripped:
-        return False
-    if stripped.startswith(_OUTPUT_PREFIXES):
-        return False
-    if re.match(r"^[A-Za-z]:\\", stripped):
-        return False
-    if re.match(r"^[가-힣]", stripped):
-        return False
-    if re.match(r"^\[[^\]]+\]\s*-", stripped):
-        return False
-    if re.match(r"^[A-Z]{2,}\s+\S+", stripped):
-        return False
-    if re.match(r"^[A-Za-z_][A-Za-z0-9_]*\s*=", stripped):
-        return False
-
-    token = _first_token(stripped)
-    if token in _COMMAND_NAMES:
-        return True
-    if token.startswith(_COMMAND_PREFIXES):
-        return True
-    if token.startswith("spy") or token.startswith("vxb"):
-        return True
-    if re.match(r"^[A-Za-z_][A-Za-z0-9_]*\s*\(", stripped):
-        return True
-    return False
-
-
-def _split_comment(line: str) -> tuple[str, str]:
-    if "//" not in line:
-        return line.strip(), ""
-    left, right = line.split("//", 1)
-    return left.strip(), clean_comment(right)
-
-
-def _merge_record(target: CommandRecord, incoming: CommandRecord) -> None:
-    if incoming.description and incoming.description not in target.description:
-        if target.description:
-            target.description = f"{target.description} / {incoming.description}"
-        else:
-            target.description = incoming.description
-    for detail in incoming.details:
-        if detail and detail not in target.details:
-            target.details.append(detail)
-    for section in incoming.sections:
-        if section and section not in target.sections:
-            target.sections.append(section)
-    for line_number in incoming.line_numbers:
-        if line_number not in target.line_numbers:
-            target.line_numbers.append(line_number)
-    target.raw_lines.extend(incoming.raw_lines)
-
-
-def _parse_on_off(command: str) -> tuple[str, Optional[str]]:
-    match = re.match(r"^(?P<base>.+?)(?:[\s,]+)(?P<flag>[01])(?:\s*,.*)?$", command.strip())
-    if not match:
-        return command.strip(), None
-    return normalize_space(match.group("base")), match.group("flag")
-
-
-def _make_off_description(description: str) -> str:
-    if not description:
-        return "OFF"
-    text = description
-    replacements = {
-        " ON ": " OFF ",
-        " ON": " OFF",
-        "ON ": "OFF ",
-        "On": "Off",
-        "on": "off",
-        "주기적으로 On": "주기적으로 Off",
-    }
-    for old, new in replacements.items():
-        text = text.replace(old, new)
-    if text == description and "OFF" not in text.upper():
-        text = f"{text} OFF"
-    return text
-
-
-def _infer_missing_descriptions(records: Iterable[CommandRecord]) -> None:
-    by_on_off: dict[tuple[str, str], CommandRecord] = {}
-    for record in records:
-        base, flag = _parse_on_off(record.command)
-        if flag:
-            key = (base, flag)
-            if key not in by_on_off or record.description:
-                by_on_off[key] = record
-
-    for record in records:
-        if record.description:
-            continue
-        base, flag = _parse_on_off(record.command)
-        if flag == "0":
-            on_record = by_on_off.get((base, "1"))
-            if on_record and on_record.description:
-                record.description = _make_off_description(on_record.description)
-                detail = f"'{on_record.command}' 설명에서 OFF 항목으로 보강"
-                if detail not in record.details:
-                    record.details.append(detail)
-        if not record.description and record.sections:
-            record.description = record.sections[-1]
-
-
-def load_command_records(path: str | Path = DEFAULT_SOURCE_PATH) -> list[CommandRecord]:
-    source_path = Path(path)
-    text = source_path.read_text(encoding="utf-8-sig")
-
-    records_by_command: dict[str, CommandRecord] = {}
-    ordered_commands: list[str] = []
-    last_record: Optional[CommandRecord] = None
-    current_section = ""
-
-    for line_number, raw_line in enumerate(text.splitlines(), 1):
-        stripped = raw_line.strip()
-        if not stripped:
-            continue
-
-        if is_section_line(stripped):
-            current_section = section_name(stripped)
-            last_record = None
-            continue
-
-        command_part, comment = _split_comment(raw_line)
-
-        if not command_part and comment:
-            if last_record and comment not in last_record.details:
-                last_record.details.append(comment)
-                last_record.raw_lines.append(raw_line)
-            continue
-
-        if not is_command_like(command_part):
-            if last_record and stripped and stripped not in last_record.details:
-                last_record.details.append(stripped)
-                last_record.raw_lines.append(raw_line)
-            continue
-
-        command = normalize_space(command_part)
-        incoming = CommandRecord(
-            command=command,
-            description=comment,
-            sections=[current_section] if current_section else [],
-            line_numbers=[line_number],
-            raw_lines=[raw_line],
-        )
-
-        if command in records_by_command:
-            record = records_by_command[command]
-            _merge_record(record, incoming)
-        else:
-            record = incoming
-            records_by_command[command] = record
-            ordered_commands.append(command)
-
-        last_record = record
-
-    records = [records_by_command[command] for command in ordered_commands]
-    _infer_missing_descriptions(records)
-    return records
+    records = [_record_from_json(item, index, source_label) for index, item in enumerate(records_payload)]
+    return validate_command_records(records, source_label=source_label)

@@ -1,0 +1,1899 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "command": "ShowSendCnt",
+      "kind": "command",
+      "description": "송신성공 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSendCnt_Log 1",
+      "kind": "command",
+      "description": "주기적으로 송신성공 확인 ON (송신성공 카운터 표시)",
+      "details": [
+        "노드와 연결 끊기면, 숫자는 0",
+        "노드와 연결 끊기면, 숫자는 더이상 증가 안함",
+        "노드와 연결 중이면, 숫자는 증가, 128씩",
+        "노드와 연결 중, 데이터 송수신 실패하면"
+      ],
+      "sections": []
+    },
+    {
+      "command": "ShowSendCnt_Log 0",
+      "kind": "command",
+      "description": "주기적으로 송신성공 확인 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowCheckSendCnt_Log 1",
+      "kind": "command",
+      "description": "주기적으로 송신성공 확인 ON (송신성공 카운터 증가가 되면 1 아니면 0)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowCheckSendCnt_Log 0",
+      "kind": "command",
+      "description": "주기적으로 송신성공 확인 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSendFailCnt",
+      "kind": "command",
+      "description": "송신실패 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSendFailCnt_Log 1",
+      "kind": "command",
+      "description": "주기적으로 송신실패 확인 ON",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSendFailCnt_Log 0",
+      "kind": "command",
+      "description": "주기적으로 송신실패 확인 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSendFailErrno_Log 1",
+      "kind": "command",
+      "description": "주기적으로 송신실패 errno 확인 ON",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSendFailErrno_Log 0",
+      "kind": "command",
+      "description": "주기적으로 송신실패 errno 확인 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ResetSendFailErrno",
+      "kind": "command",
+      "description": "송신실패 Errno 리셋",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowHmsPingFlag_Log 1",
+      "kind": "command",
+      "description": "ping 플래그 변경 시 로깅 ON , HMR연동반 LFPA플래그 전시함 (빔형성으로 송신단)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowHmsPingFlag_Log 0",
+      "kind": "command",
+      "description": "ping 플래그 변경 시 로깅 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowLfpaPingFlag_Log 1",
+      "kind": "command",
+      "description": "ping 플래그 변경 시 로깅 ON, MSR/LTR연동반 HMS플래그 전시함 (빔형성으로 송신단)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowLfpaPingFlag_Log 0",
+      "kind": "command",
+      "description": "ping 플래그 변경 시 로깅 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowHTRBoardPingFlag_Log 1",
+      "kind": "command",
+      "description": "HTR연동반에서 받는 플래그정보 로깅 (FPGA 수신단)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowHTRBoardPingFlag_Log 0",
+      "kind": "command",
+      "description": "HTR연동반에서 받는 플래그정보 로깅 OFF (FPGA 수신단)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowLTRBoardPingFlag_Log 1",
+      "kind": "command",
+      "description": "MSR/LTR연동반에서 받는 플래그정보 로깅 (FPGA 수신단)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowLTRBoardPingFlag_Log 0",
+      "kind": "command",
+      "description": "MSR/LTR연동반에서 받는 플래그정보 로깅 OFF (FPGA 수신단)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowHTRBoardPingNumber_Log 1",
+      "kind": "command",
+      "description": "HTR연동반에서 받는 PingNumber 1초 주기 로깅 (FPGA 수신단)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowHTRBoardPingNumber_Log 0",
+      "kind": "command",
+      "description": "HTR연동반에서 받는 PingNumber 1초 주기 로깅 OFF (FPGA 수신단)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowLTRBoardPingNumber_Log 1",
+      "kind": "command",
+      "description": "MSR/LTR연동반에서 받는 PingNumber 1초 주기 로깅 (FPGA 수신단)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowLTRBoardPingNumber_Log 0",
+      "kind": "command",
+      "description": "MSR/LTR연동반에서 받는 PingNumber 1초 주기 로깅 OFF (FPGA 수신단)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowTxPingNumber_Log 1",
+      "kind": "command",
+      "description": "SBC to BF 로 송신하는 PingNumber 1초 주기 로깅 (빔형성으로 송신단)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowTxPingNumber_Log 0",
+      "kind": "command",
+      "description": "SBC to BF 로 송신하는 PingNumber 1초 주기 로깅 OFF (빔형성으로 송신단)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowLinkCnt",
+      "kind": "command",
+      "description": "소켓 연결 횟수 확인",
+      "details": [
+        "소켓이 연결되었다 끊어졌다 횟수 확인하고 싶으면 사용"
+      ],
+      "sections": []
+    },
+    {
+      "command": "ShowisClientConnected",
+      "kind": "command",
+      "description": "SDI 서버에 연결 된 노드 확인",
+      "details": [
+        "LinkCnt(0x2c) - 재접속된 횟수"
+      ],
+      "sections": []
+    },
+    {
+      "command": "ShowSysTime_Log 1",
+      "kind": "command",
+      "description": "시스템 시간 주기 확인 / 주기적으로 시스템 시간 확인 ON",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSysTime_Log 0",
+      "kind": "command",
+      "description": "시스템 시간 주기 확인 OFF / 주기적으로 시스템 시간 확인 OFF / 시간 로깅 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "netstat",
+      "kind": "command",
+      "description": "네트워크 상태 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "netstat \"-r\"",
+      "kind": "command",
+      "description": "라우팅 테이블 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "sockShow",
+      "kind": "command",
+      "description": "소켓 상태 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowTimeTag",
+      "kind": "command",
+      "description": "FPGA timetag 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowTimeTag_Log 1",
+      "kind": "command",
+      "description": "주기적으로 Timetag 확인 ON",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowTimeTag_Log 0",
+      "kind": "command",
+      "description": "주기적으로 Timetag 확인 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowHtrTestResult_Log 1",
+      "kind": "command",
+      "description": "HTR sync, checksum, timetag 에러 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowHtrTestResult_Log 0",
+      "kind": "command",
+      "description": "HTR sync, checksum, timetag 에러 확인 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowMsrTestResult_Log 1",
+      "kind": "command",
+      "description": "MSR sync, checksum, timetag 에러 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowMsrTestResult_Log 0",
+      "kind": "command",
+      "description": "MSR sync, checksum, timetag 에러 확인 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowLtrTestResult_Log 1",
+      "kind": "command",
+      "description": "LTR sync, checksum, timetag 에러 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowLtrTestResult_Log 0",
+      "kind": "command",
+      "description": "LTR sync, checksum, timetag 에러 확인 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowRxHeartbeat",
+      "kind": "command",
+      "description": "RxHeartbeat 카운터, 연결시(0~2)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowTestResult",
+      "kind": "command",
+      "description": "SDI 점검바이트 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowHtrResult",
+      "kind": "command",
+      "description": "HTR연동반 점검바이트 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowMsrResult",
+      "kind": "command",
+      "description": "MSR/LTR연동반 점검바이트 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowMaster",
+      "kind": "command",
+      "description": "SyncMaster, LinkMaster 확인",
+      "details": [],
+      "sections": [
+        "랙단위 시험용"
+      ]
+    },
+    {
+      "command": "ShowRxIspm 1",
+      "kind": "command",
+      "description": "ISPM 명령 수신 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowRxIspm 0",
+      "kind": "command",
+      "description": "ISPM 명령 수신 확인 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowTxCtrl",
+      "kind": "command",
+      "description": "ISPM 송신제어 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowEifShipInfo 1",
+      "kind": "command",
+      "description": "주기적으로 항해정보 확인 ON 50 * 5 개 들어오면 로깅(5초)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowEifShipInfo 0",
+      "kind": "command",
+      "description": "주기적으로 항해정보 확인 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSysTime",
+      "kind": "command",
+      "description": "시스템 시간 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowErr",
+      "kind": "command",
+      "description": "Task 에러 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ResetErr",
+      "kind": "command",
+      "description": "Task 에러 초기화",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "adrSpaceShow",
+      "kind": "command",
+      "description": "메모리 공간 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowStructSize",
+      "kind": "command",
+      "description": "구조체크기 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "SaveTxPeriod",
+      "kind": "command",
+      "description": "주기 저장",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowTxDataTime_Log 1",
+      "kind": "command",
+      "description": "주기적으로(60초마다) 음향데이터 송신주기 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowTxDataTime_Log 0",
+      "kind": "command",
+      "description": "주기적으로(60초마다) 음향데이터 송신주기 확인 OFF",
+      "details": [
+        "'ShowTxDataTime_Log 1' 설명에서 OFF 항목으로 보강"
+      ],
+      "sections": []
+    },
+    {
+      "command": "ShowTxHeartbeatTime_Log 1",
+      "kind": "command",
+      "description": "주기적으로(1초마다) Heartbeat 송신주기 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowTxHeartbeatTime_Log 0",
+      "kind": "command",
+      "description": "주기적으로(1초마다) Heartbeat 송신주기 확인 OFF",
+      "details": [
+        "'ShowTxHeartbeatTime_Log 1' 설명에서 OFF 항목으로 보강"
+      ],
+      "sections": []
+    },
+    {
+      "command": "ShowSendTxStatus_Log 1",
+      "kind": "command",
+      "description": "ISPM 송신제어(1초마다)에 대한 송신제어결과 확인 / 송신상태정보(주기) 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSendTxStatus_Log 0",
+      "kind": "command",
+      "description": "ISPM 송신제어(1초마다)에 대한 송신제어결과 확인 OFF / 송신상태정보(주기) 확인 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSendHmsTxStatus_Log 1",
+      "kind": "command",
+      "description": "Hms송신상태정보(비주기) 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSendHmsTxStatus_Log 0",
+      "kind": "command",
+      "description": "Hms송신상태정보(비주기) 확인 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSendMftaTxStatus_Log 1",
+      "kind": "command",
+      "description": "Mfta송신상태정보(비주기) 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSendMftaTxStatus_Log 0",
+      "kind": "command",
+      "description": "Mfta송신상태정보(비주기) 확인 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSonarStatus 1",
+      "kind": "command",
+      "description": "소나체계상태정보 주기적으로 On",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSonarStatus 0",
+      "kind": "command",
+      "description": "소나체계상태정보 주기적으로 Off",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowRxHBErr_Log 1",
+      "kind": "command",
+      "description": "SDI(Server) 수신 Heartbeat 로깅",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowRxHBErr_Log 0",
+      "kind": "command",
+      "description": "SDI(Server) 수신 Heartbeat 로깅 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowCpuUsage_Log 1",
+      "kind": "command",
+      "description": "CPU 사용량 확인, 5초 주기",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowCpuUsage_Log 0",
+      "kind": "command",
+      "description": "CPU 사용량 확인 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ResetMsgQErr",
+      "kind": "command",
+      "description": "MsgQ error 초기화",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowMsgQErr",
+      "kind": "command",
+      "description": "MsgQ error 확인(초기화 이후 사용)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowTaskMonitor_Log 1",
+      "kind": "command",
+      "description": "Task 상태 모니터링",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowTaskMonitor_Log 0",
+      "kind": "command",
+      "description": "Task 상태 모니터링 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSonarStatus_Log 1",
+      "kind": "command",
+      "description": "ISPM->SDI 수신 메시지(소나상태정보) 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSonarStatus_Log 0",
+      "kind": "command",
+      "description": "ISPM->SDI 수신 메시지(소나상태정보) 확인 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowGainCtrl_Log 1",
+      "kind": "command",
+      "description": "ISPM->SDI 수신 메시지(이득제어) 주기적으로 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowGainCtrl_Log 0",
+      "kind": "command",
+      "description": "ISPM->SDI 수신 메시지(이득제어) 주기적으로 확인 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowHTRBoardGain_Log 1",
+      "kind": "command",
+      "description": "HMS 이득 설정/값 확인, FPGA read 0 = 자동, 1 = 수동",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowHTRBoardGain_Log 0",
+      "kind": "command",
+      "description": "HMS 이득 설정/값 확인 OFF, FPGA read",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowLTRBoardGain_Log 1",
+      "kind": "command",
+      "description": "TA/SA이득 설정/값 확인, FPGA read 0 = 자동, 1 = 수동",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowLTRBoardGain_Log 0",
+      "kind": "command",
+      "description": "TA/SA이득 설정/값 확인 OFF, FPGA read",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSdiID",
+      "kind": "command",
+      "description": "SDI ID 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowOutputVoltage33_Log 1",
+      "kind": "command",
+      "description": "3.3V output voltage 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowOutputVoltage33_Log 0",
+      "kind": "command",
+      "description": "3.3V output voltage 확인 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowReceiveSyncMsg_Log 1",
+      "kind": "command",
+      "description": "다른 SDI장비 2개로부터 수신받은 Sync 메세지 Result(0모름, 1정상, 2비정상), setmaster(0슬레이브, 1마스터, 2모름, 3슬레이브(LFPA M3))",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowReceiveSyncMsg_Log 0",
+      "kind": "command",
+      "description": "다른 SDI장비 2개로부터 수신받은 Sync 메세지 확인 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "SkipCheckingSync",
+      "kind": "command",
+      "description": "Master/Slave 세팅의 초기대기시간 뛰어넘기",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSyncMsg",
+      "kind": "command",
+      "description": "다른 SDI장비 2개로 송신하는 Sync 메세지",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowIspmHB_Log 1",
+      "kind": "command",
+      "description": "ISPM Heartbeat 주기 로깅 ON",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowIspmHB_Log 0",
+      "kind": "command",
+      "description": "ISPM Heartbeat 주기 로깅 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowEifHB_Log 1",
+      "kind": "command",
+      "description": "EIF Heartbeat 주기 로깅 ON",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowEifHB_Log 0",
+      "kind": "command",
+      "description": "EIF Heartbeat 주기 로깅 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowHmsGainInfo_Log 1",
+      "kind": "command",
+      "description": "HMS 이득 정보 주기 로깅 ON",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowHmsGainInfo_Log 0",
+      "kind": "command",
+      "description": "HMS 이득 정보 주기 로깅 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowLfpaGainInfo_Log 1",
+      "kind": "command",
+      "description": "LFPA 이득 정보 주기 로깅 ON",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowLfpaGainInfo_Log 0",
+      "kind": "command",
+      "description": "LFPA 이득 정보 주기 로깅 OFF",
+      "details": [
+        "/////////////////////////////SDIT명령어////////////////////////"
+      ],
+      "sections": []
+    },
+    {
+      "command": "ShowTxSenarioEditor_Log 1",
+      "kind": "command",
+      "description": "1초주기 로깅, SDIT(SBC)->AGE(Senario Editor)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowTxSenarioEditor_Log 0",
+      "kind": "command",
+      "description": "1초주기 로깅 OFF, SDIT(SBC)->AGE(Senario Editor)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowRxHmsAsg_Log 1",
+      "kind": "command",
+      "description": "1초주기 로깅, AGE(Hms)->SDIT(SBC)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowRxHmsAsg_Log 0",
+      "kind": "command",
+      "description": "1초주기 로깅 OFF, AGE(Hms)->SDIT(SBC)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowRxMftaAsg_Log 1",
+      "kind": "command",
+      "description": "1초주기 로깅, AGE(Mfta)->SDIT(SBC)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowRxMftaAsg_Log 0",
+      "kind": "command",
+      "description": "1초주기 로깅 OFF, AGE(Mfta)->SDIT(SBC)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowWriteFpga_Log 1",
+      "kind": "command",
+      "description": "1초주기 로깅, SDIT(SBC)->SDIT(FPGA) 7.8125ms 주기로 writing",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowWriteFpga_Log 0",
+      "kind": "command",
+      "description": "1초주기 로깅 OFF, SDIT(SBC)->SDIT(FPGA) 7.8125ms 주기로 writing",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowRxPingSenDataCheck_Log 1",
+      "kind": "command",
+      "description": "AGE->SDIT(SBC) 핑플래그, 센서데이터 0 아닐때 패킷카운트 로깅",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowRxPingSenDataCheck_Log 0",
+      "kind": "command",
+      "description": "AGE->SDIT(SBC) 핑플래그, 센서데이터 0 아닐때 패킷카운트 로깅 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowTxPingSenDataCheck_Log 1",
+      "kind": "command",
+      "description": "SDIT(SBC)->SDIT(FPGA) 핑플래그, 센서데이터 0 아닐때 패킷카운트 로깅",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowTxPingSenDataCheck_Log 0",
+      "kind": "command",
+      "description": "SDIT(SBC)->SDIT(FPGA) 핑플래그, 센서데이터 0 아닐때 패킷카운트 로깅 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowHmsRxPingMonitor_Log 1",
+      "kind": "command",
+      "description": "Hms 핑플래그 반전될때 로깅",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowHmsRxPingMonitor_Log 0",
+      "kind": "command",
+      "description": "Hms 핑플래그 반전될때 로깅 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowMftaRxPingMonitor_Log 1",
+      "kind": "command",
+      "description": "LFPA 핑플래그 반전될때 로깅",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowMftaRxPingMonitor_Log 0",
+      "kind": "command",
+      "description": "LFPA 핑플래그 반전될때 로깅 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowMsgQCheck_Log 1",
+      "kind": "command",
+      "description": "5초 저장 큐에 있는 데이터 량 확인 1초 주기 (128*5)",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowMsgQCheck_Log 0",
+      "kind": "command",
+      "description": "5초 저장 큐에 있는 데이터 량 확인 OFF",
+      "details": [
+        "SDIT SBC가 AGE연동 데이터를 안 읽는 경우: 데이터가 5초 분량이 없을때",
+        "AGE 연동메시지 오류시(checksum, sync 등)",
+        "데이터가 10초 분량을 최대 모으도록 할당되어 있는데 꽉차서 더이상 넣을 수 없을때(발생시 상시 로깅)"
+      ],
+      "sections": []
+    },
+    {
+      "command": "ShowPacketCnt_Log 1",
+      "kind": "command",
+      "description": "AGE(HMS, MFTA) 수신 메시지에 대해 1초마다 각각의 패킷 카운트 모니터링, 그시점에 패킷 맞춘거에 대한 패킷카운트",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowPacketCnt_Log 0",
+      "kind": "command",
+      "description": "AGE(HMS, MFTA) 수신 메시지 패킷 카운트 모니터링 OFF",
+      "details": [
+        "예시: Asg Rx Packet Cnt(Hms 421256, Mfta 421257), Paired Packet Cnt(Hms 420618, Mfta 420618)"
+      ],
+      "sections": []
+    },
+    {
+      "command": "ShowOverMsgQ_Log 1",
+      "kind": "command",
+      "description": "msgQ 10초 공간 꽉 찼차면 에러로그 나옴",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowOverMsgQ_Log 0",
+      "kind": "command",
+      "description": "msgQ 10초 공간 꽉 찼을 때 에러로그 OFF",
+      "details": [
+        "예시: Over 10 second msgQ space(1280)"
+      ],
+      "sections": []
+    },
+    {
+      "command": "ShowPacketMonitor_Log 1",
+      "kind": "command",
+      "description": "Hms/Mfta 양쪽 수신받고, 5초 초기데이터가 아니고, msgQ에서 유효데이터로 판단했을 때, AGE로부터 수신 패킷이 기존 차이값(패킷맞춤값)과 달라졌을때 로깅",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowPacketMonitor_Log 0",
+      "kind": "command",
+      "description": "Hms/Mfta 수신 패킷 차이값 변경 로깅 OFF",
+      "details": [
+        "예시: AGE Rx Packet Cnt Difference 와 Pairing Difference 불일치 에러"
+      ],
+      "sections": []
+    },
+    {
+      "command": "SaveHmsPacket",
+      "kind": "command",
+      "description": "Hms Packet 저장",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "SaveMftaPacket",
+      "kind": "command",
+      "description": "Mfta Packet 저장",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ls \"/ata0:2\", 1",
+      "kind": "command",
+      "description": "파일 저장중인거 크기 증가 확인",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "cp \"/ata0:2/HmsAsg.bin\",\"HmsAsg2.bin\"",
+      "kind": "command",
+      "description": "Hms 저장파일 꺼내오기",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "cp \"/ata0:2/MftaAsg.bin\",\"MftaAsg2.bin\"",
+      "kind": "command",
+      "description": "Mfta 저장파일 꺼내오기",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowTaRollValid_Log 1",
+      "kind": "command",
+      "description": "TA Roll 유효값 주기 로깅 ON",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowTaRollValid_Log 0",
+      "kind": "command",
+      "description": "TA Roll 유효값 주기 로깅 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowTaRoll_Log 1",
+      "kind": "command",
+      "description": "TA Roll 값 주기 로깅 ON",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowTaRoll_Log 0",
+      "kind": "command",
+      "description": "TA Roll 값 주기 로깅 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSaBearing_Log 1",
+      "kind": "command",
+      "description": "SA Bearing 방위 값 주기 로깅 ON",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSaBearing_Log 0",
+      "kind": "command",
+      "description": "SA Bearing 방위 값 주기 로깅 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSaDepth_Log 1",
+      "kind": "command",
+      "description": "SA Depth 수심 값 주기 로깅 ON",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSaDepth_Log 0",
+      "kind": "command",
+      "description": "SA Depth 수심 값 주기 로깅 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSaTemperature_Log 1",
+      "kind": "command",
+      "description": "SA Temperature 수온 값 주기 로깅 ON",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSaTemperature_Log 0",
+      "kind": "command",
+      "description": "SA Temperature 수온 값 주기 로깅 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSaAccelerator_Log 1",
+      "kind": "command",
+      "description": "SA Accelerator 가속도 값 주기 로깅 ON",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowSaAccelerator_Log 0",
+      "kind": "command",
+      "description": "SA Accelerator 가속도 값 주기 로깅 OFF",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowPickedHmsWave_Log 1, sensor, sample",
+      "kind": "command",
+      "description": "채널 내 센서데이터 전압값 Sensor : HMS:0~575 TA:576~1007 SA:1008~1247, Sample : 0~127",
+      "details": [],
+      "sections": []
+    },
+    {
+      "command": "ShowPickedHmsWave_Log 0",
+      "kind": "command",
+      "description": "채널 내 센서데이터 전압값 확인 OFF",
+      "details": [
+        "예시: ShowPickedHmsWave_Log 1, 40, 0 - HMS 41번 채널 1번째 샘플",
+        "예시: ShowPickedHmsWave_Log 1, 615, 4 - TA 41번 채널 5번째 샘플",
+        "예시: ShowPickedHmsWave_Log 1, 1047, 127 - SA 41번 채널 128번째 샘플",
+        "MFTA 채널 내 센서데이터 전압값 확인, 채널 구성은 F:\\CHO\\20201203 엑셀 참조",
+        "//////////////////////////////////////////////////////////////"
+      ],
+      "sections": []
+    },
+    {
+      "command": "spyClkStart(0)",
+      "kind": "command",
+      "description": "CPU 데이터 수집 / CPU 데이터 수집 시작",
+      "details": [],
+      "sections": [
+        "Spy",
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "spy",
+      "kind": "command",
+      "description": "cpu 측정",
+      "details": [],
+      "sections": [
+        "Spy"
+      ]
+    },
+    {
+      "command": "spyStop",
+      "kind": "command",
+      "description": "cpu 측정 정지",
+      "details": [],
+      "sections": [
+        "Spy",
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "StartSpyClk",
+      "kind": "command",
+      "description": "CPU 데이터 수집 / CPU 데이터 수집 시작",
+      "details": [],
+      "sections": [
+        "Spy",
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "GetCpuUsageRAM",
+      "kind": "command",
+      "description": "cpu 측정 및 cpu 사용량 계산 / RAM 기반 CPU 사용량 확인",
+      "details": [],
+      "sections": [
+        "Spy",
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "StartSpyStop",
+      "kind": "command",
+      "description": "cpu 측정 정지",
+      "details": [],
+      "sections": [
+        "Spy"
+      ]
+    },
+    {
+      "command": "ShowDemoTestResult 1,1",
+      "kind": "command",
+      "description": "정상 모의",
+      "details": [],
+      "sections": [
+        "Sync Master/Slave 설정",
+        "랙단위 시험용",
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "ShowDemoTestResult 1,0",
+      "kind": "command",
+      "description": "고장 모의",
+      "details": [],
+      "sections": [
+        "Sync Master/Slave 설정"
+      ]
+    },
+    {
+      "command": "ShowDemoTestResult 0,1",
+      "kind": "command",
+      "description": "모의 안함",
+      "details": [],
+      "sections": [
+        "Sync Master/Slave 설정"
+      ]
+    },
+    {
+      "command": "@info sdi_sim_order",
+      "kind": "info",
+      "description": "SDI 모의신호 생성 순서: unFrameSelect, unFrequency, unGain, unMode, unChannel, unWaveStyle",
+      "details": [],
+      "sections": [
+        "SDI 모의신호 생성"
+      ]
+    },
+    {
+      "command": "CreateHtrSim(1,4096,1,0,0,0)",
+      "kind": "command",
+      "description": "HTR 모의신호 세팅",
+      "details": [],
+      "sections": [
+        "SDI 모의신호 생성"
+      ]
+    },
+    {
+      "command": "CreateTaSim(4096,1,0,0,0)",
+      "kind": "command",
+      "description": "Ta 모의신호 세팅",
+      "details": [],
+      "sections": [
+        "SDI 모의신호 생성"
+      ]
+    },
+    {
+      "command": "CreateSaSim(4096,1,0,0,0)",
+      "kind": "command",
+      "description": "Sa 모의신호 세팅",
+      "details": [],
+      "sections": [
+        "SDI 모의신호 생성"
+      ]
+    },
+    {
+      "command": "CreateMsrFrame 1",
+      "kind": "command",
+      "description": "Ta,Sa 모의신호 세팅",
+      "details": [],
+      "sections": [
+        "SDI 모의신호 생성"
+      ]
+    },
+    {
+      "command": "StartCreateSim",
+      "kind": "command",
+      "description": "모의신호 생성",
+      "details": [],
+      "sections": [
+        "SDI 모의신호 생성"
+      ]
+    },
+    {
+      "command": "@info tcp_port_hms_bf1",
+      "kind": "info",
+      "description": "TCP port HMS BF#1 10101",
+      "details": [],
+      "sections": [
+        "TCP port"
+      ]
+    },
+    {
+      "command": "@info tcp_port_hms_bf2",
+      "kind": "info",
+      "description": "TCP port HMS BF#2 10102",
+      "details": [],
+      "sections": [
+        "TCP port"
+      ]
+    },
+    {
+      "command": "@info tcp_port_hms_bf1_d",
+      "kind": "info",
+      "description": "TCP port HMS BF#1_D 10103",
+      "details": [],
+      "sections": [
+        "TCP port"
+      ]
+    },
+    {
+      "command": "@info tcp_port_hms_bf2_d",
+      "kind": "info",
+      "description": "TCP port HMS BF#2_D 10104",
+      "details": [],
+      "sections": [
+        "TCP port"
+      ]
+    },
+    {
+      "command": "@info tcp_port_ta_bf",
+      "kind": "info",
+      "description": "TCP port TA BF 10111",
+      "details": [],
+      "sections": [
+        "TCP port"
+      ]
+    },
+    {
+      "command": "@info tcp_port_sa_bf",
+      "kind": "info",
+      "description": "TCP port SA BF 10121",
+      "details": [],
+      "sections": [
+        "TCP port"
+      ]
+    },
+    {
+      "command": "@info tcp_port_asg_hms1",
+      "kind": "info",
+      "description": "TCP port ASG HMS1 10141",
+      "details": [],
+      "sections": [
+        "TCP port"
+      ]
+    },
+    {
+      "command": "@info tcp_port_asg_hms2",
+      "kind": "info",
+      "description": "TCP port ASG HMS2 10142",
+      "details": [],
+      "sections": [
+        "TCP port"
+      ]
+    },
+    {
+      "command": "@info tcp_port_asg_mfta1",
+      "kind": "info",
+      "description": "TCP port ASG MFTA1 10151",
+      "details": [],
+      "sections": [
+        "TCP port"
+      ]
+    },
+    {
+      "command": "@info tcp_port_asg_mfta2",
+      "kind": "info",
+      "description": "TCP port ASG MFTA2 10152",
+      "details": [],
+      "sections": [
+        "TCP port"
+      ]
+    },
+    {
+      "command": "@info tcp_port_spm_sr_h",
+      "kind": "info",
+      "description": "TCP port SPM SR_H 10161",
+      "details": [],
+      "sections": [
+        "TCP port"
+      ]
+    },
+    {
+      "command": "@info tcp_port_spm_sr_m",
+      "kind": "info",
+      "description": "TCP port SPM SR_M 10162",
+      "details": [],
+      "sections": [
+        "TCP port"
+      ]
+    },
+    {
+      "command": "cp \"sdi.out\",\"/ata0:2/sdi.out\"",
+      "kind": "command",
+      "description": "SDI sdi.out 파일을 /ata0:2/sdi.out 으로 복사",
+      "details": [],
+      "sections": [
+        "wksp 복사",
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "@info workspace_sdi_debug",
+      "kind": "info",
+      "description": "wksp 복사 SDI Debug 경로 E:\\vx_wksp620\\SDI\\vsbVpx3C1Smp_IVYBRIDGEllvm_LP64_KERNEL_SMP\\SDI\\Debug",
+      "details": [],
+      "sections": [
+        "wksp 복사"
+      ]
+    },
+    {
+      "command": "cp \"sdit.out\",\"/ata0:2/sdit.out\"",
+      "kind": "command",
+      "description": "SDIT sdit.out 파일을 /ata0:2/sdit.out 으로 복사",
+      "details": [],
+      "sections": [
+        "wksp 복사"
+      ]
+    },
+    {
+      "command": "@info workspace_sdit_debug",
+      "kind": "info",
+      "description": "wksp 복사 SDIT Debug 경로 E:\\vx_wksp620\\SDIT\\vsbVpx3C1Smp_IVYBRIDGEllvm_LP64_KERNEL_SMP\\SDIT\\Debug",
+      "details": [],
+      "sections": [
+        "wksp 복사"
+      ]
+    },
+    {
+      "command": "cp \"vxWorks\",\"/ata0:1/vxWorks\"",
+      "kind": "command",
+      "description": "vxWorks 파일을 /ata0:1/vxWorks 로 복사",
+      "details": [],
+      "sections": [
+        "wksp 복사"
+      ]
+    },
+    {
+      "command": "@info workspace_knl_sdi_default",
+      "kind": "info",
+      "description": "wksp 복사 knlVpx3C1Smp default 경로 E:\\vx_wksp620\\knlVpx3C1Smp\\default",
+      "details": [],
+      "sections": [
+        "wksp 복사"
+      ]
+    },
+    {
+      "command": "cp \"vxWorks\",\"/ata0:1/vxWorksSdit\"",
+      "kind": "command",
+      "description": "vxWorks 파일을 /ata0:1/vxWorksSdit 로 복사",
+      "details": [],
+      "sections": [
+        "wksp 복사",
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "@info workspace_knl_sdit_default",
+      "kind": "info",
+      "description": "wksp 복사 knlVpx3C1Sdit default 경로 E:\\vx_wksp620\\knlVpx3C1Sdit\\default",
+      "details": [],
+      "sections": [
+        "wksp 복사"
+      ]
+    },
+    {
+      "command": "ShowSNTPtime2 \"192.168.30.121\"",
+      "kind": "command",
+      "description": "NTP 시간 가져오기",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ShowSNTPtime",
+      "kind": "command",
+      "description": "NTP 시간 가져오기 (\"192.168.30.121\") 에서 가져옴",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "routec \"delete 192.168.31.0/24 \"",
+      "kind": "command",
+      "description": "EIF 모의 시험용 192.168.31.0/24 라우팅 삭제",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "routec \"delete 192.168.30.0/24 \"",
+      "kind": "command",
+      "description": "EIF 모의 시험용 192.168.30.0/24 라우팅 삭제",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "routec \"delete 192.168.31.0/24 192.168.42.1\"",
+      "kind": "command",
+      "description": "192.168.42.1 게이트웨이를 통한 192.168.31.0/24 라우팅 삭제",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "routec \"add -dev gei0 192.168.31.0/24\"",
+      "kind": "command",
+      "description": "SDIT 랙단위 검증",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ShowDemoTestResult 1, 1",
+      "kind": "command",
+      "description": "SDIU 정상모의",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "routec \"delete 192.168.30.0/24 192.168.42.1\"",
+      "kind": "command",
+      "description": "192.168.42.1 게이트웨이를 통한 192.168.30.0/24 라우팅 삭제",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "routec \"add -dev tei1 192.168.30.0/24\"",
+      "kind": "command",
+      "description": "tei1 장치에 192.168.30.0/24 라우팅 추가",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ifconfig \"gei0 192.168.10.235 netmask 255.255.0.0 up\"",
+      "kind": "command",
+      "description": "gei0 IP 192.168.10.235 설정",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ifconfig \"gei0 192.10.10.235 netmask 255.255.0.0 up\"",
+      "kind": "command",
+      "description": "gei0 IP 192.10.10.235 설정",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ifconfig \"gei0 down\"",
+      "kind": "command",
+      "description": "gei0 인터페이스 down",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ping \"192.168.40.1\"",
+      "kind": "command",
+      "description": "192.168.40.1 ping 연결 확인",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ping \"192.168.42.197\"",
+      "kind": "command",
+      "description": "192.168.42.197 ping 연결 확인",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ping \"192.168.41.187\"",
+      "kind": "command",
+      "description": "192.168.41.187 ping 연결 확인",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ping \"192.168.42.1\"",
+      "kind": "command",
+      "description": "192.168.42.1 ping 연결 확인",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ping \"192.168.41.1\"",
+      "kind": "command",
+      "description": "192.168.41.1 ping 연결 확인",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ping \"192.168.30.122\"",
+      "kind": "command",
+      "description": "192.168.30.122 ping 연결 확인",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ping \"192.168.31.121\"",
+      "kind": "command",
+      "description": "192.168.31.121 ping 연결 확인",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ping \"192.168.30.254\"",
+      "kind": "command",
+      "description": "192.168.30.254 ping 연결 확인",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ping \"192.168.30.1\"",
+      "kind": "command",
+      "description": "192.168.30.1 ping 연결 확인",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ping \"192.168.140.254\"",
+      "kind": "command",
+      "description": "192.168.140.254 ping 연결 확인",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ping \"192.168.50.92\"",
+      "kind": "command",
+      "description": "192.168.50.92 ping 연결 확인",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ping \"192.168.31.122\"",
+      "kind": "command",
+      "description": "192.168.31.122 ping 연결 확인",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ping \"192.168.40.177\"",
+      "kind": "command",
+      "description": "192.168.40.177 ping 연결 확인",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ping \"192.168.40.170\"",
+      "kind": "command",
+      "description": "192.168.40.170 ping 연결 확인",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ping \"192.168.40.173\"",
+      "kind": "command",
+      "description": "192.168.40.173 ping 연결 확인",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ping \"192.168.41.180\"",
+      "kind": "command",
+      "description": "192.168.41.180 ping 연결 확인",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ping \"192.168.140.212\"",
+      "kind": "command",
+      "description": "192.168.140.212 ping 연결 확인",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "ping \"192.168.140.214\"",
+      "kind": "command",
+      "description": "192.168.140.214 ping 연결 확인",
+      "details": [],
+      "sections": [
+        "EIF 모의 시험용"
+      ]
+    },
+    {
+      "command": "vxbPciCtrlShow",
+      "kind": "command",
+      "description": "PCIe controller ID 확인",
+      "details": [
+        "예시 출력: Pci controller devId=0xffff800000148720, value=52"
+      ],
+      "sections": [
+        "PCIe 확인용"
+      ]
+    },
+    {
+      "command": "vxbPciTopoShow 0xffff800000148720",
+      "kind": "command",
+      "description": "PCIe topology 확인",
+      "details": [
+        "예시 출력: HOST BRIDGE, P2P BRIDGE, NET_CNTLR, MEM_CNTLR, MASS STORAGE 장치 목록"
+      ],
+      "sections": [
+        "PCIe 확인용"
+      ]
+    },
+    {
+      "command": "vxbPciHeaderShow 0xffff800000148720, 5,0,0",
+      "kind": "command",
+      "description": "PCIe header 확인",
+      "details": [
+        "예시 출력: vendor ID 0x10ee, device ID 0x7024, class code, base address, PCIe capability"
+      ],
+      "sections": [
+        "PCIe 확인용"
+      ]
+    },
+    {
+      "command": "connectWithTimeout()",
+      "kind": "command",
+      "description": "지정 시간 안에 소켓 연결 시도",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "@info ramdisk_spy_save_flow",
+      "kind": "info",
+      "description": "Ram Disk SPYdata 저장 흐름: open(\"/ram0/SPYdata.txt\"), ioTaskStdGet, spyReport, ioTaskStdSet, close",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "spyReport",
+      "kind": "command",
+      "description": "CPU spy 측정 리포트 출력",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "ioTaskStdSet(0, 1, nOldFd)",
+      "kind": "command",
+      "description": "task standard output을 이전 fd로 복구",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "close(nSaveFd)",
+      "kind": "command",
+      "description": "저장 파일 descriptor 닫기",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "ls \"/ram0\"",
+      "kind": "command",
+      "description": "ram0 파일 목록 확인",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "cp \"/ram0/SPYdata.txt\",\"SPYdata.txt\"",
+      "kind": "command",
+      "description": "ram0 SPYdata.txt 파일 복사",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "rm \"/ram0/SPYdata.txt\"",
+      "kind": "command",
+      "description": "ram0 SPYdata.txt 파일 삭제",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "@info workspace_sdi_debug_ram",
+      "kind": "info",
+      "description": "Ram Disk 디버깅용 SDI Debug 경로 E:\\vx_wksp620\\SDI\\vsbVpx3C1Smp_IVYBRIDGEllvm_LP64_KERNEL_SMP\\SDI\\Debug",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "@info workspace_sdit_debug_ram",
+      "kind": "info",
+      "description": "Ram Disk 디버깅용 SDIT Debug 경로 E:\\vx_wksp620\\SDIT\\vsbVpx3C1Smp_IVYBRIDGEllvm_LP64_KERNEL_SMP\\SDIT\\Debug",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "@info workspace_knl_sdit_default_ram",
+      "kind": "info",
+      "description": "Ram Disk 디버깅용 knlVpx3C1Sdit default 경로 E:\\vx_wksp620\\knlVpx3C1Sdit\\default",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "GetCpuUsage_Ram",
+      "kind": "command",
+      "description": "Ram Disk CPU 사용량 확인",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "GetCpuUsageRAM2",
+      "kind": "command",
+      "description": "RAM 기반 CPU 사용량 확인 2",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "GetLastNLine(9)",
+      "kind": "command",
+      "description": "마지막 N줄 로그 확인",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "GetLastNLine_Ram(9)",
+      "kind": "command",
+      "description": "Ram Disk 마지막 N줄 로그 확인",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "spyClkStop()",
+      "kind": "command",
+      "description": "CPU 데이터 수집 정지",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "ls \"/ata0:2\"",
+      "kind": "command",
+      "description": "ata0:2 파일 목록 확인",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "cp \"/ata0:2/SPYdata.txt\",\"SPYdata.txt\"",
+      "kind": "command",
+      "description": "ata0:2 SPYdata.txt 파일 복사",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "rm \"/ata0:2/SPYdata.txt\"",
+      "kind": "command",
+      "description": "ata0:2 SPYdata.txt 파일 삭제",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "GetCpuUsageRAM_debug",
+      "kind": "command",
+      "description": "RAM 기반 CPU 사용량 디버그 확인",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "GetCpuUsageRAM_fd",
+      "kind": "command",
+      "description": "RAM 기반 CPU 사용량 file descriptor 확인",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "GetCpuUsageRAM_fp",
+      "kind": "command",
+      "description": "RAM 기반 CPU 사용량 file pointer 확인",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "GetCpuUsage",
+      "kind": "command",
+      "description": "CPU 사용량 확인",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "GetCpuUsage_ata",
+      "kind": "command",
+      "description": "ata 저장소 기반 CPU 사용량 확인",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "@info ramdisk_empty_file_errno",
+      "kind": "info",
+      "description": "GetCpuUsageRAM Empty file 오류 errno 3997697",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    },
+    {
+      "command": "SetMftaLogicBit (0x1C, 0x1)",
+      "kind": "command",
+      "description": "MFTA logic bit 설정",
+      "details": [],
+      "sections": [
+        "Ram Disk 디버깅 - 작성 중"
+      ]
+    }
+  ]
+}

@@ -3,9 +3,11 @@ from __future__ import annotations
 from pathlib import Path
 import shutil
 
+from .paths import package_model_dir
+
 
 BASE_MODEL_ID = "Qwen/Qwen2.5-1.5B-Instruct"
-MODELS_DIR = Path(__file__).resolve().parent / "models"
+MODELS_DIR = package_model_dir()
 LOCAL_BASE_MODEL_DIR = MODELS_DIR / "base" / "qwen2.5-1.5b-instruct"
 
 
@@ -51,4 +53,3 @@ def ensure_base_model(
             shutil.copy2(item, destination)
 
     return target
-

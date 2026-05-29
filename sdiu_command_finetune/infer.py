@@ -4,18 +4,19 @@ import argparse
 import json
 from pathlib import Path
 import re
+import time
 from typing import Any
 
-from .parser import DEFAULT_SOURCE_PATH, CommandRecord, load_command_records
+from .defaults import BASE_MODEL, DEFAULT_OUTPUT_DIR
+from .parser import DEFAULT_COMMANDS_PATH, CommandRecord, load_command_records
 from .prompts import SYSTEM_PROMPT, build_user_prompt
 from .retrieval import fallback_search, result_to_payload
-from .train_lora import BASE_MODEL, DEFAULT_OUTPUT_DIR
 
 
 class SdiuCommandAssistant:
     def __init__(
         self,
-        source_path: str | Path = DEFAULT_SOURCE_PATH,
+        source_path: str | Path = DEFAULT_COMMANDS_PATH,
         adapter_path: str | Path = DEFAULT_OUTPUT_DIR,
         base_model: str = BASE_MODEL,
         load_model: bool = True,
@@ -28,6 +29,8 @@ class SdiuCommandAssistant:
         self.tokenizer = None
         self.model = None
         self.load_error: str | None = None
+        self.load_seconds: float | None = None
+        self.device: str = "not loaded"
 
         if load_model:
             self._load_model()
@@ -49,6 +52,7 @@ class SdiuCommandAssistant:
             return
 
         try:
+            started_at = time.perf_counter()
             dtype = torch.bfloat16 if torch.cuda.is_available() else torch.float32
             tokenizer_source = (
                 self.resolved_adapter_path
@@ -63,16 +67,20 @@ class SdiuCommandAssistant:
                 self.tokenizer.pad_token = self.tokenizer.eos_token
             base = AutoModelForCausalLM.from_pretrained(
                 self.base_model,
-                torch_dtype=dtype,
+                dtype=dtype,
                 device_map="auto" if torch.cuda.is_available() else None,
                 trust_remote_code=True,
             )
             self.model = PeftModel.from_pretrained(base, self.resolved_adapter_path)
             self.model.eval()
+            self.load_seconds = time.perf_counter() - started_at
+            self.device = str(getattr(self.model, "device", "cuda" if torch.cuda.is_available() else "cpu"))
         except Exception as exc:  # pragma: no cover - depends on local model stack
             self.load_error = str(exc)
             self.tokenizer = None
             self.model = None
+            self.load_seconds = None
+            self.device = "load failed"
 
     @staticmethod
     def _resolve_adapter_path(path: Path) -> Path | None:
@@ -101,7 +109,7 @@ class SdiuCommandAssistant:
         ]
         return self.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
 
-    def generate_raw(self, query: str, top_k: int = 5, max_new_tokens: int = 512) -> str:
+    def generate_raw(self, query: str, top_k: int = 5, max_new_tokens: int = 256) -> str:
         if not self.model_ready:
             return ""
         assert self.tokenizer is not None and self.model is not None
@@ -121,8 +129,26 @@ class SdiuCommandAssistant:
         generated = outputs[0][inputs["input_ids"].shape[-1] :]
         return self.tokenizer.decode(generated, skip_special_tokens=True).strip()
 
-    def answer(self, query: str, top_k: int = 5) -> dict[str, Any]:
-        raw_text = self.generate_raw(query, top_k=top_k) if self.model_ready else ""
+    def fallback_answer(self, query: str, top_k: int = 5) -> dict[str, Any]:
+        return {
+            "results": [result_to_payload(result) for result in fallback_search(query, self.records, top_k=top_k)],
+            "raw_model_output": "",
+            "model_ready": self.model_ready,
+            "load_error": self.load_error,
+            "mode": "fallback",
+        }
+
+    def answer(
+        self,
+        query: str,
+        top_k: int = 5,
+        use_model: bool = True,
+        max_new_tokens: int = 256,
+    ) -> dict[str, Any]:
+        if not use_model:
+            return self.fallback_answer(query, top_k=top_k)
+
+        raw_text = self.generate_raw(query, top_k=top_k, max_new_tokens=max_new_tokens) if self.model_ready else ""
         model_payload = extract_json_payload(raw_text)
         validated = self._validate_payload(model_payload)
         fallback = [result_to_payload(result) for result in fallback_search(query, self.records, top_k=top_k)]
@@ -140,6 +166,9 @@ class SdiuCommandAssistant:
             "raw_model_output": raw_text,
             "model_ready": self.model_ready,
             "load_error": self.load_error,
+            "mode": "llm" if self.model_ready else "fallback",
+            "device": self.device,
+            "load_seconds": self.load_seconds,
         }
 
     def _validate_payload(self, payload: dict[str, Any] | None) -> list[dict]:
@@ -161,6 +190,7 @@ class SdiuCommandAssistant:
             validated.append(
                 {
                     "command": record.command,
+                    "kind": record.kind,
                     "description": record.description or "파일에 별도 설명 없음",
                     "reason": str(item.get("reason") or "파인튜닝 모델 후보"),
                     "line_number": record.line_number,
@@ -192,11 +222,12 @@ def extract_json_payload(text: str) -> dict[str, Any] | None:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run SDIU command inference.")
     parser.add_argument("query", nargs="*", help="Korean description or command to search.")
-    parser.add_argument("--source", type=Path, default=DEFAULT_SOURCE_PATH)
+    parser.add_argument("--commands", "--source", dest="commands", type=Path, default=DEFAULT_COMMANDS_PATH)
     parser.add_argument("--adapter", type=Path, default=DEFAULT_OUTPUT_DIR)
     parser.add_argument("--base-model", default=BASE_MODEL)
     parser.add_argument("--top-k", type=int, default=5)
     parser.add_argument("--fallback-only", action="store_true")
+    parser.add_argument("--max-new-tokens", type=int, default=256)
     args = parser.parse_args()
 
     query = " ".join(args.query).strip()
@@ -204,12 +235,17 @@ def main() -> None:
         raise SystemExit("Provide a query.")
 
     assistant = SdiuCommandAssistant(
-        source_path=args.source,
+        source_path=args.commands,
         adapter_path=args.adapter,
         base_model=args.base_model,
         load_model=not args.fallback_only,
     )
-    payload = assistant.answer(query, top_k=args.top_k)
+    payload = assistant.answer(
+        query,
+        top_k=args.top_k,
+        use_model=not args.fallback_only,
+        max_new_tokens=args.max_new_tokens,
+    )
     print(json.dumps(payload, ensure_ascii=False, indent=2))
 
 
